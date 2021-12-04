@@ -1,4 +1,4 @@
-package com.example.palatex;
+package com.example.palatex.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
