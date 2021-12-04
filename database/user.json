@@ -1,0 +1,12 @@
+[
+    {
+        "MemberID" : "101",
+        "firstName": "Nopphadon",
+        "LastName": "Phanwong"
+    },
+    {
+        "MemberID" : "102",
+        "firstName": "testter",
+        "LastName": "test me"
+    }
+]
