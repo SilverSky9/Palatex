@@ -11,15 +11,15 @@ public class user {
     private String _id;
     private String firstName;
     private String lastName;
-    private String MemberID;
+    private int memberID;
 
     public user (){}
 
-    public user(String _id, String firstName, String lastName, String MemberID){
+    public user(String _id, String firstName, String lastName, int memberID){
         this._id = _id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.MemberID = MemberID;
+        this.memberID = memberID;
     }
 
 

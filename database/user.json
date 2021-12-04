@@ -1,12 +1,12 @@
 [
     {
-        "MemberID" : "101",
+        "memberID" : 101,
         "firstName": "Nopphadon",
         "LastName": "Phanwong"
     },
     {
-        "MemberID" : "102",
-        "firstName": "testter",
+        "memberID" : 102,
+        "firstName": "tester",
         "LastName": "test me"
     }
 ]
