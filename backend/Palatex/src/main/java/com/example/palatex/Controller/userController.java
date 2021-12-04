@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+//User router for query data
 @RestController
 public class userController {
     @Autowired

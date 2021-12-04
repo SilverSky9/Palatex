@@ -15,10 +15,13 @@ import javax.net.ssl.SSLException;
 
 @RestController
 public class Controller {
+    //This router for test something
     @RequestMapping("/test")
     public String test(){
         return "Hi! Test";
     }
+
+    //This router for get price for external API
     @RequestMapping("/getTest")
     public String getPrice(){
         return "test";
