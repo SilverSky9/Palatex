@@ -1,8 +1,17 @@
 package com.example.palatex.Controller;
 
+import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslContextBuilder;
+import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.reactive.ClientHttpConnector;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.netty.http.client.HttpClient;
+
+import javax.net.ssl.SSLException;
 
 @RestController
 public class Controller {
@@ -10,24 +19,9 @@ public class Controller {
     public String test(){
         return "Hi! Test";
     }
-    @RequestMapping("/get")
+    @RequestMapping("/getTest")
     public String getPrice(){
-//        WebClient.ResponseSpec out = WebClient.create("https://dataapi.moc.go.th")
-//                .get()
-//                .uri(uriBuilder -> uriBuilder
-//                        .path("/gis-product-prices")
-//                        .queryParam("product_id", "W16025")
-//                        .queryParam("from_date", "2018-11-01")
-//                        .queryParam("to_date", "2018-11-24")
-//                        .build())
-//                .retrieve();
-        WebClient webClient = WebClient.create();
-        String responseJson = webClient.get()
-                .uri("https://dataapi.moc.go.th/gis-product-prices?product_id=W16025&from_date=2018-11-01&to_date=2018-11-24")
-                .retrieve()
-                .bodyToMono(String.class)
-                .block();
-
-        return responseJson;
+        return "test";
     }
 }
+
