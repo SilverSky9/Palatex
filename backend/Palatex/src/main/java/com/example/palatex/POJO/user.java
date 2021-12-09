@@ -10,16 +10,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class user {
     @Id
     private String _id;
-    private String firstName;
-    private String lastName;
+    private String firstname;
+    private String lastname;
     private int memberID;
 
     public user (){}
 
     public user(String _id, String firstName, String lastName, int memberID){
         this._id = _id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.memberID = memberID;
     }
 
