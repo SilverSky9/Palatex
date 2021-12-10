@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-row class="pr-2 my-1">
+    <b-row class="pr-2 my-3">
       <b-col>
         <b-card class="content bg-light">
           <b-card-text class="m-2">
@@ -12,21 +12,29 @@
             <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
             ฿ 59.30 บาท/กิโลกรัม
           </b-card-text>
-
-          <!-- <b-link href="#" class="card-link">Nothing To link Dont Click</b-link> -->
+          <NuxtLink class="ml-3" to="/analysis"
+            ><b-button pill variant="outline-info" class="px-5" size="lg"
+              >Transection</b-button
+            ></NuxtLink
+          >
+          <NuxtLink class="ml-3" to="/analysis"
+            ><b-button pill variant="outline-success" class="px-5" size="lg"
+              >Analysis</b-button
+            ></NuxtLink
+          >
         </b-card>
       </b-col>
     </b-row>
-    <b-row class="pr-2 my-3">
+    <b-row class="pr-2 my-4">
       <b-col cols="3">
         <b-card class="content bg-light">
           <b-card-text class="m-2">
-            <fa :icon="['fa', 'fast-backward']" size="2x" />
-            <span class="h3 ml-2">ราคายางย้อนหลัง</span>
+            <fa :icon="['fa', 'fast-backward']" size="lg" />
+            <span class="h3 ml-2">ราคาย้อนหลัง</span>
           </b-card-text>
 
           <b-card-text class="">
-            <b-table hover :items="items"></b-table>
+            <b-table hover :items="items" />
           </b-card-text>
 
           <!-- <b-link href="#" class="card-link">Nothing To link Dont Click</b-link> -->
@@ -60,6 +68,9 @@
 }
 .chart {
   height: 100%;
+}
+.borderRadius {
+  border-radius: 2rem;
 }
 </style>
 
