@@ -1,23 +1,16 @@
 package com.example.palatex.Controller;
 
-import io.netty.handler.ssl.SslContext;
-import io.netty.handler.ssl.SslContextBuilder;
-import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
-import org.springframework.context.annotation.Bean;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.reactive.ClientHttpConnector;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClientException;
-import reactor.core.CoreSubscriber;
-import reactor.core.publisher.Mono;
-import reactor.netty.http.client.HttpClient;
 
-import javax.net.ssl.SSLException;
-import com.example.palatex.POJO.priceLatex;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import reactor.core.publisher.Mono;
+
 
 @RestController
 public class Controller {
@@ -28,7 +21,7 @@ public class Controller {
     }
 
     //This router for get price for external API
-    @RequestMapping("/getTest")
+    @RequestMapping("/getPrice")
     public Mono<String> getPrice(){
 
 
