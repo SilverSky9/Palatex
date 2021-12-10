@@ -1,13 +1,23 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-auto p-3 sticky-top bg-dark">
-        <fa class="item-link" :icon="['fa', 'eraser']" size="2x" />
+    <div class="row mr-2">
+      <a
+        href="#"
+        class="col-sm-auto p-3 rounded-circle m-2 icon"
+        title=""
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+        data-bs-original-title="Home"
+      >
+        <fa :icon="['fa', 'eraser']" size="2x" color="white" />
+      </a>
+      <div class="col-sm my-2 header">
+        <span class="headerText py-0 pr-0 text-white">Palatex</span>
+        <span class="text-secondary">Buying and Selling Latex Product</span>
       </div>
-      <div class="col-sm p-3">sad</div>
     </div>
-    <div class="row">
-      <div class="col-sm-auto sticky-top">
+    <div class="row positon-sticky">
+      <div class="col-sm-auto">
         <div>
           <ul
             class="
@@ -79,10 +89,24 @@
   </div>
 </template>
 <style >
+html {
+}
 .nav-link {
   color: #9f9f9f;
 }
 .nav-link:hover {
   color: #000;
+}
+.header {
+  border-radius: 10rem;
+  font-family: 'Kanit';
+  background-color: black;
+}
+.headerText {
+  padding: 1rem;
+  font-size: 2.6rem;
+}
+.icon {
+  background-color: black;
 }
 </style>
