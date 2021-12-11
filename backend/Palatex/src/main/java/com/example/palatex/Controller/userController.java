@@ -2,6 +2,7 @@ package com.example.palatex.Controller;
 
 import com.example.palatex.POJO.User;
 import com.example.palatex.Service.userService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,9 @@ import java.util.List;
 public class userController {
     @Autowired
     private userService userService;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @RequestMapping(value = "/getalluser", method = RequestMethod.GET)
     public ResponseEntity<?> getAllUser(){
