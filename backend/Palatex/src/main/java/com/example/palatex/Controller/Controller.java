@@ -23,30 +23,30 @@ public class Controller {
     }
 
     //This router for get price for external API
-    @RequestMapping("/getPrice")
-    public Mono<String> getPrice(){
+    @RequestMapping("/price")
+    public String getPrice(){
 
 
-        WebClient webClient = WebClient.create("http://dataapi.moc.go.th");
-
-
-        Mono<String> test = webClient.get()
-                .uri("/gis-product-prices?product_id=W16025&from_date=2021-12-08&to_date=2021-12-08")
-//                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .retrieve()
-                .bodyToMono(String.class);
+//        WebClient webClient = WebClient.create("https://dataapi.moc.go.th");
+//
+//
+//        Mono<String> test = webClient.get()
+//                .uri("/gis-product-prices?product_id=W16025&from_date=2021-12-08&to_date=2021-12-08")
+////                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+//                .retrieve()
+//                .bodyToMono(String.class);
 //        Mono<String> out = webClient2.get()
 //                .uri("gis-product-prices?product_id=W16025&from_date=2021-12-08&to_date=2021-12-08")
 //                .retrieve()
 //                .bodyToMono(String.class);
-//        WebClient webClient = WebClient.create();
-//        String responseJson = webClient.get()
-//                .uri("http://dataapi.moc.go.th/gis-product-prices?product_id=W16025&from_date=2021-12-08&to_date=2021-12-08")
-//                .retrieve()
-//                .bodyToMono(String.class)
-//                .block();
+        WebClient webClient = WebClient.create();
+        String responseJson = webClient.get()
+                .uri("https://dataapi.moc.go.th/gis-product-prices?product_id=W16025&from_date=2021-12-08&to_date=2021-12-08")
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
 
-        return test;
+        return responseJson;
     }
 }
 
