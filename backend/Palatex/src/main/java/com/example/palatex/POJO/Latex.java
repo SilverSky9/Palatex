@@ -17,15 +17,15 @@ import java.util.Date;
 public class Latex {
     @Id
     private String _id;
-    private int latex_id;
-    private float price;
+//    private int latex_id;
+    private double price;
     private Date date; //not sure
 
     public Latex(){}
 
-    public Latex(String _id, int latex_id, float price,Date date){
+    public Latex(String _id, double price,Date date){
         this._id = _id;
-        this.latex_id = latex_id;
+//        this.latex_id = latex_id;
         this.price = price;
         this.date = date;
 

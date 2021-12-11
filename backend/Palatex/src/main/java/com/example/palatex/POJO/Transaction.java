@@ -16,17 +16,17 @@ import java.util.Date;
 public class Transaction {
     @Id
     private String _id;
-    private int transaction_id;
+//    private int transaction_id;
     private Date date; //not sure
-    private float price_buy;
-    private float total_price;
-    private float unit;
+    private double price_buy;
+    private double total_price;
+    private double unit;
 
     public Transaction(){}
 
-    public Transaction(String _id, int transaction_id, Date date, float price_buy, float total_price,float unit ){
+    public Transaction(String _id, Date date, double price_buy, double total_price,double unit ){
         this._id = _id;
-        this.transaction_id = transaction_id;
+//        this.transaction_id = transaction_id;
         this.date = date;
         this.price_buy = price_buy;
         this.total_price = total_price;
