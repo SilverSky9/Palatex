@@ -25,6 +25,7 @@
         </b-card>
       </b-col>
     </b-row>
+
     <b-row class="pr-2 my-4">
       <b-col cols="3">
         <b-card class="content bg-light">
@@ -34,7 +35,14 @@
           </b-card-text>
 
           <b-card-text class="">
-            <b-table hover :items="items" />
+            <b-table hover :items="items">
+              <template #cell(Date)="data">
+                {{ $moment(data.item.Date).format('DD MMM YY') }}
+              </template>
+              <template #cell(Price)="data">
+                {{ data.item.Price + ' ฿/Kg' }}
+              </template>
+            </b-table>
           </b-card-text>
 
           <!-- <b-link href="#" class="card-link">Nothing To link Dont Click</b-link> -->
@@ -75,44 +83,51 @@
 </style>
 
 <script>
+import moment from 'moment'
 import LineChart from '../components/LineChart.vue'
-
 export default {
   components: { LineChart },
   layout: 'Navbar',
-  data() {
-    return {
-      items: [
-        { Date: '10 / 12 / 21', Price: 59.3 },
-        { Date: '9 / 12 / 21', Price: 58.6 },
-        { Date: '8 / 12 / 21', Price: 58.9 },
-        { Date: '7 / 12 / 21', Price: 59 },
+  data: () => ({
+    items: [
+      { Date: '12-7-2021', Price: 59 },
+      { Date: '12-8-2021', Price: 58.9 },
+      { Date: '12-9-2021', Price: 58.6 },
+
+      { Date: '12-10-2021', Price: 59.3 },
+    ],
+    chartData: {
+      // labels: ['10 / 12 / 21', '9 / 12 / 21', '8 / 12 / 21', '7 / 12 / 21'],
+      labels: [],
+
+      datasets: [
+        {
+          label: 'Price Over Month',
+          data: [],
+          borderColor: '#ee801e',
+          borderWidth: 4,
+          fill: false,
+        },
       ],
-      chartData: {
-        // labels: ['10 / 12 / 21', '9 / 12 / 21', '8 / 12 / 21', '7 / 12 / 21'],
-        labels: [],
-
-        datasets: [
-          {
-            label: 'Price Over Time',
-            data: [59.3, 58.6, 58.9, 59],
-            borderColor: '#ee801e',
-            borderWidth: 4,
-            fill: false,
-          },
-        ],
-      },
-      chartOptions: {
-        maintainAspectRatio: false,
-        responsive: true,
-      },
-    }
-  },
-  async fetch() {
-    this.chartData.labels = await this.items.map((x) => x.Date)
-    this.chartData.datasets.data = await this.items.map((x) => x.Price)
-
-    // console.log(this.labels)
+    },
+    chartOptions: {
+      maintainAspectRatio: false,
+      responsive: true,
+    },
+    selected: null,
+    options: [
+      { value: null, text: 'Please select an option' },
+      { value: 'a', text: 'This is First option' },
+      { value: 'b', text: 'Selected Option' },
+      { value: '', text: 'This is an option with object value' },
+      { value: 'd', text: 'This one is disabled', disabled: true },
+    ],
+  }),
+  fetch() {
+    this.chartData.labels = this.items.map((x) =>
+      moment(x.Date).format('DD MMM')
+    )
+    this.chartData.datasets[0].data = this.items.map((x) => x.Price)
   },
 }
 </script>
