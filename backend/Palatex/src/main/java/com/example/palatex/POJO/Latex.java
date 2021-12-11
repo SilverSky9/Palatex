@@ -18,7 +18,7 @@ public class Latex {
     @Id
     private String _id;
     private int latex_id;
-    private float price;
+    private double price;
     private Date date; //not sure
 
     public Latex(){}

@@ -18,9 +18,9 @@ public class Transaction {
     private String _id;
     private int transaction_id;
     private Date date; //not sure
-    private float price_buy;
-    private float total_price;
-    private float unit;
+    private double price_buy;
+    private double total_price;
+    private double unit;
 
     public Transaction(){}
 

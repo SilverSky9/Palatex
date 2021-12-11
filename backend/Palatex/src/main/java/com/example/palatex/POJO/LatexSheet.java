@@ -19,7 +19,7 @@ public class LatexSheet {
     private String _id;
     private int latex_sheet_id;
     private Date date;
-    private float unit;
+    private double unit;
 
     public LatexSheet(){}
 
