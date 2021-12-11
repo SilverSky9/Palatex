@@ -20,10 +20,14 @@ This project is a part of Service oriented programming 1/2564
   4. ถ้ามี conflict ให้แก้
   5. เสร็จแล้ว Merge เข้า Dev
 
-How to run FrontEnd
-```
-1.cd frontend/
-2.npm install
-3.npm run dev
-```
 
+
+## Request
+- RabbitMQ services
+
+- Vue frontend services
+  ```
+  1.cd frontend/
+  2.npm install
+  3.npm run dev
+  ```
