@@ -1,3 +1,14 @@
+CONNECTED(00000005)
+depth=0 CN = *.moc.go.th
+verify error:num=20:unable to get local issuer certificate
+verify return:1
+depth=0 CN = *.moc.go.th
+verify error:num=21:unable to verify the first certificate
+verify return:1
+---
+Certificate chain
+ 0 s:/CN=*.moc.go.th
+   i:/C=GB/ST=Greater Manchester/L=Salford/O=Sectigo Limited/CN=Sectigo RSA Domain Validation Secure Server CA
 -----BEGIN CERTIFICATE-----
 MIIFsDCCBJigAwIBAgIQEBwVFTowtIYJUS+5ZZFSmDANBgkqhkiG9w0BAQsFADCB
 jzELMAkGA1UEBhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4G
@@ -31,3 +42,43 @@ lzvzWSAliUSgpvs3tJ5VNu1L6MdnigBM1x2NUo0G4kJGtzKUDc/RglhvZY/WJKH/
 Qst/q96Pg6xm6uv5wE8s/9abhpg0+BArDlQBLGLGN61Kx6tmok9FRETA52Y0TAGE
 QZDrZNP66mIBao4wm7XQb3UbS6o=
 -----END CERTIFICATE-----
+---
+Server certificate
+subject=/CN=*.moc.go.th
+issuer=/C=GB/ST=Greater Manchester/L=Salford/O=Sectigo Limited/CN=Sectigo RSA Domain Validation Secure Server CA
+---
+No client certificate CA names sent
+Server Temp Key: ECDH, P-256, 256 bits
+---
+SSL handshake has read 2130 bytes and written 322 bytes
+---
+New, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    Session-ID: 9650273F46E0BD498BAB8C1DB172A920061455391BD7ED3990694A01323F5E9C
+    Session-ID-ctx:
+    Master-Key: 6CDDB80CE64C93E11C87707B7F562C77A861DCD1E8532B8757DAF1A52E38C88695C7B6656D4A1EC743175A0ECA6A9337
+    TLS session ticket lifetime hint: 300 (seconds)
+    TLS session ticket:
+    0000 - e1 fe 4b 6c b9 6d 1a 1a-01 82 02 7e 32 53 d7 6a   ..Kl.m.....~2S.j
+    0010 - 28 38 6d 8e 30 93 d0 41-1c 80 19 ad 11 91 40 8e   (8m.0..A......@.
+    0020 - 3f 0d 2a 81 92 b3 60 34-eb 48 33 6b 81 4c b4 c8   ?.*...`4.H3k.L..
+    0030 - b4 5e f5 6f d0 63 cd ca-96 00 9a 04 da 30 62 f4   .^.o.c.......0b.
+    0040 - 68 1c 55 93 d6 45 c3 a7-6d 71 5b c9 15 0e c6 26   h.U..E..mq[....&
+    0050 - 94 5f 90 1e f0 7b 36 9e-2b 9f 48 01 fc 5a fe e4   ._...{6.+.H..Z..
+    0060 - 40 ab 26 12 f5 d7 4f 4b-96 a0 27 16 5e 01 72 8b   @.&...OK..'.^.r.
+    0070 - 16 31 2a 94 97 d8 8e d3-f7 88 31 ef 3d 71 2c 8f   .1*.......1.=q,.
+    0080 - a3 c2 e2 a8 f1 a0 a2 3d-bd c8 07 59 0a 2f af 3d   .......=...Y./.=
+    0090 - 5f 28 2c 89 b1 20 5f a8-79 35 d8 3a 91 0a 45 92   _(,.. _.y5.:..E.
+    00a0 - 95 4f e0 7e 94 5d 75 fc-0f f4 cb c7 ac 54 77 90   .O.~.]u......Tw.
+
+    Start Time: 1639160795
+    Timeout   : 7200 (sec)
+    Verify return code: 0 (ok)
+---

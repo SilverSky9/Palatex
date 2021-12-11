@@ -1,6 +1,7 @@
 package com.example.palatex.Controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
@@ -14,6 +15,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 public class Controller {
+
     //This router for test something
     @RequestMapping("/test")
     public String test(){
@@ -25,11 +27,12 @@ public class Controller {
     public Mono<String> getPrice(){
 
 
-        WebClient webClient = WebClient.create("https://dataapi.moc.go.th");
+        WebClient webClient = WebClient.create("http://dataapi.moc.go.th");
+
 
         Mono<String> test = webClient.get()
                 .uri("/gis-product-prices?product_id=W16025&from_date=2021-12-08&to_date=2021-12-08")
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+//                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .retrieve()
                 .bodyToMono(String.class);
 //        Mono<String> out = webClient2.get()
@@ -37,11 +40,12 @@ public class Controller {
 //                .retrieve()
 //                .bodyToMono(String.class);
 //        WebClient webClient = WebClient.create();
-//        priceLatex responseJson = webClient.get()
-//                .uri("https://dataapi.moc.go.th/gis-product-prices?product_id=W16025&from_date=2018-11-01&to_date=2018-11-24")
+//        String responseJson = webClient.get()
+//                .uri("http://dataapi.moc.go.th/gis-product-prices?product_id=W16025&from_date=2021-12-08&to_date=2021-12-08")
 //                .retrieve()
-//                .bodyToMono(priceLatex.class)
+//                .bodyToMono(String.class)
 //                .block();
+
         return test;
     }
 }
