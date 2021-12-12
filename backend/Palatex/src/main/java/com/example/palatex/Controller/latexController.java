@@ -35,6 +35,11 @@ public class latexController {
         latexService.addLatexRecordService(l);
         return ResponseEntity.ok("Save latex record");
     }
+    @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> delUserService(@PathVariable String id){
+        latexService.deleteLatexRecordService(id);
+        return ResponseEntity.ok("Delete latex record!");
+    }
 
     //TODO
     //Can get latex record by date!

@@ -35,8 +35,11 @@ public class transactionController {
     public ResponseEntity<?> saveTransaction(@RequestBody Transaction transaction){
         transactionService.addTransactionService(transaction);
         return ResponseEntity.ok("Save!");
-
-
+    }
+    @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> delUserService(@PathVariable String id){
+        transactionService.deleteTransactionService(id);
+        return ResponseEntity.ok("Delete transaction!");
     }
 
 

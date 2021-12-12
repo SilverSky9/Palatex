@@ -22,22 +22,28 @@ public class userController {
 
     //Get all user in mongoDB
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public ResponseEntity<?> getAllUser(){
+    public ResponseEntity<?> getAllUserService(){
         List<User> users = userService.getAllUsersService();
         return ResponseEntity.ok(users);
     }
     // Save user to mongoDB
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity<?> addUser(@RequestBody  User user){
+    public ResponseEntity<?> addUserService(@RequestBody  User user){
         userService.addUserService(user);
         return ResponseEntity.ok("Save user!");
 
     }
     // Get user data by ID in mongoDB
     @RequestMapping(value = "/id/{memberId}", method = RequestMethod.GET)
-    public ResponseEntity<?> addUser(@PathVariable("memberId") int memberId){
+    public ResponseEntity<?> getUserByIdSerivce(@PathVariable("memberId") int memberId){
 
         User u = userService.getUserByMemberIdService(memberId);
         return ResponseEntity.ok(u);
+    }
+
+    @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> delUserService(@PathVariable String id){
+        userService.deleteUserDataService(id);
+        return ResponseEntity.ok("Delete user!");
     }
 }

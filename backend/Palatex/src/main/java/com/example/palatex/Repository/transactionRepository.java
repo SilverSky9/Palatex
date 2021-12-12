@@ -9,4 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface transactionRepository extends MongoRepository<Transaction, String> {
     @Query(value = "{_id:'?0'}")
     public Transaction findAllById(String id);
+    public void deleteById(String id);
+
+
 }

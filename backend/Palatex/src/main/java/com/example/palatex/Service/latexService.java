@@ -29,4 +29,15 @@ public class latexService {
         return latexRepository.save(l);
     }
 
+    //Delete latex record by ID in mongoDB
+    public boolean deleteLatexRecordService(String id){
+        try {
+            latexRepository.deleteById(id);
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
 }

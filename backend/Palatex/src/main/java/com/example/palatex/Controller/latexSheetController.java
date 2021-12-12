@@ -29,7 +29,13 @@ public class latexSheetController {
     //Save latex sheet record to mongoDB
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public  ResponseEntity<?> saveLatexSheetRecord(@RequestBody LatexSheet latexSheet){
-        latexSheetService.saveLatexRecord(latexSheet);
+        latexSheetService.saveLatexRecordService(latexSheet);
         return ResponseEntity.ok("Save latex sheet record");
+    }
+    //Delete latex sheet record in mongoDB
+    @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> delUserService(@PathVariable String id){
+        latexSheetService.deleteLatexSheetRecordService(id);
+        return ResponseEntity.ok("Delete latex record!");
     }
 }

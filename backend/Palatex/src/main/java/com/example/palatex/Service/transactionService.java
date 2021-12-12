@@ -33,5 +33,15 @@ public class transactionService {
         return transactionRepository.findAllById(id);
 
     }
+    //Delete transaction by ID in mongoDB
+    public boolean deleteTransactionService(String id){
+        try{
+            transactionRepository.deleteById(id);
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
 
 }

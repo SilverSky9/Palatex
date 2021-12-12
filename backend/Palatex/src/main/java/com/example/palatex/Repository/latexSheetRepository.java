@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface latexSheetRepository extends MongoRepository<LatexSheet, String> {
     @Query(value = "{_id:'?0'}")
     public LatexSheet findAllById(String id);
+    public void deleteById(String id);
 }
