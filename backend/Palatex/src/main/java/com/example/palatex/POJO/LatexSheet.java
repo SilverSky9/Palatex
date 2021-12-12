@@ -12,7 +12,7 @@ import java.util.Date;
 @Setter
 
 @Data
-@Document("latexsheet")
+@Document("latex_sheet")
 public class LatexSheet {
 
     @Id

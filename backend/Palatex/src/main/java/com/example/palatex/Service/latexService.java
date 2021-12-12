@@ -20,11 +20,13 @@ public class latexService {
     public List<Latex> getAllLatexService(){
         return latexRepository.findAll();
     }
+    //Get latex record by id in mongoDB
+    public Latex getLatexByIdService(String id){
+        return latexRepository.findAllById(id);
+    }
     //Save transaction to mongoDB
     public Latex addLatexRecordService(Latex l){
         return latexRepository.save(l);
     }
-    //TODO
-    //Can get latex record by date!
 
 }
