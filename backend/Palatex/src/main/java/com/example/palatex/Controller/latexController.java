@@ -17,16 +17,19 @@ public class latexController {
     @Autowired
     private latexService latexService;
 
+    //Get all latex record in mongoDB
     @RequestMapping(value = "/all",  method = RequestMethod.GET)
     public ResponseEntity<?> getAllLatexRecord(){
         List<Latex> ans = latexService.getAllLatexService();
         return  ResponseEntity.ok(ans);
     }
+    //Get latex record by ID in mongoDB
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getLatexRecord(@PathVariable String id ){
         Latex latex = latexService.getLatexByIdService(id);
         return ResponseEntity.ok(latex);
     }
+    //Save latex record to mongoDB
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity<?> saveLatexRecord(Latex l){
         latexService.addLatexRecordService(l);

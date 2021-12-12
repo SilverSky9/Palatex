@@ -17,15 +17,15 @@ public class userService {
     public userService(userRepository userRepository){
         this.userRepository = userRepository;
     }
-
+    //Add user
     public User addUserService(User u) {
         return userRepository.save(u);
     }
-
+    //Get all user
     public List<User> getAllUsersService(){
         return userRepository.findAll();
     }
-
+    //Get by ID
     public User getUserByMemberIdService(int memberId) {
         return userRepository.findByMemberIdQuery(memberId);
     }

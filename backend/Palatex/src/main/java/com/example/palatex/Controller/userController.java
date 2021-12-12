@@ -20,26 +20,20 @@ public class userController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    //Get all user in mongoDB
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<?> getAllUser(){
         List<User> users = userService.getAllUsersService();
         return ResponseEntity.ok(users);
     }
-
+    // Save user to mongoDB
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity<?> addUser(@RequestBody  User user){
         userService.addUserService(user);
         return ResponseEntity.ok("Save user!");
 
     }
-//    public ResponseEntity<?> addUser(@PathVariable("memberId") int memberId,
-//                                     @PathVariable("firstname") String firstname,
-//                                     @PathVariable("lastname") String lastname){
-//
-//        User u = userService.addUserService(new User(null, memberId, firstname, lastname));
-//        return ResponseEntity.ok(u);
-//    }
-
+    // Get user data by ID in mongoDB
     @RequestMapping(value = "/id/{memberId}", method = RequestMethod.GET)
     public ResponseEntity<?> addUser(@PathVariable("memberId") int memberId){
 
