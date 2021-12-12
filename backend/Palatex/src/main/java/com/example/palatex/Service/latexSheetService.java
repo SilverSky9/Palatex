@@ -27,6 +27,11 @@ public class latexSheetService {
     public LatexSheet saveLatexRecordService(LatexSheet l){
         return latexSheetRepository.save(l);
     }
+    //Count all latex sheet in mongoDB
+    public int countAllLatexSheetService(){
+        return (int) latexSheetRepository.count();
+    }
+
     //Delete latex sheet by ID in mongoDB
     public boolean deleteLatexSheetRecordService(String id){
         try {

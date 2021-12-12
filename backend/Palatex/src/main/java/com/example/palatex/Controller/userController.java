@@ -22,27 +22,33 @@ public class userController {
 
     //Get all user in mongoDB
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public ResponseEntity<?> getAllUserService(){
+    public ResponseEntity<?> getAllUser(){
         List<User> users = userService.getAllUsersService();
         return ResponseEntity.ok(users);
     }
     // Save user to mongoDB
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity<?> addUserService(@RequestBody  User user){
+    public ResponseEntity<?> addUser(@RequestBody  User user){
         userService.addUserService(user);
         return ResponseEntity.ok("Save user!");
 
     }
     // Get user data by ID in mongoDB
     @RequestMapping(value = "/id/{memberId}", method = RequestMethod.GET)
-    public ResponseEntity<?> getUserByIdSerivce(@PathVariable("memberId") int memberId){
+    public ResponseEntity<?> getUserById(@PathVariable("memberId") int memberId){
 
         User u = userService.getUserByMemberIdService(memberId);
         return ResponseEntity.ok(u);
     }
+    //
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public ResponseEntity<?> countUser(){
+        return ResponseEntity.ok(userService.countAllUserService());
+    }
 
+    //Delete user by ID in mongoDB
     @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> delUserService(@PathVariable String id){
+    public ResponseEntity<?> delUser(@PathVariable String id){
         userService.deleteUserDataService(id);
         return ResponseEntity.ok("Delete user!");
     }

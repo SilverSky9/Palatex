@@ -36,8 +36,14 @@ public class transactionController {
         transactionService.addTransactionService(transaction);
         return ResponseEntity.ok("Save!");
     }
+    // Count all transaction in mongoDB
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public  ResponseEntity<?> countAllTransaction(){
+        return ResponseEntity.ok(transactionService.countAllTransactionService());
+    }
+    // Delete Transaction by ID in mongoDB
     @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> delUserService(@PathVariable String id){
+    public ResponseEntity<?> delTransaction(@PathVariable String id){
         transactionService.deleteTransactionService(id);
         return ResponseEntity.ok("Delete transaction!");
     }

@@ -35,8 +35,16 @@ public class latexController {
         latexService.addLatexRecordService(l);
         return ResponseEntity.ok("Save latex record");
     }
+    //Count all Latex record in mongoDB
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public ResponseEntity<?> countAllLatex(){
+        return ResponseEntity.ok(latexService.countAllLatexService());
+    }
+
+
+    //Delete Latex by ID in mongoDB
     @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> delUserService(@PathVariable String id){
+    public ResponseEntity<?> delLatex(@PathVariable String id){
         latexService.deleteLatexRecordService(id);
         return ResponseEntity.ok("Delete latex record!");
     }

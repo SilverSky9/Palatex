@@ -32,9 +32,14 @@ public class latexSheetController {
         latexSheetService.saveLatexRecordService(latexSheet);
         return ResponseEntity.ok("Save latex sheet record");
     }
+    //Count all latex sheet in mongoDB
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public ResponseEntity<?> countAllLatexSheet(){
+        return ResponseEntity.ok(latexSheetService.countAllLatexSheetService());
+    }
     //Delete latex sheet record in mongoDB
     @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> delUserService(@PathVariable String id){
+    public ResponseEntity<?> delLatexSheet(@PathVariable String id){
         latexSheetService.deleteLatexSheetRecordService(id);
         return ResponseEntity.ok("Delete latex record!");
     }
