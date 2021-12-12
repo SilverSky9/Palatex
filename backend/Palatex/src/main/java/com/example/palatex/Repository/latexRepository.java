@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface latexRepository extends MongoRepository<Latex, String> {
     @Query(value = "{_id:'?0'}")
     public Latex findAllById(String id);
-
+    public void deleteById(String id);
 }

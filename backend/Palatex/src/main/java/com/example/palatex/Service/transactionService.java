@@ -33,5 +33,21 @@ public class transactionService {
         return transactionRepository.findAllById(id);
 
     }
+    //Count all transaction in mongoDB
+    public int countAllTransactionService(){
+
+        return (int) transactionRepository.count();
+    }
+
+    //Delete transaction by ID in mongoDB
+    public boolean deleteTransactionService(String id){
+        try{
+            transactionRepository.deleteById(id);
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
 
 }

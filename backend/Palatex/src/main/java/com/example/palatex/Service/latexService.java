@@ -28,5 +28,19 @@ public class latexService {
     public Latex addLatexRecordService(Latex l){
         return latexRepository.save(l);
     }
+    //Count all latex in mongoDB
+    public int countAllLatexService(){
+        return (int) latexRepository.count();
+    }
+    //Delete latex record by ID in mongoDB
+    public boolean deleteLatexRecordService(String id){
+        try {
+            latexRepository.deleteById(id);
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
 
 }

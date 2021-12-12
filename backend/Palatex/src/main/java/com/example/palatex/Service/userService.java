@@ -29,4 +29,18 @@ public class userService {
     public User getUserByMemberIdService(int memberId) {
         return userRepository.findByMemberIdQuery(memberId);
     }
+    //Get count all user
+    public int countAllUserService(){
+        return (int) userRepository.count();
+    }
+    //Delete user
+    public boolean deleteUserDataService(String id){
+        try {
+            userRepository.deleteById(id);
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
 }

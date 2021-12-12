@@ -35,9 +35,21 @@ public class userController {
     }
     // Get user data by ID in mongoDB
     @RequestMapping(value = "/id/{memberId}", method = RequestMethod.GET)
-    public ResponseEntity<?> addUser(@PathVariable("memberId") int memberId){
+    public ResponseEntity<?> getUserById(@PathVariable("memberId") int memberId){
 
         User u = userService.getUserByMemberIdService(memberId);
         return ResponseEntity.ok(u);
+    }
+    //
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public ResponseEntity<?> countUser(){
+        return ResponseEntity.ok(userService.countAllUserService());
+    }
+
+    //Delete user by ID in mongoDB
+    @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> delUser(@PathVariable String id){
+        userService.deleteUserDataService(id);
+        return ResponseEntity.ok("Delete user!");
     }
 }

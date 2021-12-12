@@ -24,8 +24,23 @@ public class latexSheetService {
         return latexSheetRepository.findAllById(id);
     }
     //Save latex sheet to mongoDB
-    public LatexSheet saveLatexRecord(LatexSheet l){
+    public LatexSheet saveLatexRecordService(LatexSheet l){
         return latexSheetRepository.save(l);
+    }
+    //Count all latex sheet in mongoDB
+    public int countAllLatexSheetService(){
+        return (int) latexSheetRepository.count();
+    }
+
+    //Delete latex sheet by ID in mongoDB
+    public boolean deleteLatexSheetRecordService(String id){
+        try {
+            latexSheetRepository.deleteById(id);
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
     }
 
 }
