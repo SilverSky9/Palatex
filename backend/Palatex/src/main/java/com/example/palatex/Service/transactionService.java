@@ -21,14 +21,17 @@ public class transactionService {
     public Transaction addTransactionService(Transaction t){
         return transactionRepository.save(t);
     }
+
     //Get all transaction in mongoDB
     public List<Transaction> getAllTransactionService(){
         return transactionRepository.findAll();
     }
+
     //Get transaction by _id in mongoDB
     public Transaction getTransactionByIdService(String id){
 
         return transactionRepository.findAllById(id);
 
     }
+
 }
