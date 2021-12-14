@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Getter
@@ -14,7 +15,7 @@ import java.util.Date;
 
 @Data
 @Document("latex")
-public class Latex {
+public class Latex implements Serializable {
     @Id
     private String _id;
 //    private int latex_id;

@@ -1,6 +1,8 @@
 package com.example.palatex.Controller;
 
 import com.example.palatex.POJO.User;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.palatex.Service.transactionService;
 import com.example.palatex.POJO.Transaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -48,6 +51,11 @@ public class transactionController {
         return ResponseEntity.ok("Delete transaction!");
     }
 
-
+    @RabbitListener(queues = "GetAllTransaction")
+    public ArrayList<Transaction> getAllTransaction(ArrayList list){
+        List<Transaction> transactions =  transactionService.getAllTransactionService();
+        list.addAll(transactions);
+        return list;
+    }
 
 }

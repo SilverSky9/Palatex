@@ -33,9 +33,9 @@ public class Controller {
         return "test";
     }
 
-    @RequestMapping("/message")
-    public void testMessage(){
-        rabbitTemplate.convertAndSend("sop", "tester", "Golf");
-    }
+//    @RequestMapping("/message")
+//    public void testMessage(){
+//        rabbitTemplate.convertAndSend("sop", "tester", "Golf");
+//    }
 }
 
