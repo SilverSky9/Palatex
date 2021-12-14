@@ -91,8 +91,28 @@
 import moment from 'moment'
 export default {
   layout: 'Navbar',
+  methods: {
+    async zaTest() {
+      const ip = await this.$axios.$get('https://api.nuxtjs.dev/mountains')
+      console.log(ip)
+    },
+    testshit() {
+      console.log('kuy')
+    },
+  },
+  test() {
+    console.log('kuy')
+  },
+  mounted: () => {
+    console.log('mouny')
+    //this.testshit()
+
+    //test()
+  },
+
   data() {
     return {
+      userTest: [],
       allTime: [],
       allKg: null,
       chartData: {
@@ -257,9 +277,22 @@ export default {
       ],
     }
   },
-  fetch() {
+  async asyncData({ $axios }) {
+    console.log('getting')
+    const data = await $axios.$get('http://localhost:8093/analysis/tran/all')
+    this.userTest = data
+    console.log(data)
+    //return { ip }
+  },
+  async fetch() {
     let dateI = 0
     let select = ''
+    //console.log('asdasd')
+
+    // const userTest = await fetch('https://api.nuxtjs.dev/mountains').then(
+    //   (res) => res.json()
+    // )
+    // console.log(userTest)
 
     this.user.map((i, index) => {
       select = i.date
