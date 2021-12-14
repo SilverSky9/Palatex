@@ -4,10 +4,10 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
 @Service
-public class testService {
+public class    testService {
 
-    @RabbitListener(queues = "tester")
-    public void replyMessage(String n){
-        System.out.println("It's message from backend " +  n);
-    }
+//    @RabbitListener(queues = "tester")
+//    public void replyMessage(String n){
+//        System.out.println("It's message from backend " +  n);
+//    }
 }

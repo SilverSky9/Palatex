@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @Getter
@@ -13,7 +15,7 @@ import java.util.Date;
 
 @Data
 @Document("transaction")
-public class Transaction {
+public class Transaction implements Serializable {
     @Id
     private String _id;
 //    private int transaction_id;
