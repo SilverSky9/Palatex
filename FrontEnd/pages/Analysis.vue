@@ -91,28 +91,15 @@
 import moment from 'moment'
 export default {
   layout: 'Navbar',
-  methods: {
-    async zaTest() {
-      const ip = await this.$axios.$get('https://api.nuxtjs.dev/mountains')
-      console.log(ip)
-    },
-    testshit() {
-      console.log('kuy')
-    },
-  },
+
   test() {
     console.log('kuy')
-  },
-  mounted: () => {
-    console.log('mouny')
-    //this.testshit()
-
-    //test()
   },
 
   data() {
     return {
       userTest: [],
+      haha: 'susprayuth',
       allTime: [],
       allKg: null,
       chartData: {
@@ -277,16 +264,27 @@ export default {
       ],
     }
   },
-  async asyncData({ $axios }) {
-    console.log('getting')
-    const data = await $axios.$get('http://localhost:8093/analysis/tran/all')
-    this.userTest = data
-    console.log(data)
-    //return { ip }
+  methods: {
+    async getUser() {
+      const ip = await this.$axios.$get('http://localhost:8093/user/all')
+      //console.log(ip)
+      this.userTest = ip
+      console.log(this.userTest)
+      //console.log(this.haha)
+    },
   },
+
+  mounted() {
+    console.log('mounted')
+    // console.log(this.haha, 'asd')
+    //console.log(this.haha)
+    this.getUser()
+  },
+
   async fetch() {
     let dateI = 0
     let select = ''
+
     //console.log('asdasd')
 
     // const userTest = await fetch('https://api.nuxtjs.dev/mountains').then(
