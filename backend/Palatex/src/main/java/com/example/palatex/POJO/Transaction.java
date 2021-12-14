@@ -18,6 +18,7 @@ import java.util.Date;
 public class Transaction implements Serializable {
     @Id
     private String _id;
+    private String user_id;
 //    private int transaction_id;
     private Date date; //not sure
     private double price_buy;
@@ -26,9 +27,10 @@ public class Transaction implements Serializable {
 
     public Transaction(){}
 
-    public Transaction(String _id, Date date, double price_buy, double total_price,double unit ){
+    public Transaction(String _id,String user_id, Date date, double price_buy, double total_price,double unit ){
         this._id = _id;
 //        this.transaction_id = transaction_id;
+        this.user_id = user_id;
         this.date = date;
         this.price_buy = price_buy;
         this.total_price = total_price;
