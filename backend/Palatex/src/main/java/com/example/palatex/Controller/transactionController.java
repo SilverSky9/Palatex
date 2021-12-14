@@ -51,7 +51,7 @@ public class transactionController {
         return ResponseEntity.ok("Delete transaction!");
     }
 
-    @RabbitListener(queues = "transaction")
+    @RabbitListener(queues = "GetAllTransaction")
     public ArrayList<Transaction> getAllTransaction(ArrayList list){
         List<Transaction> transactions =  transactionService.getAllTransactionService();
         list.addAll(transactions);

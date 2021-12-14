@@ -6,13 +6,15 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
+
 // This user schema for map value from database
 @Getter
 @Setter
 
 @Data
 @Document("user")
-public class User {
+public class User implements Serializable {
     @Id
     private String _id;
     private int memberId;
