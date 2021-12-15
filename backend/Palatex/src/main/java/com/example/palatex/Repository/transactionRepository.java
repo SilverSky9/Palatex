@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface transactionRepository extends MongoRepository<Transaction, Stri
     public Transaction findAllById(String id);
     public void deleteById(String id);
 
-    @Query(value = "{date:'?0'}")
-    public List<Transaction> findTransactionBy_date(Date id);
+    @Query("{'date' : { $gte: ?0, $lte: ?0 } }")
+    public List<Transaction> findTransactionBy_date(Date date);
 
 }

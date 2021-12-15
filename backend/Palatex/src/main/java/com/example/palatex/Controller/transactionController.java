@@ -12,6 +12,9 @@ import com.example.palatex.POJO.Transaction;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,8 +26,8 @@ public class transactionController {
     @Autowired
     private transactionService transactionService;
     String pattern = "\"yyyy-MM-dd'T'HH:mm:ss.SSSXXX\"\t";
-    Date newDate;
-    SimpleDateFormat print;
+    LocalDate dateTime;
+    Date date;
 
     //Get All transaction in mongoDB
     @RequestMapping(value = "/all", method = RequestMethod.GET)
@@ -63,16 +66,21 @@ public class transactionController {
     public  ResponseEntity<?> getTransactionByDate(@PathVariable String value){
 
         try{
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.ENGLISH);
-            newDate = simpleDateFormat.parse(value);
-            print = new SimpleDateFormat(pattern);
+
+//            String dateInString = "Mon, 05 May 1980";
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+//            dateTime = LocalDate.parse(value, formatter);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.ENGLISH);
+            date = formatter.parse(value);
 
         }
         catch (Exception e){
             System.out.println(e);
         }
-
-        return ResponseEntity.ok(print.format(newDate));
+        System.out.println(date);
+        List<Transaction> list = transactionService.getTransactionByDate(date);
+        System.out.println(list);
+        return ResponseEntity.ok(list);
 
 
     }
