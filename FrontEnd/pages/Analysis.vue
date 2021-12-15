@@ -44,7 +44,7 @@
       <b-col cols="4">
         <b-card class="content bg-light">
           <b-card-text class="m-2">
-            <fa :icon="['fa', 'arrow-up']" size="2x" />
+            <fa :icon="['fa', 'money-bill']" size="2x" />
             <span class="h3">ราคารวมปีนี้</span>
           </b-card-text>
 
@@ -83,6 +83,29 @@
           > -->
         </b-card>
       </b-col>
+      <b-col>
+        <b-card class="content bg-light">
+          <b-card-text class="m-2">
+            <fa :icon="['fa', 'chart-line']" size="2x" />
+
+            <span class="h3">น้ำหนักต่อวันรวมทั้งปี</span>
+          </b-card-text>
+
+          <b-card-text class="display-2 p-3">
+            <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
+            <LineChart
+              :chartData="bahtData"
+              :options="chartOptions"
+              class="chart"
+            />
+            <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
+            Total : {{ allTotal }} ฿
+          </b-card-text>
+          <!-- <NuxtLink class="ml-3" to="/analysis"
+            ><b-button variant="danger">Analysis</b-button></NuxtLink
+          > -->
+        </b-card>
+      </b-col>
     </b-row>
   </div>
 </template>
@@ -94,14 +117,29 @@ export default {
   data() {
     return {
       allTime: [],
+      totalBaht: [],
+      allTotal: null,
+
       allKg: null,
       chartData: {
         // labels: ['10 / 12 / 21', '9 / 12 / 21', '8 / 12 / 21', '7 / 12 / 21'],
         labels: [],
-
         datasets: [
           {
             label: 'Kilogram Over Year',
+            data: [],
+            borderColor: '#ee801e',
+            borderWidth: 4,
+            fill: false,
+          },
+        ],
+      },
+      bahtData: {
+        // labels: ['10 / 12 / 21', '9 / 12 / 21', '8 / 12 / 21', '7 / 12 / 21'],
+        labels: [],
+        datasets: [
+          {
+            label: 'Money Over Year',
             data: [],
             borderColor: '#ee801e',
             borderWidth: 4,
@@ -266,13 +304,25 @@ export default {
       dateI = this.allTime.findIndex((x) => x.Date == select)
       if (dateI < 0) {
         this.allTime.push({ Date: select, Kg: i.unit })
+        this.totalBaht.push({ Date: select, total: i.total })
       } else {
         this.allTime[dateI].Kg += i.unit
+        this.totalBaht[dateI].total += i.total
       }
       this.allKg += i.unit
+      this.allTotal += i.total
     })
 
     this.allTime.sort(function (a, b) {
+      var keyA = new Date(a.Date),
+        keyB = new Date(b.Date)
+      // Compare the 2 dates
+      if (keyA < keyB) return -1
+      if (keyA > keyB) return 1
+      return 0
+    })
+
+    this.totalBaht.sort(function (a, b) {
       var keyA = new Date(a.Date),
         keyB = new Date(b.Date)
       // Compare the 2 dates
@@ -285,6 +335,11 @@ export default {
       moment(x.Date).format('DD MMM')
     )
     this.chartData.datasets[0].data = this.allTime.map((x) => x.Kg)
+
+    this.bahtData.labels = this.totalBaht.map((x) =>
+      moment(x.Date).format('DD MMM')
+    )
+    this.bahtData.datasets[0].data = this.totalBaht.map((x) => x.total)
   },
 }
 </script>

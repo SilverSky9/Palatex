@@ -1,13 +1,22 @@
 <template>
   <div>
     <b-row>
-      <b-card class="content bg-light w-100 mr-4">
+      <b-card class="content bg-light w-100 ml-3 mr-4">
         <b-row>
           <b-col>
-            <b-form-select
-              v-model="selected"
-              :options="options"
-            ></b-form-select>
+            <b-form-select v-model="selected">
+              <template #first>
+                <b-form-select-option :value="null" disabled
+                  >-- Please select an option --</b-form-select-option
+                >
+              </template>
+              <b-form-select-option
+                v-for="(item, i) in options"
+                :key="item"
+                :value="i"
+                >{{ item.text }}</b-form-select-option
+              ></b-form-select
+            >{{ selected }}
           </b-col>
 
           <b-col
@@ -46,6 +55,7 @@
           <b-card-text class="display-2 p-3">
             <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
             {{ price * unit }} ฿
+            {{ date }}
           </b-card-text>
           <!-- <NuxtLink class="ml-3" to="/analysis"
             ><b-button variant="danger">Analysis</b-button></NuxtLink
@@ -62,6 +72,7 @@ export default {
   data() {
     return {
       selected: null,
+      date: new Date(),
       options: [
         { value: null, text: 'Please Select Name' },
         { value: 'a', text: 'nuchayaporn' },
