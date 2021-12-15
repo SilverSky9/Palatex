@@ -22,12 +22,12 @@
       <b-col>
         <b-card class="content bg-light">
           <b-card-text class="m-2">
-            <fa :icon="['fa', 'money-bill']" size="2x" />
-            <span class="h3">ราคารวมปีนี้</span>
+            <fa :icon="['fa', 'users']" size="2x" />
+            <span class="h3">รายชื่อผู้ใช้ทั้งหมด</span>
           </b-card-text>
 
           <b-card-text class="">
-            <b-table hover :items="user">
+            <b-table sticky-header hover :items="user">
               <template #cell(date)="data">
                 {{ $moment(data.item.date).format('DD MMM YYYY') }}
               </template>
