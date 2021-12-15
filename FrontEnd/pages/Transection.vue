@@ -25,7 +25,11 @@
             ></b-form-input
           ></b-col>
           <b-col
-            ><b-button pill variant="outline-success" class="w-100"
+            ><b-button
+              pill
+              variant="outline-success"
+              class="w-100"
+              @click="postTran()"
               >Transection</b-button
             ></b-col
           >
@@ -67,6 +71,7 @@ export default {
         { value: 'd', text: 'pobjang' },
         { value: 'd', text: 'nigga' },
       ],
+      date: new Date(),
       user: [],
       price: 56.9,
       unit: null,
@@ -83,13 +88,15 @@ export default {
       console.log(list)
     },
 
-    // async postTran(){
-    //   var data : {
-    //     unit
-
-    //   }
-    //   await this.$axios.$post('http://localhost:8093/transaction/add', data)
-    // }
+    async postTran() {
+      var data = {
+        user_id: '2',
+        date: this.date,
+        unit: this.unit,
+      }
+      await this.$axios.$post('http://localhost:8093/transaction/add', data)
+      console.log(data)
+    },
   },
   mounted() {
     console.log('moun')
