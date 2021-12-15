@@ -11,12 +11,14 @@
                 >
               </template>
               <b-form-select-option
-                v-for="(item, i) in options"
-                :key="item"
-                :value="i"
-                >{{ item.text }}</b-form-select-option
+                v-for="(item, i) in user"
+                :key="i"
+                :value="item.memberId"
+                >{{
+                  item.memberId + ' ' + item.firstname + ' ' + item.lastname
+                }}</b-form-select-option
               ></b-form-select
-            >{{ selected }}
+            >
           </b-col>
 
           <b-col
@@ -99,6 +101,7 @@ export default {
     },
     async getAllUser() {
       const list = await this.$axios.$get('http://localhost:8093/user/all')
+      this.user = list
       console.log(list)
     },
 
@@ -108,7 +111,10 @@ export default {
         date: this.date,
         unit: this.unit,
       }
-      await this.$axios.$post('http://localhost:8093/transaction/add', data)
+      await this.$axios
+        .$post('http://localhost:8093/transaction/add', data)
+        .then((res) => console.log(res))
+      // console.log(this.date)
       console.log(data)
     },
   },
