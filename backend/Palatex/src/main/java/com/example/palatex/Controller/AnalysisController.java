@@ -2,6 +2,7 @@ package com.example.palatex.Controller;
 
 import com.example.palatex.POJO.Latex;
 import com.example.palatex.POJO.Transaction;
+import com.example.palatex.POJO.allAnalysis;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,7 @@ public class AnalysisController {
     private RabbitTemplate rabbitTemplate;
 
     @RequestMapping(value = "/tran/all", method = RequestMethod.GET)
-    public List<Transaction> getSumMoney() {
+    public ArrayList<Transaction> getTransaction() {
         Object out = rabbitTemplate.convertSendAndReceive("sop", "allTran", transactions);
         return (ArrayList<Transaction>) out;
     }
@@ -61,8 +62,40 @@ public class AnalysisController {
         return start + " " + end + " " + method + " " + newDate;
     }
     @RequestMapping(value = "/latex/all", method = RequestMethod.GET)
-    public List<Latex> getAllLatex(){
+    public ArrayList<Latex> getAllLatex(){
         Object out = rabbitTemplate.convertSendAndReceive("sop", "allLatex", latexs);
         return (ArrayList<Latex>) out;
+    }
+    @RequestMapping(value = "latex/date/{date}", method = RequestMethod.GET)
+    public String getLatexByDate(){
+
+        return "test";
+
+    }
+
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public String getAllAnalysis(){
+        Double price;
+        String _id, user_id, name, transaction_id;
+        ArrayList<Transaction> transactions = new ArrayList<>();
+        ArrayList<Latex> latexPrices = new ArrayList<>();
+
+        transactions = this.getTransaction();
+        latexPrices = this.getAllLatex();
+
+//
+//        for (Transaction test: transactions) {
+//            for (Latex latexPrice: latexPrices) {
+//                if(test.getDate().equals(latexPrice.getDate())){
+//                    System.out.println("Found!!!");
+//                    System.out.println(test.get);
+//                }
+//            }
+//
+//        }
+
+    return "test";
+
+
     }
 }
