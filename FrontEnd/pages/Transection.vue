@@ -16,7 +16,8 @@
                 :value="i"
                 >{{ item.text }}</b-form-select-option
               ></b-form-select
-            >{{ selected }}
+            >
+            <!-- {{ selected }} -->
           </b-col>
 
           <b-col
@@ -55,7 +56,7 @@
           <b-card-text class="display-2 p-3">
             <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
             {{ price * unit }} ฿
-            {{ date }}
+            <!-- {{ date }} -->
           </b-card-text>
           <!-- <NuxtLink class="ml-3" to="/analysis"
             ><b-button variant="danger">Analysis</b-button></NuxtLink

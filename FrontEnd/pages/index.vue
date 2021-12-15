@@ -12,7 +12,7 @@
             <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
             ฿ 59.30 บาท/กิโลกรัม
           </b-card-text>
-          <NuxtLink class="ml-3" to="/analysis"
+          <NuxtLink class="ml-3" to="/Transection"
             ><b-button pill variant="outline-info" class="px-5" size="lg"
               >Transection</b-button
             ></NuxtLink

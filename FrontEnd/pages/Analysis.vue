@@ -10,7 +10,7 @@
 
           <b-card-text class="display-2 p-3">
             <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
-            ฿ 5,000,000 บาท
+            ฿ {{ allTotal }} บาท
           </b-card-text>
           <!-- <NuxtLink class="ml-3" to="/analysis"
             ><b-button variant="danger">Analysis</b-button></NuxtLink
@@ -26,13 +26,13 @@
             <span class="h3">รายชื่อผู้ใช้ทั้งหมด</span>
           </b-card-text>
 
-          <b-card-text class="">
-            <b-table sticky-header hover :items="user">
+          <b-card-text>
+            <b-table sticky-header="26rem" hover :items="user">
               <template #cell(date)="data">
                 {{ $moment(data.item.date).format('DD MMM YYYY') }}
               </template>
               <template #cell(total)="data">
-                {{ data.item.total.toFixed(2) }}
+                {{ data.item.price_buy * data.item.unit }}
               </template>
             </b-table>
           </b-card-text>
@@ -45,12 +45,15 @@
         <b-card class="content bg-light">
           <b-card-text class="m-2">
             <fa :icon="['fa', 'money-bill']" size="2x" />
-            <span class="h3">ราคารวมปีนี้</span>
+            <span class="h3">แปลรูป</span>
           </b-card-text>
 
           <b-card-text class="display-2 p-3">
-            <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
-            ฿ 5,000,000 บาท
+            <DoughNut
+              :chartData="donutData"
+              :options="chartOptions"
+              class="chart"
+            />
           </b-card-text>
 
           <!-- <NuxtLink class="ml-3" to="/analysis"
@@ -68,7 +71,7 @@
             <span class="h3">น้ำหนักต่อวันรวมทั้งปี</span>
           </b-card-text>
 
-          <b-card-text class="display-2 p-3">
+          <b-card-text class="display-3 p-3">
             <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
             <LineChart
               :chartData="chartData"
@@ -88,10 +91,10 @@
           <b-card-text class="m-2">
             <fa :icon="['fa', 'chart-line']" size="2x" />
 
-            <span class="h3">น้ำหนักต่อวันรวมทั้งปี</span>
+            <span class="h3">ราคาต่อวันรวมทั้งปี</span>
           </b-card-text>
 
-          <b-card-text class="display-2 p-3">
+          <b-card-text class="display-3 p-3">
             <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
             <LineChart
               :chartData="bahtData"
@@ -121,6 +124,18 @@ export default {
       allTotal: null,
 
       allKg: null,
+      donutData: {
+        // labels: ['10 / 12 / 21', '9 / 12 / 21', '8 / 12 / 21', '7 / 12 / 21'],
+        labels: ['น้ำหนักน้ำยางสด', 'น้ำหนักยางแผ่นรมควัน'],
+        datasets: [
+          {
+            label: 'Kilogram Over Year',
+            data: [2, 2],
+            backgroundColor: ['#6731fb', '#ffb531'],
+            fill: false,
+          },
+        ],
+      },
       chartData: {
         // labels: ['10 / 12 / 21', '9 / 12 / 21', '8 / 12 / 21', '7 / 12 / 21'],
         labels: [],
@@ -135,13 +150,12 @@ export default {
         ],
       },
       bahtData: {
-        // labels: ['10 / 12 / 21', '9 / 12 / 21', '8 / 12 / 21', '7 / 12 / 21'],
         labels: [],
         datasets: [
           {
             label: 'Money Over Year',
             data: [],
-            borderColor: '#ee801e',
+            borderColor: '#6731FB',
             borderWidth: 4,
             fill: false,
           },
@@ -157,140 +171,120 @@ export default {
           date: '2022-01-02',
           price_buy: 56.9,
           unit: 65,
-          total: 3698.5,
         },
         {
           name: 'Jeanine Quinn',
           date: '2022-01-06',
           price_buy: 53.46,
           unit: 92,
-          total: 4918.32,
         },
         {
           name: 'Selma James',
           date: '2022-01-02',
           price_buy: 51.4,
           unit: 97,
-          total: 4985.8,
         },
         {
           name: 'Minnie Reilly',
           date: '2022-01-10',
           price_buy: 51.29,
           unit: 75,
-          total: 3846.75,
         },
         {
           name: 'Sybil Mccray',
           date: '2022-01-03',
           price_buy: 57.84,
           unit: 83,
-          total: 4800.72,
         },
         {
           name: 'Clayton Mcclain',
           date: '2022-01-08',
           price_buy: 57.6,
           unit: 97,
-          total: 5587.2,
         },
         {
           name: 'Dejesus Harrison',
           date: '2022-01-09',
           price_buy: 55.72,
           unit: 72,
-          total: 4011.84,
         },
         {
           name: 'Macdonald Reid',
           date: '2022-01-01',
           price_buy: 53.35,
           unit: 91,
-          total: 4854.85,
         },
         {
           name: 'Richardson Melendez',
           date: '2022-01-04',
           price_buy: 57.18,
           unit: 68,
-          total: 3888.24,
         },
         {
           name: 'Solomon Chavez',
           date: '2022-01-06',
           price_buy: 56.58,
           unit: 68,
-          total: 3847.44,
         },
         {
           name: 'Tanner Page',
           date: '2022-01-02',
           price_buy: 56.37,
           unit: 90,
-          total: 5073.3,
         },
         {
           name: 'Pacheco Gordon',
           date: '2022-01-02',
           price_buy: 58.21,
           unit: 60,
-          total: 3492.6,
         },
         {
           name: 'Delaney Sutton',
           date: '2022-01-05',
           price_buy: 55.82,
           unit: 95,
-          total: 5302.9,
         },
         {
           name: 'Bradshaw Torres',
           date: '2022-01-03',
           price_buy: 54.02,
           unit: 100,
-          total: 5402,
         },
         {
           name: 'Warner Cooke',
           date: '2022-01-10',
           price_buy: 59.84,
           unit: 65,
-          total: 3889.6000000000004,
         },
         {
           name: 'Gwendolyn Harrington',
           date: '2022-01-01',
           price_buy: 55.82,
           unit: 89,
-          total: 4967.9800000000005,
         },
         {
           name: 'Daphne Mclean',
           date: '2022-01-07',
           price_buy: 57.49,
           unit: 95,
-          total: 5461.55,
         },
         {
           name: 'Vicki Richard',
           date: '2022-01-06',
           price_buy: 50.24,
           unit: 60,
-          total: 3014.4,
         },
         {
           name: 'Bobbie Ayers',
           date: '2022-01-02',
           price_buy: 59.65,
           unit: 68,
-          total: 4056.2,
         },
         {
           name: 'Rowe Emerson',
           date: '2022-01-04',
           price_buy: 54.23,
           unit: 60,
-          total: 3253.7999999999997,
         },
       ],
     }
@@ -304,13 +298,13 @@ export default {
       dateI = this.allTime.findIndex((x) => x.Date == select)
       if (dateI < 0) {
         this.allTime.push({ Date: select, Kg: i.unit })
-        this.totalBaht.push({ Date: select, total: i.total })
+        this.totalBaht.push({ Date: select, total: i.price_buy * i.unit })
       } else {
         this.allTime[dateI].Kg += i.unit
-        this.totalBaht[dateI].total += i.total
+        this.totalBaht[dateI].total += i.price_buy * i.unit
       }
       this.allKg += i.unit
-      this.allTotal += i.total
+      this.allTotal += i.price_buy * i.unit
     })
 
     this.allTime.sort(function (a, b) {
@@ -340,6 +334,9 @@ export default {
       moment(x.Date).format('DD MMM')
     )
     this.bahtData.datasets[0].data = this.totalBaht.map((x) => x.total)
+
+    this.donutData.datasets[0].data[0] = this.allKg
+    this.donutData.datasets[0].data[1] = this.allKg * 0.35
   },
 }
 </script>
