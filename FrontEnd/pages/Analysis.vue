@@ -44,7 +44,7 @@
       <b-col cols="4">
         <b-card class="content bg-light">
           <b-card-text class="m-2">
-            <fa :icon="['fa', 'money-bill']" size="2x" />
+            <fa :icon="['fa', 'arrow-up']" size="2x" />
             <span class="h3">ราคารวมปีนี้</span>
           </b-card-text>
 
