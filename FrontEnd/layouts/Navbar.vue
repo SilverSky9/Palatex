@@ -53,15 +53,15 @@
               </NuxtLink>
             </li>
             <li class="pl-2 iconEffect">
-              <NuxtLink
-                to="/Transection"
+              <a
+                href="#"
                 class="nav-link py-3"
                 title=""
                 data-bs-toggle="tooltip"
                 data-bs-placement="right"
               >
                 <fa :icon="['fa', 'exchange-alt']" size="2x" />
-              </NuxtLink>
+              </a>
             </li>
           </ul>
         </div>
@@ -72,15 +72,6 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  methods: {
-    scrollToTop() {
-      window.scrollTo(0, 0)
-    },
-  },
-}
-</script>
 <style >
 .nav-link {
   color: #9f9f9f;
