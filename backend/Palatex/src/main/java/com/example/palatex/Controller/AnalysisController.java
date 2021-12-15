@@ -62,9 +62,15 @@ public class AnalysisController {
         return start + " " + end + " " + method + " " + newDate;
     }
     @RequestMapping(value = "/latex/all", method = RequestMethod.GET)
-    public List<Latex> getAllLatex(){
+    public ArrayList<Latex> getAllLatex(){
         Object out = rabbitTemplate.convertSendAndReceive("sop", "allLatex", latexs);
         return (ArrayList<Latex>) out;
+    }
+    @RequestMapping(value = "latex/date/{date}", method = RequestMethod.GET)
+    public String getLatexByDate(){
+
+        return "test";
+
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
@@ -72,15 +78,23 @@ public class AnalysisController {
         Double price;
         String _id, user_id, name, transaction_id;
         ArrayList<Transaction> transactions = new ArrayList<>();
+        ArrayList<Latex> latexPrices = new ArrayList<>();
+
         transactions = this.getTransaction();
+        latexPrices = this.getAllLatex();
 
+//
+//        for (Transaction test: transactions) {
+//            for (Latex latexPrice: latexPrices) {
+//                if(test.getDate().equals(latexPrice.getDate())){
+//                    System.out.println("Found!!!");
+//                    System.out.println(test.get);
+//                }
+//            }
+//
+//        }
 
-        for (Transaction test: transactions) {
-
-            System.out.println(test.get_id());
-        }
-
-        return "test";
+    return "test";
 
 
     }

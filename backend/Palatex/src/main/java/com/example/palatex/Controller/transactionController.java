@@ -10,14 +10,21 @@ import org.springframework.web.bind.annotation.*;
 import com.example.palatex.Service.transactionService;
 import com.example.palatex.POJO.Transaction;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping(value = "/transaction")
 public class transactionController {
     @Autowired
     private transactionService transactionService;
+    String pattern = "\"yyyy-MM-dd'T'HH:mm:ss.SSSXXX\"\t";
+    Date newDate;
+    SimpleDateFormat print;
 
     //Get All transaction in mongoDB
     @RequestMapping(value = "/all", method = RequestMethod.GET)
@@ -50,6 +57,26 @@ public class transactionController {
         transactionService.deleteTransactionService(id);
         return ResponseEntity.ok("Delete transaction!");
     }
+
+    //Get Transaction by date
+    @RequestMapping(value = "/date/{value}", method = RequestMethod.GET)
+    public  ResponseEntity<?> getTransactionByDate(@PathVariable String value){
+
+        try{
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.ENGLISH);
+            newDate = simpleDateFormat.parse(value);
+            print = new SimpleDateFormat(pattern);
+
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
+        return ResponseEntity.ok(print.format(newDate));
+
+
+    }
+
 
     @RabbitListener(queues = "GetAllTransaction")
     public ArrayList<Transaction> getAllTransaction(ArrayList list){

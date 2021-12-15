@@ -7,6 +7,7 @@ import com.example.palatex.POJO.Transaction;
 
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -37,6 +38,11 @@ public class transactionService {
     public int countAllTransactionService(){
 
         return (int) transactionRepository.count();
+    }
+
+    //Get Transaction by date
+    public List<Transaction> getTransactionByDate(Date date){
+        return transactionRepository.findTransactionBy_date(date);
     }
 
     //Delete transaction by ID in mongoDB
