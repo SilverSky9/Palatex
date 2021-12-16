@@ -34,7 +34,7 @@ public class Controller {
     //This router for test something
     @RequestMapping("/test")
     public String test() {
-        return "Hi! Test";
+        return "Hi! SOP Palatex";
     }
 
     //This router for get price for external API
