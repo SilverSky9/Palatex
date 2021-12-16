@@ -138,12 +138,14 @@ export default {
   methods: {
     async getLatex() {
       const latex = await this.$axios.$get('http://localhost:8093/latex/all')
-      this.latex = latex
-      this.price = latex[latex.length - 1].price
       this.chartData.labels = latex.map((x) =>
         moment(x.dateTime).format('DD MMM')
       )
       this.chartData.datasets[0].data = latex.map((x) => x.price)
+      console.log(this.chartData)
+      this.latex = latex
+      this.price = latex[latex.length - 1].price
+      // this.setChart()
       // console.log(latex)
     },
     async postLatex() {
@@ -155,6 +157,7 @@ export default {
         .$post('http://localhost:8093/latex/add', data)
         .then((res) => console.log(res))
     },
+    setChart() {},
   },
   mounted() {
     this.getLatex()

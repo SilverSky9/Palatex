@@ -6,17 +6,17 @@
     >
       <b-col cols="5" class="">
         <fa :icon="['fa', 'eraser']" size="10x" />
-        <div class="display-1">PALATEX</div>
+        <div class="display-1 font-weight-bold">PALATEX</div>
         <b-input-group prepend="Username" class="my-3">
           <b-form-input></b-form-input>
         </b-input-group>
         <b-input-group prepend="Password" class="my-3">
           <b-form-input></b-form-input>
         </b-input-group>
-        <a class="ml-3"
+        <NuxtLink class="ml-3" to="/SignUp"
           ><b-button pill variant="outline-success" class="px-5" size="lg"
             >Log In</b-button
-          ></a
+          ></NuxtLink
         >
       </b-col>
     </b-row>
