@@ -8,9 +8,19 @@
             <span class="h3">ราคายางในวันนี้</span>
           </b-card-text>
 
-          <b-card-text class="display-2 p-3">
+          <b-card-text class="p-3">
             <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
-            ฿ 59.30 บาท/กิโลกรัม
+            <h1 class="display-2" v-show="!edit">
+              ฿ {{ price.toFixed(2) }} บาท/กิโลกรัม
+            </h1>
+            <b-form-input
+              v-show="edit"
+              v-model="price"
+              size="lg"
+              class="w-25 my-4"
+              type="text"
+              placeholder="Sheet Price"
+            ></b-form-input>
           </b-card-text>
           <NuxtLink class="ml-3" to="/Transection"
             ><b-button pill variant="outline-info" class="px-5" size="lg"
@@ -23,7 +33,12 @@
             ></NuxtLink
           >
           <a class="ml-3"
-            ><b-button pill variant="outline-warning" class="px-5" size="lg"
+            ><b-button
+              pill
+              variant="outline-warning"
+              @click="edit = !edit"
+              class="px-5"
+              size="lg"
               >Edit</b-button
             ></a
           >
@@ -94,6 +109,8 @@ export default {
   components: { LineChart },
   layout: 'Navbar',
   data: () => ({
+    edit: false,
+    price: 59.3,
     items: [
       { Date: '12-7-2021', Price: 59 },
       { Date: '12-8-2021', Price: 58.9 },
