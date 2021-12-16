@@ -49,33 +49,13 @@ public class Controller {
     //This router for get price for external API
     @RequestMapping("/price")
     public double getPrice()  {
-
-
-//        WebClient webClient = WebClient.create("https://dataapi.moc.go.th");
-//
-//
-//        Mono<String> test = webClient.get()
-//                .uri("/gis-product-prices?product_id=W16025&from_date=2021-12-08&to_date=2021-12-08")
-////                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-//                .retrieve()
-//                .bodyToMono(String.class);
-//        Mono<String> out = webClient2.get()
-//                .uri("gis-product-prices?product_id=W16025&from_date=2021-12-08&to_date=2021-12-08")
-//                .retrieve()
-//                .bodyToMono(String.class);
-//        WebClient webClient = WebClient.create();
         priceLatex responseJson = webClient.get()
                 .uri("https://dataapi.moc.go.th/gis-product-prices?product_id=W16025&from_date=2021-12-16&to_date=2021-12-16")
                 .exchange()
                 .block()
                 .bodyToMono(priceLatex.class)
                 .block();
-//        Mono<String> out = createWebClient2.create()
-//                .get()
-//                .uri("https://dataapi.moc.go.th/gis-product-prices?" + "?product_id=W16025&from_date=2021-12-08&to_date=2021-12-08")
-//                .retrieve()
-//                .bodyToMono(String.class);
-////
+
 
         return responseJson.getPrice_max_avg();
     }
@@ -90,12 +70,6 @@ public class Controller {
         HttpClient httpClient = HttpClient.from(tcpClient);
         return WebClient.builder().clientConnector(new ReactorClientHttpConnector(httpClient)).build();
     }
-
-
-//    @RequestMapping("/message")
-//    public void testMessage(){
-//        rabbitTemplate.convertAndSend("sop", "tester", "Golf");
-//    }
 }
 
 
