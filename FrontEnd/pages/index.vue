@@ -22,10 +22,10 @@
               >Analysis</b-button
             ></NuxtLink
           >
-          <NuxtLink class="ml-3"
-            ><b-button pill variant="outline-success" class="px-5" size="lg"
+          <a class="ml-3"
+            ><b-button pill variant="outline-warning" class="px-5" size="lg"
               >Edit</b-button
-            ></NuxtLink
+            ></a
           >
         </b-card>
       </b-col>
