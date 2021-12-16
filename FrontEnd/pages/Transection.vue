@@ -118,6 +118,8 @@ export default {
         date: new Date(),
         dateTime: new Date(),
         unit: this.unit,
+        price_buy: this.price,
+        total_price: this.price * this.unit,
       }
       await this.$axios
         .$post('http://localhost:8093/transaction/add', data)
