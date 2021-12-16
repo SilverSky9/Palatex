@@ -5,7 +5,10 @@ import com.example.palatex.POJO.priceLatex;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import lombok.val;
+import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslContextBuilder;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -36,7 +39,7 @@ public class Controller {
     //This router for test something
     @RequestMapping("/test")
     public String test() {
-        return "Hi! Test";
+        return "Hi! SOP Palatex";
     }
 
     //This router for get price for external API
