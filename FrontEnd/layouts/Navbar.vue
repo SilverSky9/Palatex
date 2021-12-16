@@ -74,21 +74,9 @@
                 <fa :icon="['fa', 'layer-group']" size="2x" />
               </NuxtLink>
             </li>
-          </ul>
-          <ul
-            class="
-              nav nav-pills nav-flush
-              flex-sm-column flex-row flex-nowrap
-              mb-auto
-              mx-0
-              text-center
-              align-items-center
-              login
-            "
-          >
             <li class="pl-2 iconEffect">
               <NuxtLink
-                to="/Sheet"
+                to="/Login"
                 class="nav-link py-3"
                 title=""
                 data-bs-toggle="tooltip"
@@ -154,9 +142,6 @@ export default {
 }
 </script>
 <style >
-.login {
-  margin-top: 41vh;
-}
 .scrollup-button {
   position: fixed;
   bottom: 4rem;
@@ -192,7 +177,7 @@ fa {
   font-size: 2.6rem;
 }
 .iconEffect {
-  background: linear-gradient(to left, rgba(255, 255, 255, 0));
+  background: linear-gradient(to left, #fff);
   -webkit-animation-duration: 0.3s;
   animation-duration: 0.3s;
   -webkit-animation-fill-mode: both;
@@ -255,12 +240,7 @@ fa {
   }
   100% {
     background-position-x: 0rem;
-    background: linear-gradient(
-      to left,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0) 85%,
-      #000 85%
-    );
+    background: linear-gradient(to left, #fff, #fff 85%, #000 85%);
   }
 }
 </style>

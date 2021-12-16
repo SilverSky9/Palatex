@@ -35,11 +35,39 @@
           <a class="ml-3"
             ><b-button
               pill
+              v-show="!edit"
               variant="outline-warning"
               @click="edit = !edit"
               class="px-5"
               size="lg"
               >Edit</b-button
+            ></a
+          >
+          <a class="ml-3"
+            ><b-button
+              pill
+              v-show="edit"
+              variant="outline-success"
+              @click="
+                save = !save
+                edit = !edit
+              "
+              class="px-5"
+              size="lg"
+              >Save</b-button
+            ></a
+          ><a class="ml-3"
+            ><b-button
+              pill
+              v-show="edit"
+              variant="outline-danger"
+              @click="
+                cancel = !cancel
+                edit = !edit
+              "
+              class="px-5"
+              size="lg"
+              >Cancel</b-button
             ></a
           >
         </b-card>
@@ -110,6 +138,8 @@ export default {
   layout: 'Navbar',
   data: () => ({
     edit: false,
+    save: false,
+    cancel: false,
     price: 59.3,
     items: [
       { Date: '12-7-2021', Price: 59 },
