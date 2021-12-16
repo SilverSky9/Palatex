@@ -1,16 +1,16 @@
 <script>
-import { Doughnut } from 'vue-chartjs'
+import { Bar } from 'vue-chartjs'
 
 export default {
-  extends: Doughnut,
-  props:['chartData','options'],
+  extends: Bar,
+  props: ['chartData', 'options'],
   methods: {
     update() {
       this.$data._chart.update()
-    }
+    },
   },
-  mounted () {
+  mounted() {
     this.renderChart(this.chartData, this.options)
-  }
-};
+  },
+}
 </script>

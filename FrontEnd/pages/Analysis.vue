@@ -49,7 +49,7 @@
           </b-card-text>
 
           <b-card-text class="display-2 p-3">
-            <DoughNut
+            <BarChart
               :chartData="donutData"
               :options="chartOptions"
               class="chart"
