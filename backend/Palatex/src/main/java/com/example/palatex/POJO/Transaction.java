@@ -31,7 +31,7 @@ public class Transaction implements Serializable {
 
 
 
-    public Transaction(String _id,String user_id, LocalDate  date,Date dateTime, double price_buy, double total_price,double unit ){
+    public Transaction(String _id,int user_id, LocalDate  date,Date dateTime, double price_buy, double total_price,double unit ){
 
         this._id = _id;
 
