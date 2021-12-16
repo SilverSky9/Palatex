@@ -54,7 +54,7 @@
             </li>
             <li class="pl-2 iconEffect">
               <a
-                href="#"
+                href="/Transection"
                 class="nav-link py-3"
                 title=""
                 data-bs-toggle="tooltip"

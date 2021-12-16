@@ -21,16 +21,14 @@ public class Latex implements Serializable {
     private String _id;
 //    private int latex_id;
     private double price;
-    private LocalDate date;
     private Date dateTime;
 
     public Latex(){}
 
-    public Latex(String _id, double price,LocalDate date, Date dateTime){
+    public Latex(String _id, double price,Date dateTime){
         this._id = _id;
 //        this.latex_id = latex_id;
         this.price = price;
-        this.date = date;
         this.dateTime = dateTime;
 
 
