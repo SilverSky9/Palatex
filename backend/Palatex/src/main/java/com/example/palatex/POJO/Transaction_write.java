@@ -1,38 +1,25 @@
 package com.example.palatex.POJO;
 
-
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.io.Serializable;
 import java.util.Date;
-import java.time.LocalDate;
-
-@Getter
-@Setter
 
 @Data
-@Document("transaction")
-public class Transaction implements Serializable {
+@Document("transaction_write")
+public class Transaction_write {
     @Id
     private String _id;
     private String user_id;
-//    private int transaction_id;
-    private LocalDate  date; //not sure
+    private java.util.Date date; //not sure
     private double price_buy;
     private double total_price;
     private double unit;
 
-    public Transaction(){}
+//    public Transaction_write(){}
 
-
-    public Transaction(String _id,String user_id, LocalDate  date, double price_buy, double total_price,double unit ){
-        this._id = _id;
-
-//        this.transaction_id = transaction_id;
+    public Transaction_write(String user_id, Date date, double price_buy, double total_price, double unit ){
         this.user_id = user_id;
         this.date = date;
         this.price_buy = price_buy;
