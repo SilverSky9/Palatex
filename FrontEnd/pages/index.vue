@@ -82,7 +82,12 @@
           </b-card-text>
 
           <b-card-text class="">
-            <b-table hover :items="latex" :fields="fields">
+            <b-table
+              sticky-header="26rem"
+              hover
+              :items="latex"
+              :fields="fields"
+            >
               <template #cell(dateTime)="data">
                 {{ $moment(data.item.dateTime).format('DD MMM YY') }}
               </template>
@@ -141,7 +146,17 @@ export default {
 
       console.log(this.chartData)
       this.latex = latex
+
+      latex.sort(function (a, b) {
+        var keyA = new Date(a.dateTime),
+          keyB = new Date(b.dateTime)
+        // Compare the 2 dates
+        if (keyA < keyB) return -1
+        if (keyA > keyB) return 1
+        return 0
+      })
       this.price = latex[latex.length - 1].price
+
       this.chartData.labels = latex.map((x) =>
         moment(x.dateTime).format('DD MMM')
       )
