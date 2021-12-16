@@ -63,6 +63,17 @@
                 <fa :icon="['fa', 'exchange-alt']" size="2x" />
               </NuxtLink>
             </li>
+            <li class="pl-2 iconEffect">
+              <NuxtLink
+                to="/Sheet"
+                class="nav-link py-3"
+                title=""
+                data-bs-toggle="tooltip"
+                data-bs-placement="right"
+              >
+                <fa :icon="['fa', 'layer-group']" size="2x" />
+              </NuxtLink>
+            </li>
           </ul>
         </div>
       </div>

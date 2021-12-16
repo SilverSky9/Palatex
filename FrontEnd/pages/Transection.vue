@@ -4,6 +4,7 @@
       <b-card class="content bg-light w-100 ml-3 mr-4">
         <b-row>
           <b-col>
+            <p>รายชื่อผู้ใช้ทั้งหมด</p>
             <b-form-select v-model="selected">
               <template #first>
                 <b-form-select-option :value="null" disabled
@@ -20,8 +21,9 @@
             <!-- {{ selected }} -->
           </b-col>
 
-          <b-col
-            ><b-form-input
+          <b-col>
+            <p>ราคายางในวันนี้</p>
+            <b-form-input
               type="text"
               placeholder="Price_buy"
               v-model="price"
@@ -29,8 +31,9 @@
               disabled
             ></b-form-input
           ></b-col>
-          <b-col
-            ><b-form-input
+          <b-col>
+            <p>จำนวนน้ำยาง</p>
+            <b-form-input
               type="text"
               v-model="unit"
               placeholder="Unit"
@@ -38,7 +41,7 @@
             ></b-form-input
           ></b-col>
           <b-col
-            ><b-button pill variant="outline-success" class="w-100"
+            ><b-button pill variant="outline-success" class="w-100 py-3 mt-3"
               >Transection</b-button
             ></b-col
           >
