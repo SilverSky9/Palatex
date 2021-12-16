@@ -1,0 +1,61 @@
+package com.example.palatex.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.example.palatex.Repository.transactionRepository;
+import com.example.palatex.POJO.Transaction;
+
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+@Service
+public class transactionService {
+    @Autowired
+    private transactionRepository transactionRepository;
+
+    public transactionService(transactionRepository transactionRepository){
+        this.transactionRepository = transactionRepository;
+    }
+    //Save transaction to mongoDB
+    public Transaction addTransactionService(Transaction t){
+        return transactionRepository.save(t);
+    }
+
+    //Get all transaction in mongoDB
+    public List<Transaction> getAllTransactionService(){
+        return transactionRepository.findAll();
+    }
+
+    //Get transaction by _id in mongoDB
+    public Transaction getTransactionByIdService(String id){
+
+        return transactionRepository.findAllById(id);
+
+    }
+    //Count all transaction in mongoDB
+    public int countAllTransactionService(){
+
+        return (int) transactionRepository.count();
+    }
+
+    //Get Transaction by date
+    public List<Transaction> getTransactionByDate(Date date){
+
+        return transactionRepository.findTransactionBy_date(date);
+    }
+
+    //Delete transaction by ID in mongoDB
+    public boolean deleteTransactionService(String id){
+        try{
+            transactionRepository.deleteById(id);
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+}

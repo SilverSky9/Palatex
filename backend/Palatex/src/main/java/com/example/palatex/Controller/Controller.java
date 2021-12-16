@@ -4,9 +4,9 @@ package com.example.palatex.Controller;
 import com.example.palatex.POJO.priceLatex;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
-import lombok.val;
-import io.netty.handler.ssl.SslContext;
-import io.netty.handler.ssl.SslContextBuilder;
+
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
@@ -30,6 +30,8 @@ public class Controller {
 
     @Autowired
     private WebClient webClient;
+  
+    private RabbitTemplate rabbitTemplate;
 
     //This router for test something
     @RequestMapping("/test")
@@ -81,5 +83,12 @@ public class Controller {
         HttpClient httpClient = HttpClient.from(tcpClient);
         return WebClient.builder().clientConnector(new ReactorClientHttpConnector(httpClient)).build();
     }
+
+
+//    @RequestMapping("/message")
+//    public void testMessage(){
+//        rabbitTemplate.convertAndSend("sop", "tester", "Golf");
+//    }
+}
 
 }

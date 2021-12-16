@@ -1,28 +1,205 @@
 <template>
   <div>
-    <b-container>
-      <b-row class="vh-100 text-center" align-v="center">
-        <b-col>
-          <b-card title="Welcome to Palatex" class="">
-            <b-card-text>
-              just a Quick Building Nuxt project but we gonna use this page for
-              a Main Page
-            </b-card-text>
+    <b-row class="pr-2 my-3">
+      <b-col>
+        <b-card class="content bg-light">
+          <b-card-text class="m-2">
+            <fa :icon="['fa', 'tag']" size="lg" />
+            <span class="h3">ราคายางในวันนี้</span>
+          </b-card-text>
 
-            <b-card-text>So Good luck</b-card-text>
+          <b-card-text class="p-3">
+            <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
+            <h1 class="display-2" v-show="!edit">฿ {{ price }} บาท/กิโลกรัม</h1>
+            <b-form-input
+              v-show="edit"
+              v-model="price"
+              size="lg"
+              class="w-25 my-4"
+              type="text"
+              placeholder="Sheet Price"
+            ></b-form-input>
+          </b-card-text>
+          <NuxtLink class="ml-3" to="/Transection"
+            ><b-button pill variant="outline-info" class="px-5" size="lg"
+              >Transaction</b-button
+            ></NuxtLink
+          >
+          <NuxtLink class="ml-3" to="/analysis"
+            ><b-button pill variant="outline-success" class="px-5" size="lg"
+              >Analysis</b-button
+            ></NuxtLink
+          >
+          <a class="ml-3"
+            ><b-button
+              pill
+              v-show="!edit"
+              variant="outline-warning"
+              @click="edit = !edit"
+              class="px-5"
+              size="lg"
+              >Edit</b-button
+            ></a
+          >
+          <a class="ml-3"
+            ><b-button
+              pill
+              v-show="edit"
+              variant="outline-success"
+              @click="
+                postLatex()
+                save = !save
+                edit = !edit
+              "
+              class="px-5"
+              size="lg"
+              >Save</b-button
+            ></a
+          ><a class="ml-3"
+            ><b-button
+              pill
+              v-show="edit"
+              variant="outline-danger"
+              @click="
+                cancel = !cancel
+                edit = !edit
+              "
+              class="px-5"
+              size="lg"
+              >Cancel</b-button
+            ></a
+          >
+        </b-card>
+      </b-col>
+    </b-row>
 
-            <b-link href="#" class="card-link"
-              >Nothing To link Dont Click</b-link
-            >
-          </b-card>
-        </b-col>
-      </b-row>
-    </b-container>
+    <b-row class="pr-2 my-4">
+      <b-col cols="3">
+        <b-card class="content bg-light">
+          <b-card-text class="m-2">
+            <fa :icon="['fa', 'fast-backward']" size="lg" />
+            <span class="h3 ml-2">ราคาย้อนหลัง</span>
+          </b-card-text>
+
+          <b-card-text class="">
+            <b-table hover :items="latex">
+              <template #cell(Date)="data">
+                {{ $moment(data.item.date).format('DD MMM YY') }}
+              </template>
+              <template #cell(Price)="data">
+                {{ data.item.price + ' ฿/Kg' }}
+              </template>
+            </b-table>
+          </b-card-text>
+
+          <!-- <b-link href="#" class="card-link">Nothing To link Dont Click</b-link> -->
+        </b-card>
+      </b-col>
+      <b-col cols="9">
+        <b-card class="content bg-light">
+          <b-card-text class="m-2">
+            <fa :icon="['fa', 'chart-line']" size="2x" />
+            <span class="h3 ml-2">กราฟ</span>
+          </b-card-text>
+
+          <b-card-text class="display-2 p-3">
+            <LineChart
+              :chartData="chartData"
+              :options="chartOptions"
+              class="chart"
+            />
+          </b-card-text>
+
+          <!-- <b-link href="#" class="card-link">Nothing To link Dont Click</b-link> -->
+        </b-card>
+      </b-col>
+    </b-row>
   </div>
 </template>
+<style>
+.content {
+  border-radius: 2rem;
+  font-family: 'Kanit';
+}
+.chart {
+  height: 100%;
+}
+.borderRadius {
+  border-radius: 2rem;
+}
+</style>
 
 <script>
+import moment from 'moment'
+import LineChart from '../components/LineChart.vue'
 export default {
+  components: { LineChart },
   layout: 'Navbar',
+  methods: {
+    async getLatex() {
+      const latex = await this.$axios.$get('http://localhost:8093/latex/all')
+      this.latex = latex
+      this.price = latex[latex.length - 1].price
+    },
+    async postLatex() {
+      const data = {
+        price: this.price,
+        dateTime: new Date(),
+      }
+      await this.$axios
+        .$post('http://localhost:8093/latex/add', data)
+        .then((res) => console.log(res))
+    },
+  },
+  mounted() {
+    this.getLatex()
+    //console.log(this.latex[0])
+  },
+  data: () => ({
+    latex: [],
+    edit: false,
+    save: false,
+    cancel: false,
+    price: 0,
+    items: [
+      { Date: '12-7-2021', Price: 59 },
+      { Date: '12-8-2021', Price: 58.9 },
+      { Date: '12-9-2021', Price: 58.6 },
+
+      { Date: '12-10-2021', Price: 59.3 },
+    ],
+    chartData: {
+      // labels: ['10 / 12 / 21', '9 / 12 / 21', '8 / 12 / 21', '7 / 12 / 21'],
+      labels: [],
+
+      datasets: [
+        {
+          label: 'Price Over Month',
+          data: [],
+          borderColor: '#ee801e',
+          borderWidth: 4,
+          fill: false,
+        },
+      ],
+    },
+    chartOptions: {
+      maintainAspectRatio: false,
+      responsive: true,
+    },
+    selected: null,
+    options: [
+      { value: null, text: 'Please select an option' },
+      { value: 'a', text: 'This is First option' },
+      { value: 'b', text: 'Selected Option' },
+      { value: '', text: 'This is an option with object value' },
+      { value: 'd', text: 'This one is disabled', disabled: true },
+    ],
+  }),
+  fetch() {
+    this.chartData.labels = this.items.map((x) =>
+      moment(x.Date).format('DD MMM')
+    )
+    this.chartData.datasets[0].data = this.items.map((x) => x.Price)
+  },
 }
 </script>
