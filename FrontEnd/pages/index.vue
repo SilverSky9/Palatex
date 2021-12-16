@@ -22,7 +22,7 @@
           </b-card-text>
           <NuxtLink class="ml-3" to="/Transection"
             ><b-button pill variant="outline-info" class="px-5" size="lg"
-              >Transection</b-button
+              >Transaction</b-button
             ></NuxtLink
           >
           <NuxtLink class="ml-3" to="/analysis"
@@ -47,6 +47,7 @@
               v-show="edit"
               variant="outline-success"
               @click="
+                postLatex()
                 save = !save
                 edit = !edit
               "
@@ -81,12 +82,12 @@
           </b-card-text>
 
           <b-card-text class="">
-            <b-table hover :items="items">
+            <b-table hover :items="latex">
               <template #cell(Date)="data">
-                {{ $moment(data.item.Date).format('DD MMM YY') }}
+                {{ $moment(data.item.date).format('DD MMM YY') }}
               </template>
               <template #cell(Price)="data">
-                {{ data.item.Price + ' ฿/Kg' }}
+                {{ data.item.price + ' ฿/Kg' }}
               </template>
             </b-table>
           </b-card-text>
@@ -134,11 +135,32 @@ import LineChart from '../components/LineChart.vue'
 export default {
   components: { LineChart },
   layout: 'Navbar',
+  methods: {
+    async getLatex() {
+      const latex = await this.$axios.$get('http://localhost:8093/latex/all')
+      this.latex = latex
+      this.price = latex[latex.length - 1].price
+    },
+    async postLatex() {
+      const data = {
+        price: this.price,
+        dateTime: new Date(),
+      }
+      await this.$axios
+        .$post('http://localhost:8093/latex/add', data)
+        .then((res) => console.log(res))
+    },
+  },
+  mounted() {
+    this.getLatex()
+    //console.log(this.latex[0])
+  },
   data: () => ({
+    latex: [],
     edit: false,
     save: false,
     cancel: false,
-    price: 59.3,
+    price: 0,
     items: [
       { Date: '12-7-2021', Price: 59 },
       { Date: '12-8-2021', Price: 58.9 },
