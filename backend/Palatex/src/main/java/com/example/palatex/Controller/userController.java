@@ -2,12 +2,14 @@ package com.example.palatex.Controller;
 
 import com.example.palatex.POJO.User;
 import com.example.palatex.Service.userService;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 //User router for query data
@@ -51,5 +53,12 @@ public class userController {
     public ResponseEntity<?> delUser(@PathVariable String id){
         userService.deleteUserDataService(id);
         return ResponseEntity.ok("Delete user!");
+    }
+
+    @RabbitListener(queues = "GetAllUser")
+    public ArrayList<User> getAllUser(ArrayList list){
+        List<User> users = userService.getAllUsersService();
+        list.addAll(users);
+        return list;
     }
 }

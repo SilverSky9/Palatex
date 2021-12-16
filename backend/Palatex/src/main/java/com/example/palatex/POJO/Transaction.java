@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class Transaction implements Serializable {
     @Id
     private String _id;
-    private String user_id;
+    private int user_id;
 //    private int transaction_id;
     private LocalDate  date;
     private Date dateTime;
@@ -30,7 +30,9 @@ public class Transaction implements Serializable {
     public Transaction(){}
 
 
+
     public Transaction(String _id,String user_id, LocalDate  date,Date dateTime, double price_buy, double total_price,double unit ){
+
         this._id = _id;
 
 //        this.transaction_id = transaction_id;
