@@ -31,15 +31,15 @@
             "
           >
             <li class="pl-2 iconEffect">
-              <a
-                href="#"
+              <NuxtLink
+                to="/Profile"
                 class="nav-link py-3"
                 title=""
                 data-bs-toggle="tooltip"
                 data-bs-placement="right"
               >
                 <fa :icon="['fa', 'user-alt']" size="2x" />
-              </a>
+              </NuxtLink>
             </li>
             <li class="pl-2 iconEffect">
               <NuxtLink
@@ -177,7 +177,7 @@ fa {
   font-size: 2.6rem;
 }
 .iconEffect {
-  background: linear-gradient(to left, #fff);
+  background: linear-gradient(to left, rgba(255, 255, 255, 0));
   -webkit-animation-duration: 0.3s;
   animation-duration: 0.3s;
   -webkit-animation-fill-mode: both;
@@ -230,7 +230,7 @@ fa {
   0% {
     background-position-x: 0px;
     /* opacity: 0; */
-    background: linear-gradient(to left, #fff);
+    background: linear-gradient(to left, rgba(255, 255, 255, 0));
   }
 
   50% {
@@ -240,7 +240,12 @@ fa {
   }
   100% {
     background-position-x: 0rem;
-    background: linear-gradient(to left, #fff, #fff 85%, #000 85%);
+    background: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0) 85%,
+      #000 85%
+    );
   }
 }
 </style>
