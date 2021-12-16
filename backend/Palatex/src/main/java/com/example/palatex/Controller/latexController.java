@@ -4,10 +4,7 @@ import com.example.palatex.POJO.Latex;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.example.palatex.Service.latexService;
 
 import java.util.ArrayList;
@@ -34,7 +31,7 @@ public class latexController {
     }
     //Save latex record to mongoDB
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity<?> saveLatexRecord(Latex l){
+    public ResponseEntity<?> saveLatexRecord(@RequestBody Latex l){
         latexService.addLatexRecordService(l);
         return ResponseEntity.ok("Save latex record");
     }
