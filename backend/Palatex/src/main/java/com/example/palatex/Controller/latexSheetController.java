@@ -60,7 +60,7 @@ public class latexSheetController {
 
 
 
-        transactions = (ArrayList<Transaction>) analysisController.getSumMoney();
+        transactions = (ArrayList<Transaction>) analysisController.getTransaction();
 
         LocalDate dateToday = LocalDate.now(); // Create a date object
 
