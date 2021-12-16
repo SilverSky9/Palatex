@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -19,19 +19,19 @@ public class LatexSheet implements Serializable {
 
     @Id
     private String _id;
-//    private int latex_sheet_id;
-    private Date date;
-    private double unit;
+    private LocalDate date;
+    private double sumUnit;
+    private  double sumMoneyBuy;
+    private  double weightToSheet;
 
     public LatexSheet(){}
 
-    public LatexSheet(String _id, Date date,double unit){
-        this._id = _id;
-//        this.latex_sheet_id = latex_sheet_id;
+    public LatexSheet( LocalDate date,double sumUnit, double sumMoneyBuy, double weightToSheet){
+
         this.date = date;
-        this.unit = unit;
-
-
+        this.sumUnit = sumUnit;
+        this.sumMoneyBuy = sumMoneyBuy;
+        this.weightToSheet = weightToSheet;
     }
 
 
