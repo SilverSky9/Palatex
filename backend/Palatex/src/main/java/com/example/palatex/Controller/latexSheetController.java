@@ -59,8 +59,8 @@ public class latexSheetController {
 
 
 
-
-        transactions = (ArrayList<Transaction>) analysisController.getTransaction();
+        Object out = rabbitTemplate.convertSendAndReceive("sop", "allTran", transactions);
+        transactions = (ArrayList<Transaction>) out;
 
         LocalDate dateToday = LocalDate.now(); // Create a date object
         Date dateTime = new Date();
@@ -83,6 +83,7 @@ public class latexSheetController {
         System.out.println(sumUnit + "  " + sumMoneyBuy + "  " + weightToSheet);
 
         LatexSheet latexSheet = new LatexSheet(dateToday,dateTime, sumUnit,  sumMoneyBuy,  weightToSheet);
+        latexSheetService.saveLatexRecordService(latexSheet);
         return latexSheet;
     }
 }
