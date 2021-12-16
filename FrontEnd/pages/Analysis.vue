@@ -194,9 +194,16 @@ export default {
     async getAnalysis() {
       await this.getUser()
       await this.getTransaction()
-      // this.transaction.foreach((x) => console.log(x.user_id))
+      this.transaction.forEach((x) => {
+        this.user.forEach((y) => {
+          if (x.user_id == y.user_id) {
+            this.analysis.push(Object.assign(x, y))
+          }
+        })
+      })
 
-      await this.transaction.map((x) => console.log(x.total_price))
+      //await this.transaction.map((x) => this.analysis.push(x))
+      console.log(this.analysis)
     },
   },
 

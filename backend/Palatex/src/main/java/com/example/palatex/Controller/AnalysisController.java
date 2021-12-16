@@ -97,9 +97,9 @@ public class AnalysisController {
 
         for (Transaction transaction: transactions) {
             for (User user: users ) {
-                System.out.println("Member id:" + user.getMemberId());
+                System.out.println("Member id:" + user.getUser_id());
                 System.out.println("user_id" +  transaction.getUser_id());
-                if(transaction.getUser_id() == user.getMemberId()){
+                if(transaction.getUser_id() == user.getUser_id()){
                     System.out.println(user.getFirstname() + user.getLastname());
                     System.out.println("in");
                 }

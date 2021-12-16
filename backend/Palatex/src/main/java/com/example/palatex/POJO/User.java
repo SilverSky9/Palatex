@@ -17,7 +17,7 @@ import java.io.Serializable;
 public class User implements Serializable {
     @Id
     private String _id;
-    private int memberId;
+    private int user_id;
     private String firstname;
     private String lastname;
 //    private String phone_number;
@@ -26,11 +26,11 @@ public class User implements Serializable {
 
     public User(){}
 
-    public User(String _id, int memberId, String firstname, String lastname){
+    public User(String _id, int user_id, String firstname, String lastname){
         this._id = _id;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.memberId = memberId;
+        this.user_id = user_id;
 
     }
 
