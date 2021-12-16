@@ -27,12 +27,20 @@
           </b-card-text>
 
           <b-card-text>
-            <b-table sticky-header="26rem" hover :items="user">
-              <template #cell(date)="data">
+            <b-table
+              sticky-header="26rem"
+              hover
+              :items="analysis"
+              :fields="fields"
+            >
+              <template #cell(firstname)="data">
+                {{ data.item.firstname + ' ' + data.item.lastname }}
+              </template>
+              <template #cell(dateTime)="data">
                 {{ $moment(data.item.date).format('DD MMM YYYY') }}
               </template>
-              <template #cell(total)="data">
-                {{ data.item.price_buy * data.item.unit }}
+              <template #cell(total_price)="data">
+                {{ data.item.total_price.toFixed(2) }}
               </template>
             </b-table>
           </b-card-text>
@@ -132,6 +140,15 @@ export default {
       allTotal: null,
 
       allKg: null,
+      fields: [
+        { key: 'firstname', label: 'name' },
+        // { key: 'user_id', label: 'User Id' },
+
+        { key: 'dateTime', label: 'Date' },
+        { key: 'price_buy', label: 'Price' },
+        { key: 'unit', label: 'Unit' },
+        { key: 'total_price', label: 'Total' },
+      ],
       donutData: {
         // labels: ['10 / 12 / 21', '9 / 12 / 21', '8 / 12 / 21', '7 / 12 / 21'],
         labels: ['น้ำหนักน้ำยางสด', 'น้ำหนักยางแผ่นรมควัน'],
@@ -190,6 +207,7 @@ export default {
         'http://localhost:8093/transaction/all'
       )
       this.transaction = tran
+      // console.log(tran)
     },
     async getAnalysis() {
       await this.getUser()
@@ -225,8 +243,8 @@ export default {
     // )
     // console.log(userTest)
 
-    this.user.map((i, index) => {
-      select = i.date
+    this.analysis.map((i, index) => {
+      select = i.dateTime
       dateI = this.allTime.findIndex((x) => x.Date == select)
       if (dateI < 0) {
         this.allTime.push({ Date: select, Kg: i.unit })
@@ -237,6 +255,7 @@ export default {
       }
       this.allKg += i.unit
       this.allTotal += i.price_buy * i.unit
+      console.log(this.allTime)
     })
 
     this.allTime.sort(function (a, b) {
