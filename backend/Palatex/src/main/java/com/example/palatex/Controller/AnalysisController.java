@@ -2,6 +2,7 @@ package com.example.palatex.Controller;
 
 import com.example.palatex.POJO.Latex;
 import com.example.palatex.POJO.Transaction;
+import com.example.palatex.POJO.User;
 import com.example.palatex.POJO.allAnalysis;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import java.util.logging.SimpleFormatter;
 public class AnalysisController {
     ArrayList<Transaction> transactions = new ArrayList<>();
     ArrayList<Latex> latexs = new ArrayList<>();
+    ArrayList<User> users = new ArrayList<>();
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -73,26 +75,38 @@ public class AnalysisController {
 
     }
 
+    public ArrayList<User> getAllUser(){
+
+        Object out = rabbitTemplate.convertSendAndReceive("sop", "allUser", users);
+
+        return (ArrayList<User>) out;
+    }
+
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String getAllAnalysis(){
         Double price;
         String _id, user_id, name, transaction_id;
         ArrayList<Transaction> transactions = new ArrayList<>();
         ArrayList<Latex> latexPrices = new ArrayList<>();
+        ArrayList<User> users = new ArrayList<>();
+
 
         transactions = this.getTransaction();
         latexPrices = this.getAllLatex();
+        users = this.getAllUser();
 
-//
-//        for (Transaction test: transactions) {
-//            for (Latex latexPrice: latexPrices) {
-//                if(test.getDate().equals(latexPrice.getDate())){
-//                    System.out.println("Found!!!");
-//                    System.out.println(test.get);
-//                }
-//            }
-//
-//        }
+        for (Transaction transaction: transactions) {
+            for (User user: users ) {
+                System.out.println("Member id:" + user.getMemberId());
+                System.out.println("user_id" +  transaction.getUser_id());
+                if(transaction.getUser_id() == user.getMemberId()){
+                    System.out.println(user.getFirstname() + user.getLastname());
+                    System.out.println("in");
+                }
+
+            }
+        }
+
 
     return "test";
 
