@@ -17,16 +17,30 @@ public class userService {
     public userService(userRepository userRepository){
         this.userRepository = userRepository;
     }
-
+    //Add user
     public User addUserService(User u) {
         return userRepository.save(u);
     }
-
+    //Get all user
     public List<User> getAllUsersService(){
         return userRepository.findAll();
     }
-
+    //Get by ID
     public User getUserByMemberIdService(int memberId) {
         return userRepository.findByMemberIdQuery(memberId);
+    }
+    //Get count all user
+    public int countAllUserService(){
+        return (int) userRepository.count();
+    }
+    //Delete user
+    public boolean deleteUserDataService(String id){
+        try {
+            userRepository.deleteById(id);
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
     }
 }
