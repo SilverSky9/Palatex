@@ -10,9 +10,7 @@
 
           <b-card-text class="p-3">
             <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
-            <h1 class="display-2" v-show="!edit">
-              ฿ {{ price.toFixed(2) }} บาท/กิโลกรัม
-            </h1>
+            <h1 class="display-2" v-show="!edit">฿ {{ price }} บาท/กิโลกรัม</h1>
             <b-form-input
               v-show="edit"
               v-model="price"
