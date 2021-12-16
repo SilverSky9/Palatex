@@ -17,6 +17,16 @@
             ><p>น้ำหนักยางแผ่นรวม</p>
             <b-form-input
               type="text"
+              v-model="sheetWeight"
+              placeholder="Sheet Price"
+              required
+              disabled
+            ></b-form-input
+          ></b-col>
+          <b-col
+            ><p>ราคายางแผ่นรวม</p>
+            <b-form-input
+              type="text"
               v-model="sheetPrice"
               placeholder="Sheet Price"
               required
@@ -41,7 +51,7 @@
 
           <b-card-text class="display-2 p-3">
             <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
-            {{ allLatex * sheetPrice }} ฿
+            {{ sheetWeight * sheetPrice }} ฿
             <!-- {{ date }} -->
           </b-card-text>
           <!-- <NuxtLink class="ml-3" to="/analysis"
@@ -58,12 +68,13 @@ export default {
   layout: 'Navbar',
   data() {
     return {
-      sheetPrice: null,
+      sheetPrice: 60,
+      sheetWeight: null,
       allLatex: 1500,
     }
   },
   fetch() {
-    this.sheetPrice = this.allLatex * 0.35
+    this.sheetWeight = this.allLatex * 0.35
   },
 }
 </script>

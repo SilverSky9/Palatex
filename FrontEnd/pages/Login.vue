@@ -6,7 +6,7 @@
     >
       <b-col cols="5" class="">
         <fa :icon="['fa', 'eraser']" size="10x" />
-
+        <div class="display-1">PALATEX</div>
         <b-input-group prepend="Username" class="my-3">
           <b-form-input></b-form-input>
         </b-input-group>

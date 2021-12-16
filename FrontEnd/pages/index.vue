@@ -82,11 +82,11 @@
           </b-card-text>
 
           <b-card-text class="">
-            <b-table hover :items="latex">
-              <template #cell(Date)="data">
-                {{ $moment(data.item.date).format('DD MMM YY') }}
+            <b-table hover :items="latex" :fields="fields">
+              <template #cell(dateTime)="data">
+                {{ $moment(data.item.dateTime).format('DD MMM YY') }}
               </template>
-              <template #cell(Price)="data">
+              <template #cell(price)="data">
                 {{ data.item.price + ' ฿/Kg' }}
               </template>
             </b-table>
@@ -140,6 +140,11 @@ export default {
       const latex = await this.$axios.$get('http://localhost:8093/latex/all')
       this.latex = latex
       this.price = latex[latex.length - 1].price
+      this.chartData.labels = latex.map((x) =>
+        moment(x.dateTime).format('DD MMM')
+      )
+      this.chartData.datasets[0].data = latex.map((x) => x.price)
+      // console.log(latex)
     },
     async postLatex() {
       const data = {
@@ -161,6 +166,10 @@ export default {
     save: false,
     cancel: false,
     price: 0,
+    fields: [
+      { key: 'dateTime', label: 'Date' },
+      { key: 'price', label: 'Price' },
+    ],
     items: [
       { Date: '12-7-2021', Price: 59 },
       { Date: '12-8-2021', Price: 58.9 },
@@ -187,19 +196,7 @@ export default {
       responsive: true,
     },
     selected: null,
-    options: [
-      { value: null, text: 'Please select an option' },
-      { value: 'a', text: 'This is First option' },
-      { value: 'b', text: 'Selected Option' },
-      { value: '', text: 'This is an option with object value' },
-      { value: 'd', text: 'This one is disabled', disabled: true },
-    ],
   }),
-  fetch() {
-    this.chartData.labels = this.items.map((x) =>
-      moment(x.Date).format('DD MMM')
-    )
-    this.chartData.datasets[0].data = this.items.map((x) => x.Price)
-  },
+  fetch() {},
 }
 </script>
