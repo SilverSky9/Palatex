@@ -125,6 +125,7 @@ export default {
   data() {
     return {
       userTest: [],
+      latex: [],
       haha: 'susprayuth',
       allTime: [],
       totalBaht: [],
@@ -172,137 +173,37 @@ export default {
         maintainAspectRatio: false,
         responsive: true,
       },
-      user: [
-        {
-          name: 'Marilyn Shaffer',
-          date: '2022-01-02',
-          price_buy: 56.9,
-          unit: 65,
-        },
-        {
-          name: 'Jeanine Quinn',
-          date: '2022-01-06',
-          price_buy: 53.46,
-          unit: 92,
-        },
-        {
-          name: 'Selma James',
-          date: '2022-01-02',
-          price_buy: 51.4,
-          unit: 97,
-        },
-        {
-          name: 'Minnie Reilly',
-          date: '2022-01-10',
-          price_buy: 51.29,
-          unit: 75,
-        },
-        {
-          name: 'Sybil Mccray',
-          date: '2022-01-03',
-          price_buy: 57.84,
-          unit: 83,
-        },
-        {
-          name: 'Clayton Mcclain',
-          date: '2022-01-08',
-          price_buy: 57.6,
-          unit: 97,
-        },
-        {
-          name: 'Dejesus Harrison',
-          date: '2022-01-09',
-          price_buy: 55.72,
-          unit: 72,
-        },
-        {
-          name: 'Macdonald Reid',
-          date: '2022-01-01',
-          price_buy: 53.35,
-          unit: 91,
-        },
-        {
-          name: 'Richardson Melendez',
-          date: '2022-01-04',
-          price_buy: 57.18,
-          unit: 68,
-        },
-        {
-          name: 'Solomon Chavez',
-          date: '2022-01-06',
-          price_buy: 56.58,
-          unit: 68,
-        },
-        {
-          name: 'Tanner Page',
-          date: '2022-01-02',
-          price_buy: 56.37,
-          unit: 90,
-        },
-        {
-          name: 'Pacheco Gordon',
-          date: '2022-01-02',
-          price_buy: 58.21,
-          unit: 60,
-        },
-        {
-          name: 'Delaney Sutton',
-          date: '2022-01-05',
-          price_buy: 55.82,
-          unit: 95,
-        },
-        {
-          name: 'Bradshaw Torres',
-          date: '2022-01-03',
-          price_buy: 54.02,
-          unit: 100,
-        },
-        {
-          name: 'Warner Cooke',
-          date: '2022-01-10',
-          price_buy: 59.84,
-          unit: 65,
-        },
-        {
-          name: 'Gwendolyn Harrington',
-          date: '2022-01-01',
-          price_buy: 55.82,
-          unit: 89,
-        },
-        {
-          name: 'Daphne Mclean',
-          date: '2022-01-07',
-          price_buy: 57.49,
-          unit: 95,
-        },
-        {
-          name: 'Vicki Richard',
-          date: '2022-01-06',
-          price_buy: 50.24,
-          unit: 60,
-        },
-        {
-          name: 'Bobbie Ayers',
-          date: '2022-01-02',
-          price_buy: 59.65,
-          unit: 68,
-        },
-        {
-          name: 'Rowe Emerson',
-          date: '2022-01-04',
-          price_buy: 54.23,
-          unit: 60,
-        },
-      ],
+      user: [],
+      transaction: [],
+      analysis: [],
     }
   },
   methods: {
     async getUser() {
-      const ip = await this.$axios.$get('http://localhost:8093/user/all')
-      //console.log(ip)
-      this.userTest = ip
-      console.log(this.userTest)
+      const user = await this.$axios.$get('http://localhost:8093/user/all')
+      //console.log(user)
+      this.user = user
       //console.log(this.haha)
+    },
+    async getTransaction() {
+      const tran = await this.$axios.$get(
+        'http://localhost:8093/transaction/all'
+      )
+      this.transaction = tran
+    },
+    async getAnalysis() {
+      await this.getUser()
+      await this.getTransaction()
+      this.transaction.forEach((x) => {
+        this.user.forEach((y) => {
+          if (x.user_id == y.user_id) {
+            this.analysis.push(Object.assign(x, y))
+          }
+        })
+      })
+
+      //await this.transaction.map((x) => this.analysis.push(x))
+      console.log(this.analysis)
     },
   },
 
@@ -310,7 +211,7 @@ export default {
     console.log('mounted')
     // console.log(this.haha, 'asd')
     //console.log(this.haha)
-    this.getUser()
+    this.getAnalysis()
   },
 
   async fetch() {

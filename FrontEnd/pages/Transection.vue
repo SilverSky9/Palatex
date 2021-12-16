@@ -93,7 +93,7 @@ export default {
       ],
       date: new Date(),
       user: [],
-      price: 56.9,
+      price: 0,
       unit: null,
     }
   },
@@ -108,12 +108,18 @@ export default {
       this.user = list
       console.log(list)
     },
-
+    async getLatex() {
+      const latex = await this.$axios.$get('http://localhost:8093/latex/all')
+      this.price = latex[latex.length - 1].price
+    },
     async postTran() {
       var data = {
         user_id: '2',
-        date: this.date,
+        date: new Date(),
+        dateTime: new Date(),
         unit: this.unit,
+        price_buy: this.price,
+        total_price: this.price * this.unit,
       }
       await this.$axios
         .$post('http://localhost:8093/transaction/add', data)
@@ -125,6 +131,7 @@ export default {
   mounted() {
     console.log('moun')
     this.getAllUser()
+    this.getLatex()
   },
 }
 </script>
