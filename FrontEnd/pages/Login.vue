@@ -18,6 +18,22 @@
             >Log In</b-button
           ></NuxtLink
         >
+        <b-button
+          pill
+          variant="outline-success"
+          class="px-5"
+          size="lg"
+          @click="localTest()"
+          >Local sotrage</b-button
+        >
+        <b-button
+          pill
+          variant="outline-success"
+          class="px-5"
+          size="lg"
+          @click="getLocal()"
+          >Get Local sotrage</b-button
+        >
       </b-col>
     </b-row>
   </b-container>
@@ -26,6 +42,16 @@
 <script>
 export default {
   layout: 'Navbar',
+  methods: {
+    localTest() {
+      if (process.client) {
+        localStorage.setItem('authToken', 'kuyprayuth')
+      }
+    },
+    getLocal() {
+      console.log(localStorage.getItem('authToken'))
+    },
+  },
 }
 </script>
 
