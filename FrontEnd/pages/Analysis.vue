@@ -29,7 +29,7 @@
           <b-card-text>
             <b-table sticky-header="26rem" hover :items="user">
               <template #cell(date)="data">
-                {{ $moment(data.item.date).format('DD MMM YYYY') }}
+                {{ $moment(data.item.dateTime).format('DD MMM YYYY') }}
               </template>
               <template #cell(total)="data">
                 {{ data.item.price_buy * data.item.unit }}
