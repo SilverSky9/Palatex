@@ -23,6 +23,7 @@ public class userController {
     private RabbitTemplate rabbitTemplate;
 
     //Get all user in mongoDB
+
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<?> getAllUser(){
         List<User> users = userService.getAllUsersService();

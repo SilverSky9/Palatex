@@ -53,15 +53,15 @@
               </NuxtLink>
             </li>
             <li class="pl-2 iconEffect">
-              <NuxtLink
-                to="/Transection"
+              <a
+                href="/Transection"
                 class="nav-link py-3"
                 title=""
                 data-bs-toggle="tooltip"
                 data-bs-placement="right"
               >
                 <fa :icon="['fa', 'exchange-alt']" size="2x" />
-              </NuxtLink>
+              </a>
             </li>
             <li class="pl-2 iconEffect">
               <NuxtLink

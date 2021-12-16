@@ -82,7 +82,7 @@ public class AnalysisController {
         return (ArrayList<User>) out;
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET) // Maybe Not Use This Method
     public String getAllAnalysis(){
         Double price;
         String _id, user_id, name, transaction_id;

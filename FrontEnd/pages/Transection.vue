@@ -12,10 +12,12 @@
                 >
               </template>
               <b-form-select-option
-                v-for="(item, i) in options"
-                :key="item"
-                :value="i"
-                >{{ item.text }}</b-form-select-option
+                v-for="(item, i) in user"
+                :key="i"
+                :value="item.memberId"
+                >{{
+                  item.memberId + ' ' + item.firstname + ' ' + item.lastname
+                }}</b-form-select-option
               ></b-form-select
             >
             <!-- {{ selected }} -->
@@ -41,7 +43,11 @@
             ></b-form-input
           ></b-col>
           <b-col
-            ><b-button pill variant="outline-success" class="w-100 py-3 mt-3"
+            ><b-button
+              pill
+              variant="outline-success"
+              class="w-100 py-3 mt-3"
+              @click="postTran()"
               >Transection</b-button
             ></b-col
           >
@@ -85,9 +91,40 @@ export default {
         { value: 'd', text: 'pobjang' },
         { value: 'd', text: 'nigga' },
       ],
+      date: new Date(),
+      user: [],
       price: 56.9,
       unit: null,
     }
+  },
+
+  methods: {
+    async getTran() {
+      const ip = await this.$axios.$get('http://localhost:8093/transaction/all')
+      console.log(ip)
+    },
+    async getAllUser() {
+      const list = await this.$axios.$get('http://localhost:8093/user/all')
+      this.user = list
+      console.log(list)
+    },
+
+    async postTran() {
+      var data = {
+        user_id: '2',
+        date: this.date,
+        unit: this.unit,
+      }
+      await this.$axios
+        .$post('http://localhost:8093/transaction/add', data)
+        .then((res) => console.log(res))
+      // console.log(this.date)
+      console.log(data)
+    },
+  },
+  mounted() {
+    console.log('moun')
+    this.getAllUser()
   },
 }
 </script>

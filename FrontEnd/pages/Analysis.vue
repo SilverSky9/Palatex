@@ -22,8 +22,8 @@
       <b-col>
         <b-card class="content bg-light">
           <b-card-text class="m-2">
-            <fa :icon="['fa', 'users']" size="2x" />
-            <span class="h3">รายชื่อผู้ใช้ทั้งหมด</span>
+            <fa :icon="['fa', 'money-bill']" size="2x" />
+            <span class="h3">ราคารวมปีนี้</span>
           </b-card-text>
 
           <b-card-text>
@@ -117,8 +117,15 @@
 import moment from 'moment'
 export default {
   layout: 'Navbar',
+
+  test() {
+    console.log('kuy')
+  },
+
   data() {
     return {
+      userTest: [],
+      haha: 'susprayuth',
       allTime: [],
       totalBaht: [],
       allTotal: null,
@@ -289,9 +296,33 @@ export default {
       ],
     }
   },
-  fetch() {
+  methods: {
+    async getUser() {
+      const ip = await this.$axios.$get('http://localhost:8093/user/all')
+      //console.log(ip)
+      this.userTest = ip
+      console.log(this.userTest)
+      //console.log(this.haha)
+    },
+  },
+
+  mounted() {
+    console.log('mounted')
+    // console.log(this.haha, 'asd')
+    //console.log(this.haha)
+    this.getUser()
+  },
+
+  async fetch() {
     let dateI = 0
     let select = ''
+
+    //console.log('asdasd')
+
+    // const userTest = await fetch('https://api.nuxtjs.dev/mountains').then(
+    //   (res) => res.json()
+    // )
+    // console.log(userTest)
 
     this.user.map((i, index) => {
       select = i.date
