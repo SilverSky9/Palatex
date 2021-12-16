@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate; // import the LocalDate class
 import java.text.ParseException;
 import java.util.ArrayList;
-
+import java.util.Date;
 
 
 @RestController
@@ -63,6 +63,7 @@ public class latexSheetController {
         transactions = (ArrayList<Transaction>) analysisController.getTransaction();
 
         LocalDate dateToday = LocalDate.now(); // Create a date object
+        Date dateTime = new Date();
 
         double sumUnit = 0;
         double sumMoneyBuy = 0;
@@ -81,7 +82,7 @@ public class latexSheetController {
 
         System.out.println(sumUnit + "  " + sumMoneyBuy + "  " + weightToSheet);
 
-        LatexSheet latexSheet = new LatexSheet(dateToday, sumUnit,  sumMoneyBuy,  weightToSheet);
+        LatexSheet latexSheet = new LatexSheet(dateToday,dateTime, sumUnit,  sumMoneyBuy,  weightToSheet);
         return latexSheet;
     }
 }
