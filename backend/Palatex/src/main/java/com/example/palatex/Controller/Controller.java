@@ -49,6 +49,8 @@ public class Controller {
     //This router for get price for external API
     @RequestMapping("/price")
     public double getPrice()  {
+        LocalDate dateToday = LocalDate.now();
+        String uri = "https://dataapi.moc.go.th/gis-product-prices?product_id=W16025&from_date=" +  dateToday + "&to_date=" + dateToday;
         priceLatex responseJson = webClient.get()
                 .uri("https://dataapi.moc.go.th/gis-product-prices?product_id=W16025&from_date=2021-12-16&to_date=2021-12-16")
                 .exchange()
