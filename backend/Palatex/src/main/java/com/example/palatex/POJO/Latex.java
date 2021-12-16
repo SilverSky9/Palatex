@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -20,11 +21,11 @@ public class Latex implements Serializable {
     private String _id;
 //    private int latex_id;
     private double price;
-    private Date date; //not sure
+    private LocalDate date; //not sure
 
     public Latex(){}
 
-    public Latex(String _id, double price,Date date){
+    public Latex(String _id, double price,LocalDate date){
         this._id = _id;
 //        this.latex_id = latex_id;
         this.price = price;
