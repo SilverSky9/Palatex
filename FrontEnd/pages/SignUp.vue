@@ -26,7 +26,12 @@
           <b-form-input v-model="phone" placeholder="phone"></b-form-input>
         </b-input-group>
         <a class="ml-3"
-          ><b-button pill variant="outline-success" class="px-5" size="lg"
+          ><b-button
+            pill
+            variant="outline-success"
+            class="px-5"
+            size="lg"
+            @click="postSignUp()"
             >Sign Up</b-button
           ></a
         >
@@ -38,6 +43,21 @@
 <script>
 export default {
   layout: 'Navbar',
+  methods: {
+    async postSignUp() {
+      var data = {
+        firstname: this.Fname,
+        lastname: this.Lname,
+        phone_number: this.phone,
+        username: this.user,
+        password: this.pass,
+      }
+
+      await this.$axios
+        .$post('http://localhost:8093/user/add', data)
+        .then((res) => console.log(res))
+    },
+  },
   data: () => ({
     Fname: 'pawaris',
     Lname: 'wongsaied',
