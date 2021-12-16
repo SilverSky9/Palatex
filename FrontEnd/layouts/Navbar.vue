@@ -74,6 +74,17 @@
                 <fa :icon="['fa', 'layer-group']" size="2x" />
               </NuxtLink>
             </li>
+            <li class="pl-2 iconEffect">
+              <NuxtLink
+                to="/Login"
+                class="nav-link py-3"
+                title=""
+                data-bs-toggle="tooltip"
+                data-bs-placement="right"
+              >
+                <fa :icon="['fa', 'sign-in-alt']" size="2x" />
+              </NuxtLink>
+            </li>
           </ul>
         </div>
       </div>
