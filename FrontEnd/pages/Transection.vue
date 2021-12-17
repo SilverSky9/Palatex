@@ -109,7 +109,9 @@ export default {
       console.log(list)
     },
     async getLatex() {
-      const latex = await this.$axios.$get('http://localhost:8093/latex/all')
+      const latex = await this.$axios
+        .$get('http://localhost:8093/latex/all')
+        .catch((error) => console.log(error.response.status))
       this.price = latex[latex.length - 1].price
     },
     async postTran() {

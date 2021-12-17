@@ -13,9 +13,17 @@
         <b-input-group prepend="Password" class="my-3">
           <b-form-input></b-form-input>
         </b-input-group>
+        <b-button
+          pill
+          variant="outline-success"
+          class="px-5"
+          size="lg"
+          @click="signup()"
+          >Login</b-button
+        >
         <NuxtLink class="ml-3" to="/SignUp"
           ><b-button pill variant="outline-success" class="px-5" size="lg"
-            >Log In</b-button
+            >Sign up</b-button
           ></NuxtLink
         >
         <b-button
@@ -43,7 +51,7 @@
 export default {
   layout: 'Navbar',
   methods: {
-    localTest() {
+    setLocalStorage() {
       if (process.client) {
         localStorage.setItem('authToken', 'kuyprayuth')
       }
