@@ -119,8 +119,8 @@ export default {
         'http://localhost:8093/user/all',
         this.$store.state.header_token
       )
-      this.user = list
-      console.log(list)
+      this.user = list.filter((x) => x.role != 'admin')
+      // console.log(list)
     },
     async getLatex() {
       const latex = await this.$axios.$get(
