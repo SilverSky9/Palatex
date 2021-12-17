@@ -34,10 +34,6 @@ public class transactionController {
     public ResponseEntity<?> getAllTransaction(){
         List<Transaction> transactions = transactionService.getAllTransactionService();
 
-
-
-
-
         return  ResponseEntity.ok(transactions);
     }
     //Get transaction by transaction_id
@@ -64,6 +60,11 @@ public class transactionController {
     public ResponseEntity<?> delTransaction(@PathVariable String id){
         transactionService.deleteTransactionService(id);
         return ResponseEntity.ok("Delete transaction!");
+    }
+    @RequestMapping(value = "/userid/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getByUserId(@PathVariable int id){
+        List<Transaction> transactions =  transactionService.getAllTransactionByUserIdService(id);
+        return  ResponseEntity.ok(transactions);
     }
 
     //Get Transaction by date

@@ -28,6 +28,10 @@ public class transactionService {
     public List<Transaction> getAllTransactionService(){
         return transactionRepository.findAll();
     }
+    //Get all transaction by user id
+    public List<Transaction> getAllTransactionByUserIdService(int id){
+        return transactionRepository.findByUserId(id);
+    }
 
     //Get transaction by _id in mongoDB
     public Transaction getTransactionByIdService(String id){
