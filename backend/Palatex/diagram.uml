@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/silversky/Dev/GitHub/Palatex/backend/Palatex/src/main/java/com/example/palatex</OriginalElement>
+  <nodes>
+    <node x="1271.910256410257" y="437.0">com.example.palatex.POJO.User</node>
+    <node x="400.9021739130435" y="2500.0">com.example.palatex.Service.latexSheetTransactionService</node>
+    <node x="2425.024496336996" y="1586.0">com.example.palatex.POJO.AuthRequest</node>
+    <node x="1012.5107600732613" y="1619.0">com.example.palatex.Controller.userController</node>
+    <node x="2125.0661630036625" y="1024.0">com.example.palatex.Controller.AnalysisController</node>
+    <node x="1204.8994963369958" y="1912.0">com.example.palatex.Controller.AuthController</node>
+    <node x="1636.2744963369958" y="1630.0">com.example.palatex.Controller.latexController</node>
+    <node x="2471.0128205128217" y="1035.0">com.example.palatex.Service.latexSheetService</node>
+    <node x="2720.689102564102" y="437.0">com.example.palatex.POJO.Transaction</node>
+    <node x="2983.25" y="1608.0">com.example.palatex.Controller.transactionController</node>
+    <node x="2103.899496336996" y="1285.0">com.example.palatex.Controller.latexSheetController</node>
+    <node x="269.52243589743534" y="1901.0">com.example.palatex.Config.AuthConfig</node>
+    <node x="913.9021739130435" y="2067.0">com.example.palatex.POJO.allAnalysis</node>
+    <node x="10.0" y="2678.0">com.example.palatex.Controller.Controller</node>
+    <node x="302.0" y="2629.0">com.example.palatex.Controller.latexSheetTransactionController</node>
+    <node x="0.0" y="1329.0">com.example.palatex.PalatexApplication</node>
+    <node x="398.4021739130435" y="2067.0">com.example.palatex.POJO.LatexSheetTransaction</node>
+    <node x="1518.9021739130435" y="2067.0">com.example.palatex.Service.testService</node>
+    <node x="1235.0107600732613" y="1285.0">com.example.palatex.Service.userService</node>
+    <node x="1704.7607600732613" y="1296.0">com.example.palatex.Service.latexService</node>
+    <node x="2102.064102564102" y="547.0">com.example.palatex.POJO.Latex</node>
+    <node x="113.31410256410209" y="1079.0">com.example.palatex.Repository.authRepository</node>
+    <node x="0.0" y="2067.0">com.example.palatex.POJO.priceLatex</node>
+    <node x="455.2607600732613" y="1685.0">com.example.palatex.Security.Filter.JwtFilter</node>
+    <node x="543.0" y="1263.0">com.example.palatex.Security.Util.JwtUtil</node>
+    <node x="2962.689102564102" y="635.0">com.example.palatex.Repository.latexSheetRepository</node>
+    <node x="523.9021739130435" y="2416.0">com.example.palatex.Repository.latexSheetTransactionRepository</node>
+    <node x="217.0" y="1340.0">com.example.palatex.Service.userAuthService</node>
+    <node x="2856.804487179488" y="1046.0">com.example.palatex.Repository.transactionRepository</node>
+    <node x="1407.7724358974353" y="1057.0">com.example.palatex.Repository.userRepository</node>
+    <node x="2913.375" y="1274.0">com.example.palatex.Service.transactionService</node>
+    <node x="1791.1357600732613" y="1068.0">com.example.palatex.Repository.latexRepository</node>
+    <node x="2267.076923076924" y="0.0">com.example.palatex.POJO.LatexSheet</node>
+    <node x="1197.9021739130435" y="2067.0">com.example.palatex.Config.CorsConfig</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.palatex.Security.Filter.JwtFilter" target="com.example.palatex.Security.Util.JwtUtil" relationship="DEPENDENCY">
+      <point x="130.0" y="-27.5" />
+      <point x="845.2607600732613" y="1564.0" />
+      <point x="711.5224358974353" y="1564.0" />
+      <point x="711.5224358974353" y="1554.0" />
+      <point x="720.910256410257" y="1554.0" />
+      <point x="720.910256410257" y="1494.0" />
+      <point x="804.0" y="1494.0" />
+      <point x="87.0" y="104.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.userController" target="com.example.palatex.Service.userService" relationship="TO_ONE">
+      <point x="-93.25" y="-93.5" />
+      <point x="1105.7607600732613" y="1564.0" />
+      <point x="1117.2744963369958" y="1564.0" />
+      <point x="1117.2744963369958" y="1544.0" />
+      <point x="1311.2607600732613" y="1544.0" />
+      <point x="-76.25" y="82.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.latexSheetTransactionService" target="com.example.palatex.Repository.latexSheetTransactionRepository" relationship="TO_ONE">
+      <point x="117.0" y="-38.5" />
+      <point x="751.9021739130435" y="2478.0" />
+      <point x="756.4021739130435" y="2478.0" />
+      <point x="77.5" y="15.0" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AnalysisController" target="com.example.palatex.POJO.Latex" relationship="TO_MANY">
+      <point x="80.5" y="-82.5" />
+      <point x="2366.5661630036625" y="1002.0" />
+      <point x="2270.0107600732613" y="1002.0" />
+      <point x="2270.0107600732613" y="952.0" />
+      <point x="2261.814102564102" y="952.0" />
+      <point x="53.25" y="126.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.userAuthService" target="com.example.palatex.POJO.User" relationship="DEPENDENCY">
+      <point x="76.5" y="-27.5" />
+      <point x="446.5" y="1241.0" />
+      <point x="375.0" y="1241.0" />
+      <point x="375.0" y="992.0" />
+      <point x="1393.410256410257" y="992.0" />
+      <point x="0.0" y="236.5" />
+    </edge>
+    <edge source="com.example.palatex.PalatexApplication" target="com.example.palatex.Repository.authRepository" relationship="TO_ONE">
+      <point x="0.0" y="-38.5" />
+      <point x="98.5" y="1241.0" />
+      <point x="171.5641025641021" y="1241.0" />
+      <point x="-58.25" y="27.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.latexSheetTransactionController" target="com.example.palatex.Service.latexSheetTransactionService" relationship="DEPENDENCY">
+      <point x="-133.75" y="-38.5" />
+      <point x="435.75" y="2608.0" />
+      <point x="564.5" y="2608.0" />
+      <point x="564.5" y="2598.0" />
+      <point x="517.9021739130435" y="2598.0" />
+      <point x="-117.0" y="38.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.userService" target="com.example.palatex.Repository.userRepository" relationship="TO_ONE">
+      <point x="-76.25" y="-82.5" />
+      <point x="1311.2607600732613" y="1241.0" />
+      <point x="1365.0224358974353" y="1241.0" />
+      <point x="1365.0224358974353" y="1221.0" />
+      <point x="1473.2724358974353" y="1221.0" />
+      <point x="-65.5" y="49.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AnalysisController" target="com.example.palatex.POJO.Latex" relationship="DEPENDENCY">
+      <point x="-80.5" y="-82.5" />
+      <point x="2205.5661630036625" y="1002.0" />
+      <point x="2260.0107600732613" y="1002.0" />
+      <point x="2260.0107600732613" y="962.0" />
+      <point x="1836.785256410257" y="962.0" />
+      <point x="1836.785256410257" y="942.0" />
+      <point x="2155.314102564102" y="942.0" />
+      <point x="-53.25" y="126.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.transactionService" target="com.example.palatex.POJO.Transaction" relationship="DEPENDENCY">
+      <point x="100.25" y="-93.5" />
+      <point x="3214.125" y="1241.0" />
+      <point x="3118.875" y="1241.0" />
+      <point x="3118.875" y="1231.0" />
+      <point x="3215.304487179488" y="1231.0" />
+      <point x="3215.304487179488" y="1002.0" />
+      <point x="3022.7435897435907" y="1002.0" />
+      <point x="3022.7435897435907" y="932.0" />
+      <point x="2887.189102564102" y="932.0" />
+      <point x="55.5" y="236.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.userService" target="com.example.palatex.POJO.User" relationship="DEPENDENCY">
+      <point x="76.25" y="-82.5" />
+      <point x="1463.7607600732613" y="1241.0" />
+      <point x="1375.5224358974353" y="1241.0" />
+      <point x="1375.5224358974353" y="992.0" />
+      <point x="1393.410256410257" y="992.0" />
+      <point x="0.0" y="236.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AnalysisController" target="com.example.palatex.POJO.User" relationship="DEPENDENCY">
+      <point x="-80.5" y="-82.5" />
+      <point x="2205.5661630036625" y="1002.0" />
+      <point x="2260.0107600732613" y="1002.0" />
+      <point x="2260.0107600732613" y="972.0" />
+      <point x="1393.410256410257" y="972.0" />
+      <point x="0.0" y="236.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AnalysisController" target="com.example.palatex.POJO.Transaction" relationship="DEPENDENCY">
+      <point x="-80.5" y="-82.5" />
+      <point x="2205.5661630036625" y="1002.0" />
+      <point x="2260.0107600732613" y="1002.0" />
+      <point x="2260.0107600732613" y="982.0" />
+      <point x="3022.7435897435907" y="982.0" />
+      <point x="3022.7435897435907" y="932.0" />
+      <point x="2887.189102564102" y="932.0" />
+      <point x="55.5" y="236.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.latexController" target="com.example.palatex.Service.latexService" relationship="DEPENDENCY">
+      <point x="-80.75" y="-82.5" />
+      <point x="1717.0244963369958" y="1564.0" />
+      <point x="1792.7744963369958" y="1564.0" />
+      <point x="1792.7744963369958" y="1554.0" />
+      <point x="1783.0107600732613" y="1554.0" />
+      <point x="-78.25" y="71.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AuthController" target="com.example.palatex.Service.userService" relationship="DEPENDENCY">
+      <point x="67.75" y="-49.5" />
+      <point x="1408.1494963369958" y="1880.0" />
+      <point x="1547.5" y="1880.0" />
+      <point x="1547.5" y="1860.0" />
+      <point x="1463.7607600732613" y="1860.0" />
+      <point x="76.25" y="82.5" />
+    </edge>
+    <edge source="com.example.palatex.Repository.latexRepository" target="com.example.palatex.POJO.Latex" relationship="DEPENDENCY">
+      <point x="0.0" y="-38.5" />
+      <point x="1891.6357600732613" y="1002.0" />
+      <point x="1836.785256410257" y="1002.0" />
+      <point x="1836.785256410257" y="942.0" />
+      <point x="2155.314102564102" y="942.0" />
+      <point x="-53.25" y="126.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.latexSheetController" target="com.example.palatex.Controller.AnalysisController" relationship="TO_ONE">
+      <point x="0.0" y="-82.5" />
+      <point x="2301.399496336996" y="1241.0" />
+      <point x="2260.0107600732613" y="1241.0" />
+      <point x="2260.0107600732613" y="1231.0" />
+      <point x="2205.5661630036625" y="1231.0" />
+      <point x="-80.5" y="82.5" />
+    </edge>
+    <edge source="com.example.palatex.Repository.authRepository" target="com.example.palatex.POJO.User" relationship="DEPENDENCY">
+      <point x="0.0" y="-27.5" />
+      <point x="229.8141025641021" y="992.0" />
+      <point x="1393.410256410257" y="992.0" />
+      <point x="0.0" y="236.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.transactionService" target="com.example.palatex.Repository.transactionRepository" relationship="DEPENDENCY">
+      <point x="100.25" y="-93.5" />
+      <point x="3214.125" y="1241.0" />
+      <point x="3118.875" y="1241.0" />
+      <point x="3118.875" y="1231.0" />
+      <point x="3117.804487179488" y="1231.0" />
+      <point x="87.0" y="60.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.latexSheetTransactionController" target="com.example.palatex.POJO.LatexSheetTransaction" relationship="DEPENDENCY">
+      <point x="-133.75" y="-38.5" />
+      <point x="435.75" y="2608.0" />
+      <point x="564.5" y="2608.0" />
+      <point x="564.5" y="2598.0" />
+      <point x="390.4021739130435" y="2598.0" />
+      <point x="390.4021739130435" y="2390.0" />
+      <point x="513.4021739130435" y="2390.0" />
+      <point x="0.0" y="148.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AnalysisController" target="com.example.palatex.POJO.User" relationship="TO_MANY">
+      <point x="80.5" y="-82.5" />
+      <point x="2366.5661630036625" y="1002.0" />
+      <point x="2270.0107600732613" y="1002.0" />
+      <point x="2270.0107600732613" y="952.0" />
+      <point x="1474.410256410257" y="952.0" />
+      <point x="81.0" y="236.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.latexSheetService" target="com.example.palatex.Repository.latexSheetRepository" relationship="DEPENDENCY">
+      <point x="-89.0" y="-71.5" />
+      <point x="2560.0128205128217" y="1002.0" />
+      <point x="2655.6357600732613" y="1002.0" />
+      <point x="2655.6357600732613" y="942.0" />
+      <point x="3021.939102564102" y="942.0" />
+      <point x="-59.25" y="38.5" />
+    </edge>
+    <edge source="com.example.palatex.Security.Filter.JwtFilter" target="com.example.palatex.Service.userAuthService" relationship="DEPENDENCY">
+      <point x="130.0" y="-27.5" />
+      <point x="845.2607600732613" y="1564.0" />
+      <point x="711.5224358974353" y="1564.0" />
+      <point x="711.5224358974353" y="1524.0" />
+      <point x="375.5" y="1524.0" />
+      <point x="375.5" y="1514.0" />
+      <point x="446.5" y="1514.0" />
+      <point x="76.5" y="27.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.userAuthService" target="com.example.palatex.Repository.authRepository" relationship="DEPENDENCY">
+      <point x="76.5" y="-27.5" />
+      <point x="446.5" y="1241.0" />
+      <point x="375.0" y="1241.0" />
+      <point x="375.0" y="1221.0" />
+      <point x="181.5641025641021" y="1221.0" />
+      <point x="181.5641025641021" y="1211.0" />
+      <point x="288.0641025641021" y="1211.0" />
+      <point x="58.25" y="27.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AuthController" target="com.example.palatex.Repository.userRepository" relationship="DEPENDENCY">
+      <point x="67.75" y="-49.5" />
+      <point x="1408.1494963369958" y="1880.0" />
+      <point x="1547.5" y="1880.0" />
+      <point x="1547.5" y="1860.0" />
+      <point x="1604.2724358974353" y="1860.0" />
+      <point x="65.5" y="49.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.latexService" target="com.example.palatex.POJO.Latex" relationship="DEPENDENCY">
+      <point x="-78.25" y="-71.5" />
+      <point x="1783.0107600732613" y="1241.0" />
+      <point x="1837.1494963369958" y="1241.0" />
+      <point x="1837.1494963369958" y="1231.0" />
+      <point x="1780.6357600732613" y="1231.0" />
+      <point x="1780.6357600732613" y="1002.0" />
+      <point x="1836.785256410257" y="1002.0" />
+      <point x="1836.785256410257" y="942.0" />
+      <point x="2155.314102564102" y="942.0" />
+      <point x="-53.25" y="126.5" />
+    </edge>
+    <edge source="com.example.palatex.PalatexApplication" target="com.example.palatex.Repository.authRepository" relationship="DEPENDENCY">
+      <point x="65.66666666666674" y="-38.5" />
+      <point x="164.16666666666674" y="1231.0" />
+      <point x="181.5641025641021" y="1231.0" />
+      <point x="181.5641025641021" y="1211.0" />
+      <point x="288.0641025641021" y="1211.0" />
+      <point x="58.25" y="27.5" />
+    </edge>
+    <edge source="com.example.palatex.Repository.transactionRepository" target="com.example.palatex.POJO.Transaction" relationship="DEPENDENCY">
+      <point x="0.0" y="-60.5" />
+      <point x="3030.804487179488" y="1002.0" />
+      <point x="3022.7435897435907" y="1002.0" />
+      <point x="3022.7435897435907" y="932.0" />
+      <point x="2887.189102564102" y="932.0" />
+      <point x="55.5" y="236.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.latexSheetService" target="com.example.palatex.POJO.LatexSheet" relationship="DEPENDENCY">
+      <point x="-89.0" y="-71.5" />
+      <point x="2560.0128205128217" y="1002.0" />
+      <point x="2655.6357600732613" y="1002.0" />
+      <point x="2655.6357600732613" y="942.0" />
+      <point x="2567.689102564102" y="942.0" />
+      <point x="2567.689102564102" y="416.0" />
+      <point x="2631.0107600732613" y="416.0" />
+      <point x="2631.0107600732613" y="406.0" />
+      <point x="2452.326923076924" y="406.0" />
+      <point x="61.75" y="192.5" />
+    </edge>
+    <edge source="com.example.palatex.Config.AuthConfig" target="com.example.palatex.Security.Filter.JwtFilter" relationship="TO_ONE">
+      <point x="-95.5" y="-60.5" />
+      <point x="365.02243589743534" y="1880.0" />
+      <point x="341.5107600732613" y="1880.0" />
+      <point x="341.5107600732613" y="1870.0" />
+      <point x="585.2607600732613" y="1870.0" />
+      <point x="-130.0" y="27.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AuthController" target="com.example.palatex.Controller.userController" relationship="DEPENDENCY">
+      <point x="67.75" y="-49.5" />
+      <point x="1408.1494963369958" y="1880.0" />
+      <point x="1547.5" y="1880.0" />
+      <point x="1547.5" y="1860.0" />
+      <point x="1292.2607600732613" y="1860.0" />
+      <point x="93.25" y="93.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AuthController" target="com.example.palatex.Security.Util.JwtUtil" relationship="TO_ONE">
+      <point x="-67.75" y="-49.5" />
+      <point x="1272.6494963369958" y="1880.0" />
+      <point x="986.0107600732613" y="1880.0" />
+      <point x="985.7607600732613" y="1514.0" />
+      <point x="710.910256410257" y="1514.0" />
+      <point x="710.910256410257" y="1504.0" />
+      <point x="630.0" y="1504.0" />
+      <point x="-87.0" y="104.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.transactionController" target="com.example.palatex.Service.transactionService" relationship="TO_ONE">
+      <point x="-93.0" y="-104.5" />
+      <point x="3076.25" y="1564.0" />
+      <point x="3013.625" y="1564.0" />
+      <point x="-100.25" y="93.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.latexSheetController" target="com.example.palatex.Service.latexSheetService" relationship="DEPENDENCY">
+      <point x="131.66666666666663" y="-82.5" />
+      <point x="2433.0661630036625" y="1241.0" />
+      <point x="2669.75" y="1241.0" />
+      <point x="2669.75" y="1221.0" />
+      <point x="2738.0128205128217" y="1221.0" />
+      <point x="89.0" y="71.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AuthController" target="com.example.palatex.POJO.AuthRequest" relationship="DEPENDENCY">
+      <point x="67.75" y="-49.5" />
+      <point x="1408.1494963369958" y="1880.0" />
+      <point x="1547.5" y="1880.0" />
+      <point x="1547.5" y="1860.0" />
+      <point x="2531.524496336996" y="1860.0" />
+      <point x="0.0" y="126.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.latexService" target="com.example.palatex.Repository.latexRepository" relationship="DEPENDENCY">
+      <point x="-78.25" y="-71.5" />
+      <point x="1783.0107600732613" y="1241.0" />
+      <point x="1837.1494963369958" y="1241.0" />
+      <point x="1837.1494963369958" y="1231.0" />
+      <point x="1841.3857600732613" y="1231.0" />
+      <point x="-50.25" y="38.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AuthController" target="com.example.palatex.POJO.User" relationship="DEPENDENCY">
+      <point x="67.75" y="-49.5" />
+      <point x="1408.1494963369958" y="1880.0" />
+      <point x="1547.5" y="1880.0" />
+      <point x="1547.5" y="1860.0" />
+      <point x="2029.5107600732613" y="1860.0" />
+      <point x="2029.5107600732613" y="992.0" />
+      <point x="1393.410256410257" y="992.0" />
+      <point x="0.0" y="236.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.latexSheetController" target="com.example.palatex.POJO.Transaction" relationship="DEPENDENCY">
+      <point x="131.66666666666663" y="-82.5" />
+      <point x="2433.0661630036625" y="1241.0" />
+      <point x="2669.75" y="1241.0" />
+      <point x="2669.75" y="1221.0" />
+      <point x="2837.5128205128217" y="1221.0" />
+      <point x="2837.5128205128217" y="1002.0" />
+      <point x="3022.7435897435907" y="1002.0" />
+      <point x="3022.7435897435907" y="932.0" />
+      <point x="2887.189102564102" y="932.0" />
+      <point x="55.5" y="236.5" />
+    </edge>
+    <edge source="com.example.palatex.PalatexApplication" target="com.example.palatex.POJO.User" relationship="CREATE">
+      <point x="-65.66666666666674" y="-38.5" />
+      <point x="32.83333333333326" y="1241.0" />
+      <point x="59.125" y="1241.0" />
+      <point x="59.125" y="982.0" />
+      <point x="1312.410256410257" y="982.0" />
+      <point x="-81.0" y="236.5" />
+    </edge>
+    <edge source="com.example.palatex.Config.AuthConfig" target="com.example.palatex.Service.userAuthService" relationship="TO_ONE">
+      <point x="-95.5" y="-60.5" />
+      <point x="365.02243589743534" y="1880.0" />
+      <point x="341.5107600732613" y="1880.0" />
+      <point x="341.2607600732613" y="1554.0" />
+      <point x="365.0" y="1554.0" />
+      <point x="365.0" y="1524.0" />
+      <point x="293.5" y="1524.0" />
+      <point x="-76.5" y="27.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AuthController" target="com.example.palatex.Service.userService" relationship="TO_ONE">
+      <point x="-67.75" y="-49.5" />
+      <point x="1272.6494963369958" y="1880.0" />
+      <point x="986.0107600732613" y="1880.0" />
+      <point x="986.0107600732613" y="1870.0" />
+      <point x="991.0107600732613" y="1870.0" />
+      <point x="991.0107600732613" y="1564.0" />
+      <point x="1117.2744963369958" y="1564.0" />
+      <point x="1117.2744963369958" y="1544.0" />
+      <point x="1311.2607600732613" y="1544.0" />
+      <point x="-76.25" y="82.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.latexSheetTransactionController" target="com.example.palatex.Service.latexSheetTransactionService" relationship="TO_ONE">
+      <point x="133.75" y="-38.5" />
+      <point x="703.25" y="2608.0" />
+      <point x="751.9021739130435" y="2608.0" />
+      <point x="117.0" y="38.5" />
+    </edge>
+    <edge source="com.example.palatex.Repository.latexSheetTransactionRepository" target="com.example.palatex.POJO.LatexSheetTransaction" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="678.9021739130435" y="2390.0" />
+      <point x="513.4021739130435" y="2390.0" />
+      <point x="0.0" y="148.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.userService" target="com.example.palatex.Repository.userRepository" relationship="DEPENDENCY">
+      <point x="76.25" y="-82.5" />
+      <point x="1463.7607600732613" y="1241.0" />
+      <point x="1375.5224358974353" y="1241.0" />
+      <point x="1375.5224358974353" y="1231.0" />
+      <point x="1604.2724358974353" y="1231.0" />
+      <point x="65.5" y="49.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.transactionService" target="com.example.palatex.Repository.transactionRepository" relationship="TO_ONE">
+      <point x="-100.25" y="-93.5" />
+      <point x="3013.625" y="1241.0" />
+      <point x="2943.804487179488" y="1241.0" />
+      <point x="-87.0" y="60.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.latexSheetTransactionService" target="com.example.palatex.Repository.latexSheetTransactionRepository" relationship="DEPENDENCY">
+      <point x="-117.0" y="-38.5" />
+      <point x="517.9021739130435" y="2478.0" />
+      <point x="628.25" y="2478.0" />
+      <point x="628.25" y="2468.0" />
+      <point x="601.4021739130435" y="2468.0" />
+      <point x="-77.5" y="15.0" />
+    </edge>
+    <edge source="com.example.palatex.Controller.userController" target="com.example.palatex.Service.userService" relationship="DEPENDENCY">
+      <point x="93.25" y="-93.5" />
+      <point x="1292.2607600732613" y="1564.0" />
+      <point x="1204.0107600732613" y="1564.0" />
+      <point x="1204.0107600732613" y="1554.0" />
+      <point x="1463.7607600732613" y="1554.0" />
+      <point x="76.25" y="82.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.latexSheetService" target="com.example.palatex.Repository.latexSheetRepository" relationship="TO_ONE">
+      <point x="89.0" y="-71.5" />
+      <point x="2738.0128205128217" y="992.0" />
+      <point x="3140.439102564102" y="992.0" />
+      <point x="59.25" y="38.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.latexController" target="com.example.palatex.Service.latexService" relationship="TO_ONE">
+      <point x="80.75" y="-82.5" />
+      <point x="1878.5244963369958" y="1564.0" />
+      <point x="1939.5107600732613" y="1564.0" />
+      <point x="78.25" y="71.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.latexSheetController" target="com.example.palatex.Controller.AnalysisController" relationship="DEPENDENCY">
+      <point x="131.66666666666663" y="-82.5" />
+      <point x="2433.0661630036625" y="1241.0" />
+      <point x="2669.75" y="1241.0" />
+      <point x="2669.75" y="1221.0" />
+      <point x="2366.5661630036625" y="1221.0" />
+      <point x="80.5" y="82.5" />
+    </edge>
+    <edge source="com.example.palatex.Security.Filter.JwtFilter" target="com.example.palatex.Security.Util.JwtUtil" relationship="TO_ONE">
+      <point x="-130.0" y="-27.5" />
+      <point x="585.2607600732613" y="1564.0" />
+      <point x="701.5224358974353" y="1564.0" />
+      <point x="701.5224358974353" y="1544.0" />
+      <point x="710.910256410257" y="1544.0" />
+      <point x="710.910256410257" y="1504.0" />
+      <point x="630.0" y="1504.0" />
+      <point x="-87.0" y="104.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.latexSheetController" target="com.example.palatex.POJO.LatexSheet" relationship="CREATE">
+      <point x="-131.66666666666663" y="-82.5" />
+      <point x="2169.732829670329" y="1241.0" />
+      <point x="2073.826923076924" y="1241.0" />
+      <point x="2073.826923076924" y="416.0" />
+      <point x="2328.826923076924" y="416.0" />
+      <point x="-61.75" y="192.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.latexSheetTransactionService" target="com.example.palatex.POJO.LatexSheetTransaction" relationship="DEPENDENCY">
+      <point x="-117.0" y="-38.5" />
+      <point x="517.9021739130435" y="2478.0" />
+      <point x="628.25" y="2478.0" />
+      <point x="628.25" y="2468.0" />
+      <point x="513.4021739130435" y="2468.0" />
+      <point x="0.0" y="148.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AnalysisController" target="com.example.palatex.POJO.Transaction" relationship="TO_MANY">
+      <point x="80.5" y="-82.5" />
+      <point x="2366.5661630036625" y="1002.0" />
+      <point x="2270.0107600732613" y="1002.0" />
+      <point x="2270.0107600732613" y="952.0" />
+      <point x="2776.189102564102" y="952.0" />
+      <point x="-55.5" y="236.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AuthController" target="com.example.palatex.Repository.userRepository" relationship="TO_ONE">
+      <point x="-67.75" y="-49.5" />
+      <point x="1272.6494963369958" y="1880.0" />
+      <point x="986.0107600732613" y="1880.0" />
+      <point x="985.7607600732613" y="1241.0" />
+      <point x="1365.0224358974353" y="1241.0" />
+      <point x="1365.0224358974353" y="1221.0" />
+      <point x="1473.2724358974353" y="1221.0" />
+      <point x="-65.5" y="49.5" />
+    </edge>
+    <edge source="com.example.palatex.Config.AuthConfig" target="com.example.palatex.Security.Filter.JwtFilter" relationship="DEPENDENCY">
+      <point x="95.5" y="-60.5" />
+      <point x="556.0224358974353" y="1880.0" />
+      <point x="376.14949633699575" y="1880.0" />
+      <point x="376.14949633699575" y="1860.0" />
+      <point x="845.2607600732613" y="1860.0" />
+      <point x="130.0" y="27.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.Controller" target="com.example.palatex.POJO.priceLatex" relationship="DEPENDENCY">
+      <point x="0.0" y="-49.5" />
+      <point x="0.0" y="280.5" />
+    </edge>
+    <edge source="com.example.palatex.Security.Filter.JwtFilter" target="com.example.palatex.Service.userAuthService" relationship="TO_ONE">
+      <point x="-130.0" y="-27.5" />
+      <point x="585.2607600732613" y="1564.0" />
+      <point x="701.5224358974353" y="1564.0" />
+      <point x="701.5224358974353" y="1534.0" />
+      <point x="365.0" y="1534.0" />
+      <point x="365.0" y="1524.0" />
+      <point x="293.5" y="1524.0" />
+      <point x="-76.5" y="27.5" />
+    </edge>
+    <edge source="com.example.palatex.Repository.userRepository" target="com.example.palatex.POJO.User" relationship="DEPENDENCY">
+      <point x="0.0" y="-49.5" />
+      <point x="1538.7724358974353" y="992.0" />
+      <point x="1393.410256410257" y="992.0" />
+      <point x="0.0" y="236.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.userAuthService" target="com.example.palatex.Repository.authRepository" relationship="TO_ONE">
+      <point x="-76.5" y="-27.5" />
+      <point x="293.5" y="1241.0" />
+      <point x="171.5641025641021" y="1241.0" />
+      <point x="-58.25" y="27.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.transactionController" target="com.example.palatex.POJO.Transaction" relationship="DEPENDENCY">
+      <point x="93.0" y="-104.5" />
+      <point x="3262.25" y="1564.0" />
+      <point x="3174.25" y="1564.0" />
+      <point x="3174.25" y="1554.0" />
+      <point x="3324.875" y="1554.0" />
+      <point x="3324.875" y="1002.0" />
+      <point x="3022.7435897435907" y="1002.0" />
+      <point x="3022.7435897435907" y="932.0" />
+      <point x="2887.189102564102" y="932.0" />
+      <point x="55.5" y="236.5" />
+    </edge>
+    <edge source="com.example.palatex.Config.AuthConfig" target="com.example.palatex.Service.userAuthService" relationship="DEPENDENCY">
+      <point x="95.5" y="-60.5" />
+      <point x="556.0224358974353" y="1880.0" />
+      <point x="376.14949633699575" y="1880.0" />
+      <point x="376.14949633699575" y="1860.0" />
+      <point x="352.2607600732613" y="1860.0" />
+      <point x="352.2607600732613" y="1564.0" />
+      <point x="375.5" y="1564.0" />
+      <point x="375.5" y="1514.0" />
+      <point x="446.5" y="1514.0" />
+      <point x="76.5" y="27.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.latexController" target="com.example.palatex.POJO.Latex" relationship="DEPENDENCY">
+      <point x="-80.75" y="-82.5" />
+      <point x="1717.0244963369958" y="1564.0" />
+      <point x="1792.7744963369958" y="1564.0" />
+      <point x="1792.7744963369958" y="1554.0" />
+      <point x="1694.2607600732613" y="1554.0" />
+      <point x="1694.2607600732613" y="1002.0" />
+      <point x="1836.785256410257" y="1002.0" />
+      <point x="1836.785256410257" y="942.0" />
+      <point x="2155.314102564102" y="942.0" />
+      <point x="-53.25" y="126.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.userController" target="com.example.palatex.POJO.User" relationship="DEPENDENCY">
+      <point x="93.25" y="-93.5" />
+      <point x="1292.2607600732613" y="1564.0" />
+      <point x="1204.0107600732613" y="1564.0" />
+      <point x="1204.0107600732613" y="992.0" />
+      <point x="1393.410256410257" y="992.0" />
+      <point x="0.0" y="236.5" />
+    </edge>
+    <edge source="com.example.palatex.Repository.latexSheetRepository" target="com.example.palatex.POJO.LatexSheet" relationship="DEPENDENCY">
+      <point x="0.0" y="-38.5" />
+      <point x="3081.189102564102" y="416.0" />
+      <point x="2631.0107600732613" y="416.0" />
+      <point x="2631.0107600732613" y="406.0" />
+      <point x="2452.326923076924" y="406.0" />
+      <point x="61.75" y="192.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.latexSheetController" target="com.example.palatex.Service.latexSheetService" relationship="TO_ONE">
+      <point x="0.0" y="-82.5" />
+      <point x="2301.399496336996" y="1241.0" />
+      <point x="2260.0107600732613" y="1241.0" />
+      <point x="2260.0107600732613" y="1231.0" />
+      <point x="2560.0128205128217" y="1231.0" />
+      <point x="-89.0" y="71.5" />
+    </edge>
+    <edge source="com.example.palatex.Service.latexService" target="com.example.palatex.Repository.latexRepository" relationship="TO_ONE">
+      <point x="78.25" y="-71.5" />
+      <point x="1939.5107600732613" y="1241.0" />
+      <point x="1941.8857600732613" y="1241.0" />
+      <point x="50.25" y="38.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AuthController" target="com.example.palatex.Controller.userController" relationship="TO_ONE">
+      <point x="-67.75" y="-49.5" />
+      <point x="1272.6494963369958" y="1880.0" />
+      <point x="986.0107600732613" y="1880.0" />
+      <point x="986.0107600732613" y="1870.0" />
+      <point x="1105.7607600732613" y="1870.0" />
+      <point x="-93.25" y="93.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.AuthController" target="com.example.palatex.Security.Util.JwtUtil" relationship="DEPENDENCY">
+      <point x="67.75" y="-49.5" />
+      <point x="1408.1494963369958" y="1880.0" />
+      <point x="1547.5" y="1880.0" />
+      <point x="1547.5" y="1860.0" />
+      <point x="1002.0107600732613" y="1860.0" />
+      <point x="1002.0107600732613" y="1504.0" />
+      <point x="720.910256410257" y="1504.0" />
+      <point x="720.910256410257" y="1494.0" />
+      <point x="804.0" y="1494.0" />
+      <point x="87.0" y="104.5" />
+    </edge>
+    <edge source="com.example.palatex.Controller.transactionController" target="com.example.palatex.Service.transactionService" relationship="DEPENDENCY">
+      <point x="93.0" y="-104.5" />
+      <point x="3262.25" y="1564.0" />
+      <point x="3174.25" y="1564.0" />
+      <point x="3174.25" y="1554.0" />
+      <point x="3214.125" y="1554.0" />
+      <point x="100.25" y="93.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.380909220876685" showDependencies="true" x="1653.7639294298679" y="1215.1272443201897" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
