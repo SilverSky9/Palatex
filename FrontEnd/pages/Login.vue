@@ -98,6 +98,8 @@ export default {
     },
     getLocal() {
       console.log(localStorage.getItem('authToken'))
+      this.$store.commit('isLogin')
+      console.log(this.$store.state.isLogged)
     },
   },
 }

@@ -18,16 +18,17 @@ export const mutations = {
             }
         }
     },
-    isLogout(state, val) {
+    isLogin(state) {
+        state.isLogged = true
+    },
+    isLogout(state) {
         state.isLogged = false
     },
-    isLogin(state, val) {
-        state.isLogged = false
-    },
-    adminLogged(state, val) {
+
+    adminLogged(state) {
         state.isAdmin = true
     },
-    adminLogout(state, val) {
+    adminLogout(state) {
         state.isAdmin = false
     },
 

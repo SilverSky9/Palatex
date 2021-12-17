@@ -3,6 +3,9 @@ package com.example.palatex.Service;
 import com.example.palatex.POJO.User;
 import com.example.palatex.Repository.userRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -13,12 +16,20 @@ import java.util.List;
 public class userService {
     @Autowired
     private static userRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     public userService(userRepository userRepository){
         this.userRepository = userRepository;
     }
     //Add user
     public User addUserService(User u) {
+        u.setPassword(passwordEncoder.encode(u.getPassword()));
         return userRepository.save(u);
     }
     //Get all user
