@@ -96,9 +96,6 @@ export default {
   data() {
     return {
       selected: null,
-      date: new Date(),
-
-      date: new Date(),
       user: [],
       price: 0,
       unit: null,
@@ -138,9 +135,12 @@ export default {
       this.price = latex[latex.length - 1].price
     },
     async postTran() {
+      var date = new Date()
+      // Add a day
+      date.setDate(date.getDate() + 1)
       var data = {
         user_id: this.selected,
-        date: new Date(),
+        date: date,
         dateTime: new Date(),
         unit: this.unit,
         price_buy: this.price,
