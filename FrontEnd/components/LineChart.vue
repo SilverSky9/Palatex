@@ -11,7 +11,7 @@ export default {
     this.renderChart(this.chartData, this.options)
     setTimeout(() => {
       this.renderChart(this.chartData, this.options)
-    }, 200)
+    }, 1000)
   },
 }
 </script>

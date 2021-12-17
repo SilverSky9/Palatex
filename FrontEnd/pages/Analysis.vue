@@ -53,7 +53,7 @@
         <b-card class="content bg-light">
           <b-card-text class="m-2">
             <fa :icon="['fa', 'money-bill']" size="2x" />
-            <span class="h3">แปลรูป</span>
+            <span class="h3">แปรรูป</span>
           </b-card-text>
 
           <b-card-text class="display-2 p-3">

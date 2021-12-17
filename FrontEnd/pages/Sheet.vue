@@ -55,7 +55,7 @@
 
           <b-card-text class="display-2 p-3">
             <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
-            {{ sheetWeight * sheetPrice }} ฿
+            {{ (sheetWeight * sheetPrice).toFixed(2) }} ฿
             <!-- {{ date }} -->
           </b-card-text>
           <!-- <NuxtLink class="ml-3" to="/analysis"

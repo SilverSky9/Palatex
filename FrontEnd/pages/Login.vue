@@ -18,6 +18,11 @@
             >Log In</b-button
           ></NuxtLink
         >
+        <NuxtLink class="ml-3" to="/SignUp"
+          ><b-button pill variant="outline-info" class="px-5" size="lg"
+            >Sign Up</b-button
+          ></NuxtLink
+        >
       </b-col>
     </b-row>
   </b-container>
