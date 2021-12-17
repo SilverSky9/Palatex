@@ -10,11 +10,11 @@ export const mutations = {
         //console.log("set state: " + val);
         state.token = val
     },
-    set_header_token(state) {
+    set_header_token(state, token) {
         state.header_token = {
             headers: {
                 Authorization:
-                    'Bearer ' + state.token
+                    'Bearer ' + token
             }
         }
     },

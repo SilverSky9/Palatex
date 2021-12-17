@@ -85,6 +85,12 @@
                 <fa :icon="['fa', 'sign-in-alt']" size="2x" />
               </NuxtLink>
             </li>
+            <li class="pl-2 iconEffect" @click="signout()">
+              <fa :icon="['fa', 'sign-out-alt']" size="2x" />
+            </li>
+            <li class="pl-2 iconEffect" @click="localStatus()">
+              <fa :icon="['fa', 'exchange-alt']" size="2x" />
+            </li>
           </ul>
         </div>
       </div>
@@ -112,12 +118,53 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('scroll', debounce(this.scrollListener, 100), true)
+    // this.startFetching()
+  },
+  created() {
+    this.startFetching()
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.scrollListener)
   },
   methods: {
+    async startFetching() {
+      this.isLogin()
+      this.localStatus()
+      window.addEventListener(
+        'scroll',
+        debounce(this.scrollListener, 100),
+        true
+      )
+
+      console.log(this.$store.state.header_token)
+    },
+    async localStatus() {
+      console.log('token: ' + localStorage.getItem('token'))
+      console.log('islogged: ' + localStorage.getItem('isLogged'))
+      console.log('isAdmin: ' + localStorage.getItem('isAdmin'))
+      await this.$store.commit(
+        'set_header_token',
+        localStorage.getItem('token')
+      )
+    },
+    signout: () => {
+      console.log('logged out')
+      localStorage.setItem('token', '')
+      localStorage.setItem('isLogged', false)
+      localStorage.setItem('isAdmin', false)
+      this.$store.commit('set_header_token', '')
+    },
+    isLogin: () => {
+      var token
+      token = localStorage.getItem('token')
+      if (token == '') {
+        console.log('no token')
+        localStorage.setItem('isLogged', false)
+        localStorage.setItem('isAdmin', false)
+        this.$store.commit('set_header_token', '')
+      } else {
+      }
+    },
     scrollListener() {
       if (window.pageYOffset) {
         this.scrollTop = window.pageYOffset

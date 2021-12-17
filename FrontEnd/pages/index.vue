@@ -142,7 +142,10 @@ export default {
   layout: 'Navbar',
   methods: {
     async getLatex() {
-      const latex = await this.$axios.$get('http://localhost:8093/latex/all')
+      const latex = await this.$axios.$get(
+        'http://localhost:8093/latex/all',
+        this.$store.state.header_token
+      )
 
       console.log(this.chartData)
       this.latex = latex

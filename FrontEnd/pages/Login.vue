@@ -68,11 +68,17 @@ export default {
         .$post('http://localhost:8093/authen', data)
         .then((res) => {
           localStorage.setItem('token', res)
-          this.$store.commit('set_token', res)
-          this.$store.commit('set_header_token', this.$store.state.token)
+          localStorage.setItem('isLogged', true)
+          this.$store.commit('set_header_token', localStorage.getItem('token'))
           console.log(this.$store.state.header_token)
+          console.log('success')
         })
       //.catch((error) => console.log(error.response.status))
+    },
+    async signout() {
+      localStorage.setItem('token', '')
+      localStorage.setItem('isLogged', false)
+      localStorage.setItem('isAdmin', false)
     },
     async testshit() {
       var headers = {

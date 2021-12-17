@@ -61,7 +61,7 @@ export default {
     async getClaim() {
       await this.$axios
         .$get(
-          'http://localhost:8093/checktoken/' + this.$store.state.token,
+          'http://localhost:8093/checktoken/' + localStorage.getItem('token'),
           this.$store.state.header_token
         )
         .then((res) => {
