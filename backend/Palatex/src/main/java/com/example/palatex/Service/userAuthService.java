@@ -14,8 +14,9 @@ public class userAuthService implements UserDetailsService {
     @Autowired
     private authRepository authRepository;
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public newUserDatails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = authRepository.findByUsername(username);
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
+//        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
+        return new newUserDatails(user.getUsername(), user.getPassword(), user.getRole(), new ArrayList<>());
          }
 }
