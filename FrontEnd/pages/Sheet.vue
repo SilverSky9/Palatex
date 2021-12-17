@@ -4,7 +4,7 @@
       <b-card class="content bg-light w-100 ml-3 mr-4">
         <b-row>
           <b-col>
-            <p>น้ำหนักน้ำยางรวม</p>
+            <p>น้ำหนักน้ำยางรวม ของวันนี้</p>
             <b-form-input
               type="text"
               placeholder="All Latex"
@@ -14,7 +14,7 @@
             ></b-form-input
           ></b-col>
           <b-col
-            ><p>น้ำหนักยางแผ่นรวม</p>
+            ><p>น้ำหนักยางแผ่นรวม ของวันนี้</p>
             <b-form-input
               type="text"
               v-model="sheetWeight"
@@ -24,7 +24,7 @@
             ></b-form-input
           ></b-col>
           <b-col
-            ><p>ราคายางแผ่นรวม</p>
+            ><p>ราคายางแผ่นรวม ของวันนี้</p>
             <b-form-input
               type="text"
               v-model="sheetPrice"
@@ -39,7 +39,8 @@
               variant="outline-success"
               class="w-100 py-3 mt-3"
               @click="postSheet()"
-              >Record</b-button
+              :disabled="sheetPrice == 0"
+              >บันทึกข้อมูล</b-button
             ></b-col
           >
         </b-row>
@@ -50,13 +51,30 @@
         <b-card class="content bg-light">
           <b-card-text class="m-2">
             <fa :icon="['fa', 'money-bill']" size="2x" />
-            <span class="h3">ราคายางแผ่นรมควัน</span>
+            <span class="h3">ราคารวมยางแผ่นรมควัน ของวันนี้</span>
           </b-card-text>
 
           <b-card-text class="display-2 p-3">
             <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
             {{ (sheetWeight * sheetPrice).toFixed(2) }} ฿
             <!-- {{ date }} -->
+          </b-card-text>
+          <!-- <NuxtLink class="ml-3" to="/analysis"
+            ><b-button variant="danger">Analysis</b-button></NuxtLink
+          > -->
+        </b-card>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <b-card class="content bg-light">
+          <b-card-text class="m-2">
+            <fa :icon="['fa', 'money-bill']" size="2x" />
+            <span class="h3">ยางแผ่นรมควันทั้งหมด</span>
+          </b-card-text>
+
+          <b-card-text>
+            <b-table sticky-header="26rem" hover :items="sheetPrice"> </b-table>
           </b-card-text>
           <!-- <NuxtLink class="ml-3" to="/analysis"
             ><b-button variant="danger">Analysis</b-button></NuxtLink

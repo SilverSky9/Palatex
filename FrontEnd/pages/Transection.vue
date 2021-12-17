@@ -61,7 +61,8 @@
               variant="outline-success"
               class="w-100 py-3 mt-3"
               @click="postTran()"
-              >Transection</b-button
+              :disabled="selected == null"
+              >บันทึกการซื้อ</b-button
             ></b-col
           >
         </b-row>
@@ -128,20 +129,28 @@ export default {
       this.price = latex[latex.length - 1].price
     },
     async postTran() {
-      var data = {
-        user_id: this.selected,
-        date: new Date(),
-        dateTime: new Date(),
-        unit: this.unit,
-        price_buy: this.price,
-        percen: this.percen,
-        total_price: (this.percen / 100) * this.unit * this.price,
+      if ((this.unit && this.percen) != null) {
+        var data = {
+          user_id: this.selected,
+          date: new Date(),
+          dateTime: new Date(),
+          unit: this.unit,
+          price_buy: this.price,
+          percent: this.percen,
+          total_price: (this.percen / 100) * this.unit * this.price,
+        }
+        await this.$axios
+          .$post('http://localhost:8093/transaction/add', data)
+          .then((res) => console.log(res))
+        // console.log(this.date)
+        console.log(data)
+        this.selected = null
+
+        this.unit = null
+        this.percen = null
+      } else {
+        alert('please put all data')
       }
-      await this.$axios
-        .$post('http://localhost:8093/transaction/add', data)
-        .then((res) => console.log(res))
-      // console.log(this.date)
-      console.log(data)
     },
   },
   mounted() {
