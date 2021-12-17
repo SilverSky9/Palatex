@@ -30,10 +30,10 @@ private userController userController;
     }
 
     @RequestMapping(value = "/authen", method = RequestMethod.POST)
-    public String generateToken(@RequestBody AuthRequest authRequest) throws Exception{
-
-        User u = userService.getUserByUsernameService(authRequest.getUsername());
-        System.out.println(u);
+    public String generateToken(@RequestBody AuthRequest authRequest) {
+        try {
+            User u = userService.getUserByUsernameService(authRequest.getUsername());
+            System.out.println(u);
 
             //get role
             System.out.println(u.getPassword());
@@ -41,16 +41,20 @@ private userController userController;
             boolean isPasswordMatched = passwordEncoder.matches(authRequest.getPassword(), u.getPassword());
             System.out.println(isPasswordMatched);
 
-            if (isPasswordMatched && authRequest.getUsername()==u.getUsername()) {
+            if (isPasswordMatched && authRequest.getUsername().equals(u.getUsername())) {
 
                     System.out.println(authRequest.getPassword());
                     authenticationManager.authenticate(
                             new UsernamePasswordAuthenticationToken(authRequest.getUsername(), u.getPassword())
                     );
+                System.out.println("token :" + jwtUtil.generateToken(authRequest.getUsername(), u.getRole()));
                 return jwtUtil.generateToken(authRequest.getUsername(), u.getRole());
 
             }
+        }catch(Exception e) {
 
+            return "";
+        }
 
 //            User test = userService.getUserByUsernameService("Maysa");
 //            System.out.println(test.getFirstname());

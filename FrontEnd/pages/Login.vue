@@ -85,10 +85,9 @@ export default {
       }
       await this.$axios
         .$post('http://localhost:8093/authen', data)
-        .catch(() => {
-          alert('FUCK')
-        })
+        //.catch((error) => console.log(error.respo))
         .then((res) => {
+          console.log(res)
           if (res != '') {
             localStorage.setItem('token', res)
             localStorage.setItem('isLogged', true)
@@ -98,6 +97,8 @@ export default {
             )
             console.log(this.$store.state.header_token)
             console.log('success')
+          } else {
+            alert('Wrong')
           }
         })
 
