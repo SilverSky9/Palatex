@@ -138,18 +138,23 @@ export default {
       this.price = latex[latex.length - 1].price
     },
     async postTran() {
+      var data = {
+        user_id: this.selected,
+        date: new Date(),
+        dateTime: new Date(),
+        unit: this.unit,
+        price_buy: this.price,
+        percent: this.percen,
+        total_price: (this.percen / 100) * this.unit * this.price,
+      }
+
       if ((this.unit && this.percen) != null) {
-        var data = {
-          user_id: this.selected,
-          date: new Date(),
-          dateTime: new Date(),
-          unit: this.unit,
-          price_buy: this.price,
-          percent: this.percen,
-          total_price: (this.percen / 100) * this.unit * this.price,
-        }
         await this.$axios
-          .$post('http://localhost:8093/transaction/add', data)
+          .$post(
+            'http://localhost:8093/transaction/add',
+            data,
+            this.$store.state.header_token
+          )
           .then((res) => console.log(res))
         // console.log(this.date)
         console.log(data)
