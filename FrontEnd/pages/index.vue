@@ -169,7 +169,11 @@ export default {
         dateTime: new Date(),
       }
       await this.$axios
-        .$post('http://localhost:8093/latex/add', data)
+        .$post(
+          'http://localhost:8093/latex/add',
+          data,
+          this.$store.state.header_token
+        )
         .then((res) => console.log(res))
     },
   },

@@ -154,7 +154,7 @@ export default {
       localStorage.setItem('isAdmin', false)
       this.$store.commit('set_header_token', '')
     },
-    isLogin: () => {
+    async isLogin() {
       var token
       token = localStorage.getItem('token')
       if (token == '') {
