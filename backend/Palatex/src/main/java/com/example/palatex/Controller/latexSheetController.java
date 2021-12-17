@@ -1,4 +1,5 @@
 package com.example.palatex.Controller;
+import com.example.palatex.POJO.Latex;
 import com.example.palatex.POJO.LatexSheet;
 import com.example.palatex.POJO.Transaction;
 import com.example.palatex.Service.latexSheetService;
@@ -10,6 +11,7 @@ import java.time.LocalDate; // import the LocalDate class
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @RestController
@@ -24,7 +26,13 @@ public class latexSheetController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    //Get all latex sheet record in mongoDB
+    //Get all latex sheet  in mongoDB
+    @RequestMapping(value = "/all",  method = RequestMethod.GET)
+    public ResponseEntity<?> getAllLatexSheet(){
+        List<LatexSheet> ans = latexSheetService.getAllLatexSheetService();
+        return  ResponseEntity.ok(ans);
+    }
+
 
     //Get latex sheet record by ID in mongoDB
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)

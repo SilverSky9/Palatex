@@ -36,8 +36,6 @@ public class transactionController {
 
 
 
-
-
         return  ResponseEntity.ok(transactions);
     }
     //Get transaction by transaction_id
