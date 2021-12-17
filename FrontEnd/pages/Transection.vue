@@ -165,13 +165,7 @@ export default {
       } else {
         alert('please put all data')
       }
-      await this.$axios
-        .$post(
-          'http://localhost:8093/transaction/add',
-          data,
-          this.$store.state.header_token
-        )
-        .then((res) => console.log(res))
+
       // console.log(this.date)
       console.log(data)
     },
