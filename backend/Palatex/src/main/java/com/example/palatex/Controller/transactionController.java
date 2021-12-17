@@ -33,6 +33,11 @@ public class transactionController {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<?> getAllTransaction(){
         List<Transaction> transactions = transactionService.getAllTransactionService();
+
+
+
+
+
         return  ResponseEntity.ok(transactions);
     }
     //Get transaction by transaction_id

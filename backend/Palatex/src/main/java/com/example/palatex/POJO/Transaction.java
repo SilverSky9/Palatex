@@ -25,13 +25,14 @@ public class Transaction implements Serializable {
     private Date dateTime;
     private double price_buy;
     private double total_price;
+    private double percent;
     private double unit;
 
     public Transaction(){}
 
 
 
-    public Transaction(String _id,int user_id, LocalDate  date,Date dateTime, double price_buy, double total_price,double unit ){
+    public Transaction(String _id,int user_id, LocalDate  date,Date dateTime, double price_buy, double total_price,double percent,double unit ){
 
         this._id = _id;
 
@@ -41,6 +42,7 @@ public class Transaction implements Serializable {
         this.dateTime = dateTime;
         this.price_buy = price_buy;
         this.total_price = total_price;
+        this.percent = percent;
         this.unit = unit;
 
     }

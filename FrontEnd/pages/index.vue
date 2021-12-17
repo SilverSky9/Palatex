@@ -82,7 +82,12 @@
           </b-card-text>
 
           <b-card-text class="">
-            <b-table hover :items="latex" :fields="fields">
+            <b-table
+              sticky-header="26rem"
+              hover
+              :items="latex"
+              :fields="fields"
+            >
               <template #cell(dateTime)="data">
                 {{ $moment(data.item.dateTime).format('DD MMM YY') }}
               </template>
@@ -138,14 +143,24 @@ export default {
   methods: {
     async getLatex() {
       const latex = await this.$axios.$get('http://localhost:8093/latex/all')
+
+      console.log(this.chartData)
+      this.latex = latex
+
+      latex.sort(function (a, b) {
+        var keyA = new Date(a.dateTime),
+          keyB = new Date(b.dateTime)
+        // Compare the 2 dates
+        if (keyA < keyB) return -1
+        if (keyA > keyB) return 1
+        return 0
+      })
+      this.price = latex[latex.length - 1].price
+
       this.chartData.labels = latex.map((x) =>
         moment(x.dateTime).format('DD MMM')
       )
       this.chartData.datasets[0].data = latex.map((x) => x.price)
-      console.log(this.chartData)
-      this.latex = latex
-      this.price = latex[latex.length - 1].price
-      // this.setChart()
       // console.log(latex)
     },
     async postLatex() {
@@ -157,7 +172,6 @@ export default {
         .$post('http://localhost:8093/latex/add', data)
         .then((res) => console.log(res))
     },
-    setChart() {},
   },
   mounted() {
     this.getLatex()
@@ -172,13 +186,6 @@ export default {
     fields: [
       { key: 'dateTime', label: 'Date' },
       { key: 'price', label: 'Price' },
-    ],
-    items: [
-      { Date: '12-7-2021', Price: 59 },
-      { Date: '12-8-2021', Price: 58.9 },
-      { Date: '12-9-2021', Price: 58.6 },
-
-      { Date: '12-10-2021', Price: 59.3 },
     ],
     chartData: {
       // labels: ['10 / 12 / 21', '9 / 12 / 21', '8 / 12 / 21', '7 / 12 / 21'],

@@ -4,19 +4,21 @@
       <b-card class="content bg-light w-100 ml-3 mr-4">
         <b-row>
           <b-col>
-            <p>รายชื่อผู้ใช้ทั้งหมด</p>
+            <p>รายชื่อผู้ใช้ทั้งหมด ID : {{ selected }}</p>
+
             <b-form-select v-model="selected">
               <template #first>
                 <b-form-select-option :value="null" disabled
                   >-- Please select an option --</b-form-select-option
                 >
               </template>
+
               <b-form-select-option
                 v-for="(item, i) in user"
                 :key="i"
-                :value="item.memberId"
+                :value="item.user_id"
                 >{{
-                  item.memberId + ' ' + item.firstname + ' ' + item.lastname
+                  item.firstname + ' ' + item.lastname
                 }}</b-form-select-option
               ></b-form-select
             >
@@ -39,6 +41,17 @@
               type="text"
               v-model="unit"
               placeholder="Unit"
+              :disabled="selected == null"
+              required
+            ></b-form-input
+          ></b-col>
+          <b-col>
+            <p>% เนื้อยาง</p>
+            <b-form-input
+              type="text"
+              v-model="percen"
+              placeholder="Percentage"
+              :disabled="selected == null"
               required
             ></b-form-input
           ></b-col>
@@ -64,7 +77,7 @@
 
           <b-card-text class="display-2 p-3">
             <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
-            {{ price * unit }} ฿
+            {{ ((percen / 100) * unit * price).toFixed(2) }} ฿
             <!-- {{ date }} -->
           </b-card-text>
           <!-- <NuxtLink class="ml-3" to="/analysis"
@@ -83,18 +96,12 @@ export default {
     return {
       selected: null,
       date: new Date(),
-      options: [
-        { value: null, text: 'Please Select Name' },
-        { value: 'a', text: 'nuchayaporn' },
-        { value: 'b', text: 'noppadon' },
-        { value: 'c', text: 'sinlapawit' },
-        { value: 'd', text: 'pobjang' },
-        { value: 'd', text: 'nigga' },
-      ],
+
       date: new Date(),
       user: [],
       price: 0,
       unit: null,
+      percen: null,
     }
   },
 
@@ -119,17 +126,25 @@ export default {
         'http://localhost:8093/latex/all',
         this.$store.state.header_token
       )
-
+      latex.sort(function (a, b) {
+        var keyA = new Date(a.dateTime),
+          keyB = new Date(b.dateTime)
+        // Compare the 2 dates
+        if (keyA < keyB) return -1
+        if (keyA > keyB) return 1
+        return 0
+      })
       this.price = latex[latex.length - 1].price
     },
     async postTran() {
       var data = {
-        user_id: '2',
+        user_id: this.selected,
         date: new Date(),
         dateTime: new Date(),
         unit: this.unit,
         price_buy: this.price,
-        total_price: this.price * this.unit,
+        percen: this.percen,
+        total_price: (this.percen / 100) * this.unit * this.price,
       }
       await this.$axios
         .$post(
