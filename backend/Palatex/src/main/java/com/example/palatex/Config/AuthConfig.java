@@ -44,7 +44,7 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/authen", "/user/add")
+                .antMatchers("/authen", "/user/add", "/latex/all", "/user/count")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

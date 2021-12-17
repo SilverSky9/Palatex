@@ -26,7 +26,7 @@
             >Sign up</b-button
           ></NuxtLink
         >
-        <b-button
+        <!-- <b-button
           pill
           variant="outline-success"
           class="px-5"
@@ -49,7 +49,7 @@
           size="lg"
           @click="testshit()"
           >Get
-        </b-button>
+        </b-button> -->
       </b-col>
     </b-row>
   </b-container>

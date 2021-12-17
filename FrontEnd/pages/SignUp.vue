@@ -45,7 +45,13 @@ export default {
   layout: 'Navbar',
   methods: {
     async postSignUp() {
+      var user_count
+      await this.$axios
+        .$get('http://localhost:8093/user/count')
+        .then((res) => (user_count = res))
+
       var data = {
+        user_id: user_count,
         firstname: this.Fname,
         lastname: this.Lname,
         phone_number: this.phone,
