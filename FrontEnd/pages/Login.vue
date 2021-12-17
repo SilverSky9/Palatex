@@ -24,7 +24,7 @@
             required
           ></b-form-input>
         </b-input-group>
-        <NuxtLink class="ml-3" to="/">
+        <a class="ml-3">
           <b-button
             pill
             variant="outline-success"
@@ -32,10 +32,10 @@
             size="lg"
             @click="signin()"
             >Login</b-button
-          ></NuxtLink
+          ></a
         >
         <NuxtLink class="ml-3" to="/SignUp"
-          ><b-button pill variant="outline-success" class="px-5" size="lg"
+          ><b-button pill variant="outline-info" class="px-5" size="lg"
             >Sign up</b-button
           ></NuxtLink
         >
@@ -85,6 +85,9 @@ export default {
       }
       await this.$axios
         .$post('http://localhost:8093/authen', data)
+        .catch(() => {
+          alert('FUCK')
+        })
         .then((res) => {
           if (res != '') {
             localStorage.setItem('token', res)

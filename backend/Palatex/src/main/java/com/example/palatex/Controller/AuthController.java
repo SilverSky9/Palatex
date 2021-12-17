@@ -41,7 +41,7 @@ private userController userController;
             boolean isPasswordMatched = passwordEncoder.matches(authRequest.getPassword(), u.getPassword());
             System.out.println(isPasswordMatched);
 
-            if (isPasswordMatched) {
+            if (isPasswordMatched && authRequest.getUsername()==u.getUsername()) {
 
                     System.out.println(authRequest.getPassword());
                     authenticationManager.authenticate(

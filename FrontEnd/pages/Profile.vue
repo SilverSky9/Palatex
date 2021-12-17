@@ -10,8 +10,8 @@
 
           <b-card-text class="display-4 p-3">
             <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
-            {{ Fname + ' ' + Lname }}
-            <h1>User ID : 1</h1>
+            {{ user.firstname + ' ' + user.lastname }}
+            <h1>User ID : {{ user.user_id }}</h1>
           </b-card-text>
           <!-- <NuxtLink class="ml-3" to="/analysis"
             ><b-button variant="danger">Analysis</b-button></NuxtLink
@@ -30,14 +30,14 @@
             <b-table
               sticky-header="26rem"
               hover
-              :items="history"
+              :items="transaction"
               :fields="fields"
             >
               <template #cell(date)="data">
                 {{ $moment(data.item.date).format('DD MMM YYYY') }}
               </template>
               <template #cell(total)="data">
-                {{ (data.item.unit * data.item.price_buy).toFixed(1) }}
+                {{ (data.item.unit * data.item.price_buy).toFixed(2) }}
               </template>
             </b-table>
           </b-card-text>
