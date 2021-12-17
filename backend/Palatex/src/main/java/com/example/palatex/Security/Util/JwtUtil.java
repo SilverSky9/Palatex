@@ -1,11 +1,12 @@
 package com.example.palatex.Security.Util;
 
+import com.example.palatex.POJO.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
+import com.example.palatex.Service.userService;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -26,7 +27,9 @@ public class JwtUtil {
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+        //System.out.println(token);
         final Claims claims = extractAllClaims(token);
+        //System.out.println(claimsResolver.apply(claims));
         return claimsResolver.apply(claims);
     }
     public Claims extractAllClaims(String token) {
@@ -37,9 +40,11 @@ public class JwtUtil {
         return extractExpiration(token).before(new Date());
     }
 
-    public String generateToken(String username, String role) {
+    public String generateToken(String username) {
         Map<String, Object> claims = new HashMap<>();
-//        claims.put("role", role);
+        User u = userService.getUserByUsernameService(username);
+        System.out.println(u.getRole());
+        claims.put("role", u.getRole());
         return createToken(claims, username);
     }
 

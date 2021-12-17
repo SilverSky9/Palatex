@@ -100,18 +100,26 @@ export default {
 
   methods: {
     async getTran() {
-      const ip = await this.$axios.$get('http://localhost:8093/transaction/all')
+      const ip = await this.$axios.$get(
+        'http://localhost:8093/transaction/all',
+        this.$store.state.header_token
+      )
       console.log(ip)
     },
     async getAllUser() {
-      const list = await this.$axios.$get('http://localhost:8093/user/all')
+      const list = await this.$axios.$get(
+        'http://localhost:8093/user/all',
+        this.$store.state.header_token
+      )
       this.user = list
       console.log(list)
     },
     async getLatex() {
-      const latex = await this.$axios
-        .$get('http://localhost:8093/latex/all')
-        .catch((error) => console.log(error.response.status))
+      const latex = await this.$axios.$get(
+        'http://localhost:8093/latex/all',
+        this.$store.state.header_token
+      )
+
       this.price = latex[latex.length - 1].price
     },
     async postTran() {
@@ -124,7 +132,11 @@ export default {
         total_price: this.price * this.unit,
       }
       await this.$axios
-        .$post('http://localhost:8093/transaction/add', data)
+        .$post(
+          'http://localhost:8093/transaction/add',
+          data,
+          this.$store.state.header_token
+        )
         .then((res) => console.log(res))
       // console.log(this.date)
       console.log(data)
@@ -132,6 +144,7 @@ export default {
   },
   mounted() {
     console.log('moun')
+    console.log(this.$store.state.header_token)
     this.getAllUser()
     this.getLatex()
   },

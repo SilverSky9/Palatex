@@ -1,5 +1,18 @@
+
+
 export default {
+
   // Global page headers: https://go.nuxtjs.dev/config-head
+  devServer: {
+    proxt: 'http://localhost:8093'
+  },
+  common: {
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNYXlzYSIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNjM5NzczNDc3LCJpYXQiOjE2Mzk3Mzc0Nzd9.yzJVmNhENFprmSy2zee_c-sH7NFQmwtowV3JYjqSQHk'
+  },
+  get: {
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNYXlzYSIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNjM5NzczNDc3LCJpYXQiOjE2Mzk3Mzc0Nzd9.yzJVmNhENFprmSy2zee_c-sH7NFQmwtowV3JYjqSQHk'
+
+  },
   head: {
     title: 'FrontEnd',
     htmlAttrs: {

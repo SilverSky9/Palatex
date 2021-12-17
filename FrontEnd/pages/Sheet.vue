@@ -72,12 +72,16 @@ export default {
   layout: 'Navbar',
   methods: {
     async getLatexSheetPrice() {
-      const price = await this.$axios.$get('http://localhost:8093/price')
+      const price = await this.$axios.$get(
+        'http://localhost:8093/price',
+        this.$store.state.header_token
+      )
       this.sheetPrice = price
     },
     async getTransaction() {
       const tran = await this.$axios.$get(
-        'http://localhost:8093/transaction/all'
+        'http://localhost:8093/transaction/all',
+        this.$store.state.header_token
       )
       this.transaction = tran
     },
@@ -111,7 +115,11 @@ export default {
         dateTime: new Date(),
       }
       await this.$axios
-        .$post('http://localhost:8093/sheet/add', data)
+        .$post(
+          'http://localhost:8093/sheet/add',
+          data,
+          this.$store.state.header_token
+        )
         .then((res) => console.log(res))
 
       // console.log(this.total_sheet_price)

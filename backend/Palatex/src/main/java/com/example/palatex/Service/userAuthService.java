@@ -23,6 +23,7 @@ public class userAuthService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = authRepository.findByUsername(username);
+        System.out.println(user);
 //        Set<GrantedAuthority> grantedAuthorities = new HashSet<>(); // use list if you wish
 //        for (User role : user.getRole()) {
 //            grantedAuthorities.add(new SimpleGrantedAuthority(role.getUsername()));

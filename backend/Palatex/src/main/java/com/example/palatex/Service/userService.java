@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class userService {
     @Autowired
-    private userRepository userRepository;
+    private static userRepository userRepository;
 
     public userService(userRepository userRepository){
         this.userRepository = userRepository;
@@ -42,5 +42,8 @@ public class userService {
         catch (Exception e){
             return false;
         }
+    }
+    public static User getUserByUsernameService(String u) {
+        return userRepository.findUserByUsername(u);
     }
 }

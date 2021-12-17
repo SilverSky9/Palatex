@@ -55,6 +55,12 @@ public class userController {
         userService.deleteUserDataService(id);
         return ResponseEntity.ok("Delete user!");
     }
+    @RequestMapping(value = "/testshit5/{username}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserByUsernameCon(@PathVariable String username){
+
+        User u = userService.getUserByUsernameService(username);
+        return ResponseEntity.ok(u.getFirstname());
+    }
 
     @RabbitListener(queues = "GetAllUser")
     public ArrayList<User> getAllUser(ArrayList list){
@@ -62,4 +68,5 @@ public class userController {
         list.addAll(users);
         return list;
     }
+
 }

@@ -180,14 +180,18 @@ export default {
   },
   methods: {
     async getUser() {
-      const user = await this.$axios.$get('http://localhost:8093/user/all')
+      const user = await this.$axios.$get(
+        'http://localhost:8093/user/all',
+        this.$store.state.header_token
+      )
       //console.log(user)
       this.user = user
       //console.log(this.haha)
     },
     async getTransaction() {
       const tran = await this.$axios.$get(
-        'http://localhost:8093/transaction/all'
+        'http://localhost:8093/transaction/all',
+        this.$store.state.header_token
       )
       this.transaction = tran
     },

@@ -51,6 +51,6 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class).cors();
     }
 }
