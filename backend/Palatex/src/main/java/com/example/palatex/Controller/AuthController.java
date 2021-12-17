@@ -1,14 +1,12 @@
 package com.example.palatex.Controller;
 
-import com.example.palatex.Security.Entity.AuthRequest;
+import com.example.palatex.POJO.AuthRequest;
 import com.example.palatex.Security.Util.JwtUtil;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AuthController {
@@ -25,6 +23,7 @@ private AuthenticationManager authenticationManager;
 
     @RequestMapping(value = "/authen", method = RequestMethod.POST)
     public String generateToken(@RequestBody AuthRequest authRequest) throws Exception{
+
     try {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
@@ -32,7 +31,14 @@ private AuthenticationManager authenticationManager;
     }catch (Exception e) {
         throw new Exception("invalid");
     }
-    return jwtUtil.generateToken(authRequest.getUsername());
+    return jwtUtil.generateToken(authRequest.getUsername(), authRequest.getRole());
+
+    }
+
+    @RequestMapping(value = "/checktoken/{t}", method = RequestMethod.POST)
+    public Claims check(@PathVariable String t) {
+        return jwtUtil.extractAllClaims(t);
+
 
     }
 }
