@@ -147,7 +147,7 @@ export default {
         localStorage.getItem('token')
       )
     },
-    signout: () => {
+    async signout() {
       console.log('logged out')
       localStorage.setItem('token', '')
       localStorage.setItem('isLogged', false)

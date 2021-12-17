@@ -57,6 +57,7 @@ export default {
     async mountedQueue() {
       await this.getClaim()
       await this.getByUsername()
+      await this.getByUserId()
     },
     async getClaim() {
       await this.$axios
@@ -75,7 +76,21 @@ export default {
           'http://localhost:8093/user/getbyusername/' + this.username,
           this.$store.state.header_token
         )
-        .then((res) => console.log(res))
+        .then((res) => {
+          this.user = res
+          console.log(res)
+        })
+    },
+    async getByUserId() {
+      await this.$axios
+        .$get(
+          'http://localhost:8093/transaction/userid/' + this.user.user_id,
+          this.$store.state.header_token
+        )
+        .then((res) => {
+          console.log(res)
+          this.transaction = res
+        })
     },
   },
   mounted() {
@@ -83,6 +98,8 @@ export default {
   },
   data: () => ({
     username: '',
+    user: {},
+    transaction: [],
     Fname: 'Pawaris',
     Lname: 'Wongsaied',
     fields: [

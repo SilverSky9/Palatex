@@ -61,17 +61,22 @@ export default {
   methods: {
     async signin() {
       var data = {
-        username: 'Maysa',
+        username: 'Supanut',
         password: '12345',
       }
       await this.$axios
         .$post('http://localhost:8093/authen', data)
         .then((res) => {
-          localStorage.setItem('token', res)
-          localStorage.setItem('isLogged', true)
-          this.$store.commit('set_header_token', localStorage.getItem('token'))
-          console.log(this.$store.state.header_token)
-          console.log('success')
+          if (res != '') {
+            localStorage.setItem('token', res)
+            localStorage.setItem('isLogged', true)
+            this.$store.commit(
+              'set_header_token',
+              localStorage.getItem('token')
+            )
+            console.log(this.$store.state.header_token)
+            console.log('success')
+          }
         })
 
       if (localStorage.getItem('token') != '') {
@@ -95,6 +100,7 @@ export default {
       localStorage.setItem('token', '')
       localStorage.setItem('isLogged', false)
       localStorage.setItem('isAdmin', false)
+      this.$store.commit('isLogout')
     },
     async testshit() {
       var headers = {
