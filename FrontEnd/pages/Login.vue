@@ -73,6 +73,22 @@ export default {
           console.log(this.$store.state.header_token)
           console.log('success')
         })
+
+      if (localStorage.getItem('token') != '') {
+        await this.$axios
+          .$get(
+            'http://localhost:8093/checktoken/' + localStorage.getItem('token'),
+            this.$store.state.header_token
+          )
+          .then((res) => {
+            if (res.role == 'admin') {
+              localStorage.setItem('isAdmin', true)
+            } else if (res.role == 'user') {
+              localStorage.setItem('isAdmin', false)
+            }
+            console.log('isadmin? : ' + localStorage.getItem('isAdmin'))
+          })
+      }
       //.catch((error) => console.log(error.response.status))
     },
     async signout() {
