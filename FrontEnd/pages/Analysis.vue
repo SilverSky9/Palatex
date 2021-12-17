@@ -39,6 +39,9 @@
               <template #cell(dateTime)="data">
                 {{ $moment(data.item.date).format('DD MMM YYYY') }}
               </template>
+              <template #cell(percent)="data">
+                {{ data.item.percent }} %
+              </template>
               <template #cell(total_price)="data">
                 {{ data.item.total_price.toFixed(2) }}
               </template>
@@ -70,8 +73,8 @@
         </b-card>
       </b-col>
     </b-row>
-    <b-row class="pr-2 my-3">
-      <b-col>
+    <b-row class="my-3">
+      <b-col cols="6">
         <b-card class="content bg-light">
           <b-card-text class="m-2">
             <fa :icon="['fa', 'chart-line']" size="2x" />
@@ -94,7 +97,7 @@
           > -->
         </b-card>
       </b-col>
-      <b-col>
+      <b-col cols="6">
         <b-card class="content bg-light">
           <b-card-text class="m-2">
             <fa :icon="['fa', 'chart-line']" size="2x" />
@@ -102,7 +105,7 @@
             <span class="h3">ราคาต่อวันรวมทั้งปี</span>
           </b-card-text>
 
-          <b-card-text class="display-3 p-3">
+          <b-card-text class="display-4 p-3">
             <!-- <fa :icon="['fab', 'btc']" size="2xb" /> -->
             <LineChart
               :chartData="bahtData"
@@ -141,12 +144,14 @@ export default {
 
       allKg: null,
       fields: [
-        { key: 'firstname', label: 'name' },
-        // { key: 'user_id', label: 'User Id' },
+        { key: 'firstname', label: 'Name' },
 
         { key: 'dateTime', label: 'Date' },
         { key: 'price_buy', label: 'Price' },
+
         { key: 'unit', label: 'Unit' },
+        { key: 'percent', label: 'Percentage' },
+
         { key: 'total_price', label: 'Total' },
       ],
       donutData: {
@@ -155,7 +160,7 @@ export default {
         datasets: [
           {
             label: 'Kilogram Over Year',
-            data: [2, 2],
+            data: [],
             backgroundColor: ['#6731fb', '#ffb531'],
             fill: false,
           },
@@ -214,8 +219,11 @@ export default {
       // console.log(tran)
     },
     async getAnalysis() {
+      let dateI = 0
+      let select = ''
       await this.getUser()
       await this.getTransaction()
+
       this.transaction.forEach((x) => {
         this.user.forEach((y) => {
           if (x.user_id == y.user_id) {
@@ -226,6 +234,54 @@ export default {
 
       //await this.transaction.map((x) => this.analysis.push(x))
       console.log(this.analysis)
+      this.analysis.map((i, index) => {
+        // console.log(i)
+        select = i.date
+        dateI = this.allTime.findIndex((x) => x.Date == select)
+        if (dateI < 0) {
+          this.allTime.push({ Date: select, Kg: i.unit })
+          this.totalBaht.push({
+            Date: select,
+            total: (i.percent / 100) * i.unit * i.price_buy,
+          })
+        } else {
+          this.allTime[dateI].Kg += i.unit
+          this.totalBaht[dateI].total +=
+            (i.percent / 100) * i.unit * i.price_buy
+        }
+        this.allKg += i.unit
+        this.allTotal += (i.percent / 100) * i.unit * i.price_buy
+      })
+
+      this.allTime.sort(function (a, b) {
+        var keyA = new Date(a.Date),
+          keyB = new Date(b.Date)
+        // Compare the 2 dates
+        if (keyA < keyB) return -1
+        if (keyA > keyB) return 1
+        return 0
+      })
+      this.totalBaht.sort(function (a, b) {
+        var keyA = new Date(a.Date),
+          keyB = new Date(b.Date)
+        // Compare the 2 dates
+        if (keyA < keyB) return -1
+        if (keyA > keyB) return 1
+        return 0
+      })
+
+      this.bahtData.labels = this.totalBaht.map((x) =>
+        moment(x.Date).format('DD MMM')
+      )
+      this.bahtData.datasets[0].data = this.totalBaht.map((x) => x.total)
+
+      this.chartData.labels = this.allTime.map((x) =>
+        moment(x.Date).format('DD MMM')
+      )
+      this.chartData.datasets[0].data = this.allTime.map((x) => x.Kg)
+
+      this.donutData.datasets[0].data[0] = this.allKg
+      this.donutData.datasets[0].data[1] = this.allKg * 0.35
     },
   },
 
@@ -237,61 +293,33 @@ export default {
   },
 
   async fetch() {
-    let dateI = 0
-    let select = ''
-
     //console.log('asdasd')
-
     // const userTest = await fetch('https://api.nuxtjs.dev/mountains').then(
     //   (res) => res.json()
     // )
     // console.log(userTest)
-
-    this.analysis.map((i, index) => {
-      select = i.dateTime
-      dateI = this.allTime.findIndex((x) => x.Date == select)
-      if (dateI < 0) {
-        this.allTime.push({ Date: select, Kg: i.unit })
-        this.totalBaht.push({ Date: select, total: i.price_buy * i.unit })
-      } else {
-        this.allTime[dateI].Kg += i.unit
-        this.totalBaht[dateI].total += i.price_buy * i.unit
-      }
-      this.allKg += i.unit
-      this.allTotal += i.price_buy * i.unit
-      console.log(this.allTime)
-    })
-
-    this.allTime.sort(function (a, b) {
-      var keyA = new Date(a.Date),
-        keyB = new Date(b.Date)
-      // Compare the 2 dates
-      if (keyA < keyB) return -1
-      if (keyA > keyB) return 1
-      return 0
-    })
-
-    this.totalBaht.sort(function (a, b) {
-      var keyA = new Date(a.Date),
-        keyB = new Date(b.Date)
-      // Compare the 2 dates
-      if (keyA < keyB) return -1
-      if (keyA > keyB) return 1
-      return 0
-    })
-    // console.log(this.allTime)
-    this.chartData.labels = this.allTime.map((x) =>
-      moment(x.Date).format('DD MMM')
-    )
-    this.chartData.datasets[0].data = this.allTime.map((x) => x.Kg)
-
-    this.bahtData.labels = this.totalBaht.map((x) =>
-      moment(x.Date).format('DD MMM')
-    )
-    this.bahtData.datasets[0].data = this.totalBaht.map((x) => x.total)
-
-    this.donutData.datasets[0].data[0] = this.allKg
-    this.donutData.datasets[0].data[1] = this.allKg * 0.35
+    // this.analysis.map((i, index) => {
+    //   select = i.dateTime
+    //   dateI = this.allTime.findIndex((x) => x.Date == select)
+    //   if (dateI < 0) {
+    //     this.allTime.push({ Date: select, Kg: i.unit })
+    //     this.totalBaht.push({ Date: select, total: i.price_buy * i.unit })
+    //   } else {
+    //     this.allTime[dateI].Kg += i.unit
+    //     this.totalBaht[dateI].total += i.price_buy * i.unit
+    //   }
+    //   this.allKg += i.unit
+    //   this.allTotal += i.price_buy * i.unit
+    //   console.log(this.allTime)
+    // })
+    // this.allTime.sort(function (a, b) {
+    //   var keyA = new Date(a.Date),
+    //     keyB = new Date(b.Date)
+    //   // Compare the 2 dates
+    //   if (keyA < keyB) return -1
+    //   if (keyA > keyB) return 1
+    //   return 0
+    // })
   },
 }
 </script>
