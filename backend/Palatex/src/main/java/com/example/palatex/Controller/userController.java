@@ -55,11 +55,10 @@ public class userController {
         userService.deleteUserDataService(id);
         return ResponseEntity.ok("Delete user!");
     }
-    @RequestMapping(value = "/testshit5/{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getbyusername/{username}", method = RequestMethod.GET)
     public ResponseEntity<?> getUserByUsernameCon(@PathVariable String username){
-
         User u = userService.getUserByUsernameService(username);
-        return ResponseEntity.ok(u.getFirstname());
+        return ResponseEntity.ok(u);
     }
 
     @RabbitListener(queues = "GetAllUser")

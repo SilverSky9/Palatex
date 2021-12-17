@@ -53,7 +53,36 @@
 <script>
 export default {
   layout: 'Navbar',
+  methods: {
+    async mountedQueue() {
+      await this.getClaim()
+      await this.getByUsername()
+    },
+    async getClaim() {
+      await this.$axios
+        .$get(
+          'http://localhost:8093/checktoken/' + this.$store.state.token,
+          this.$store.state.header_token
+        )
+        .then((res) => {
+          console.log(res)
+          this.username = res.sub
+        })
+    },
+    async getByUsername() {
+      await this.$axios
+        .$get(
+          'http://localhost:8093/user/getbyusername/' + this.username,
+          this.$store.state.header_token
+        )
+        .then((res) => console.log(res))
+    },
+  },
+  mounted() {
+    this.mountedQueue()
+  },
   data: () => ({
+    username: '',
     Fname: 'Pawaris',
     Lname: 'Wongsaied',
     fields: [
