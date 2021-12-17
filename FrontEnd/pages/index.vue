@@ -20,12 +20,15 @@
               placeholder="Sheet Price"
             ></b-form-input>
           </b-card-text>
-          <NuxtLink class="ml-3" to="/Transection"
+          <NuxtLink
+            class="ml-3"
+            to="/Transection"
+            v-if="this.$store.state.isAdmin"
             ><b-button pill variant="outline-info" class="px-5" size="lg"
               >Transaction</b-button
             ></NuxtLink
           >
-          <NuxtLink class="ml-3" to="/analysis"
+          <NuxtLink class="ml-3" to="/analysis" v-if="this.$store.state.isAdmin"
             ><b-button pill variant="outline-success" class="px-5" size="lg"
               >Analysis</b-button
             ></NuxtLink
@@ -33,7 +36,7 @@
           <a class="ml-3"
             ><b-button
               pill
-              v-show="!edit"
+              v-show="!edit && this.$store.state.isAdmin"
               variant="outline-warning"
               @click="edit = !edit"
               class="px-5"
@@ -144,7 +147,7 @@ export default {
     async getLatex() {
       const latex = await this.$axios.$get('http://localhost:8093/latex/all')
 
-      console.log(this.chartData)
+      // console.log(this.chartData)
       this.latex = latex
 
       latex.sort(function (a, b) {

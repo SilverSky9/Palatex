@@ -13,7 +13,10 @@
       </NuxtLink>
       <div class="col-sm my-2 header">
         <span class="headerText py-0 pr-0 text-white">Palatex</span>
-        <span class="text-secondary">Buying and Selling Latex Product</span>
+        <span class="text-secondary"
+          >Buying and Selling Latex Product
+          {{ this.$store.state.isAdmin }}</span
+        >
       </div>
     </div>
     <div class="row positon-sticky">
@@ -32,6 +35,7 @@
           >
             <li class="pl-2 iconEffect">
               <NuxtLink
+                v-if="!this.$store.state.isAdmin && this.$store.state.isLogged"
                 to="/Profile"
                 class="nav-link py-3"
                 title=""
@@ -41,7 +45,10 @@
                 <fa :icon="['fa', 'user-alt']" size="2x" />
               </NuxtLink>
             </li>
-            <li class="pl-2 iconEffect">
+            <li
+              class="pl-2 iconEffect"
+              v-if="this.$store.state.isLogged && this.$store.state.isAdmin"
+            >
               <NuxtLink
                 to="/Analysis"
                 class="nav-link py-3"
@@ -52,7 +59,10 @@
                 <fa :icon="['fa', 'chart-bar']" size="2x" />
               </NuxtLink>
             </li>
-            <li class="pl-2 iconEffect">
+            <li
+              class="pl-2 iconEffect"
+              v-if="this.$store.state.isLogged && this.$store.state.isAdmin"
+            >
               <NuxtLink
                 to="/Transection"
                 class="nav-link py-3"
@@ -63,7 +73,10 @@
                 <fa :icon="['fa', 'exchange-alt']" size="2x" />
               </NuxtLink>
             </li>
-            <li class="pl-2 iconEffect">
+            <li
+              class="pl-2 iconEffect"
+              v-if="this.$store.state.isLogged && this.$store.state.isAdmin"
+            >
               <NuxtLink
                 to="/Sheet"
                 class="nav-link py-3"
@@ -74,7 +87,7 @@
                 <fa :icon="['fa', 'layer-group']" size="2x" />
               </NuxtLink>
             </li>
-            <li class="pl-2 iconEffect">
+            <li class="pl-2 iconEffect" v-if="!this.$store.state.isLogged">
               <NuxtLink
                 to="/Login"
                 class="nav-link py-3"
@@ -85,11 +98,20 @@
                 <fa :icon="['fa', 'sign-in-alt']" size="2x" />
               </NuxtLink>
             </li>
-            <li class="pl-2 iconEffect" @click="signout()">
-              <fa :icon="['fa', 'sign-out-alt']" size="2x" />
-            </li>
-            <li class="pl-2 iconEffect" @click="localStatus()">
-              <fa :icon="['fa', 'exchange-alt']" size="2x" />
+            <li
+              class="pl-2 iconEffect"
+              @click="signout()"
+              v-if="this.$store.state.isLogged"
+            >
+              <NuxtLink
+                to="/"
+                class="nav-link py-3"
+                title=""
+                data-bs-toggle="tooltip"
+                data-bs-placement="right"
+              >
+                <fa :icon="['fa', 'sign-out-alt']" size="2x" />
+              </NuxtLink>
             </li>
           </ul>
         </div>
@@ -115,11 +137,10 @@ export default {
       scrollTop: null,
       isVisible: false,
       visibleDistance: 200,
+      show: false,
     }
   },
-  mounted() {
-    // this.startFetching()
-  },
+
   created() {
     this.startFetching()
   },
@@ -128,8 +149,9 @@ export default {
   },
   methods: {
     async startFetching() {
-      this.isLogin()
-      this.localStatus()
+      await this.localStatus()
+
+      await this.isLogin()
       window.addEventListener(
         'scroll',
         debounce(this.scrollListener, 100),
@@ -138,6 +160,7 @@ export default {
 
       console.log(this.$store.state.header_token)
     },
+
     async localStatus() {
       console.log('token: ' + localStorage.getItem('token'))
       console.log('islogged: ' + localStorage.getItem('isLogged'))
@@ -153,6 +176,8 @@ export default {
       localStorage.setItem('isLogged', false)
       localStorage.setItem('isAdmin', false)
       this.$store.commit('set_header_token', '')
+      this.$store.commit('isLogout')
+      this.$store.commit('adminLogout')
     },
     async isLogin() {
       var token
@@ -163,6 +188,16 @@ export default {
         localStorage.setItem('isAdmin', false)
         this.$store.commit('set_header_token', '')
       } else {
+        if (localStorage.getItem('isAdmin') == 'true') {
+          this.$store.commit('adminLogged')
+        } else if (localStorage.getItem('isAdmin') == false) {
+          this.$store.commit('adminLogged')
+        }
+        if (localStorage.getItem('isLogged')) {
+          this.$store.commit('isLogin')
+        } else {
+          this.$store.commit('isLogout')
+        }
       }
     },
     scrollListener() {

@@ -8,18 +8,31 @@
         <fa :icon="['fa', 'eraser']" size="10x" />
         <div class="display-1 font-weight-bold">PALATEX</div>
         <b-input-group prepend="Username" class="my-3">
-          <b-form-input></b-form-input>
+          <b-form-input
+            type="text"
+            placeholder="username"
+            v-model="user"
+            required
+          ></b-form-input>
         </b-input-group>
+
         <b-input-group prepend="Password" class="my-3">
-          <b-form-input></b-form-input>
+          <b-form-input
+            type="password"
+            placeholder="password"
+            v-model="pass"
+            required
+          ></b-form-input>
         </b-input-group>
-        <b-button
-          pill
-          variant="outline-success"
-          class="px-5"
-          size="lg"
-          @click="signin()"
-          >Login</b-button
+        <NuxtLink class="ml-3" to="/">
+          <b-button
+            pill
+            variant="outline-success"
+            class="px-5"
+            size="lg"
+            @click="signin()"
+            >Login</b-button
+          ></NuxtLink
         >
         <NuxtLink class="ml-3" to="/SignUp"
           ><b-button pill variant="outline-success" class="px-5" size="lg"
@@ -58,11 +71,17 @@
 <script>
 export default {
   layout: 'Navbar',
+  data() {
+    return {
+      user: null,
+      pass: null,
+    }
+  },
   methods: {
     async signin() {
       var data = {
-        username: 'Supanut',
-        password: '12345',
+        username: this.user,
+        password: this.pass,
       }
       await this.$axios
         .$post('http://localhost:8093/authen', data)
@@ -88,12 +107,16 @@ export default {
           .then((res) => {
             if (res.role == 'admin') {
               localStorage.setItem('isAdmin', true)
+              this.$store.commit('adminLogged')
             } else if (res.role == 'user') {
               localStorage.setItem('isAdmin', false)
+              this.$store.commit('adminLogout')
             }
+            this.$store.commit('isLogin')
             console.log('isadmin? : ' + localStorage.getItem('isAdmin'))
           })
       }
+
       //.catch((error) => console.log(error.response.status))
     },
     async signout() {
