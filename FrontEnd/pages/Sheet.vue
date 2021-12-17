@@ -179,7 +179,10 @@ export default {
       this.sheetPrice = price
     },
     async getAllLatexSheet() {
-      const sheet = await this.$axios.$get('http://localhost:8093/sheet/all')
+      const sheet = await this.$axios.$get(
+        'http://localhost:8093/sheet/all',
+        this.$store.state.header_token
+      )
       this.allSheet = sheet
       console.log(this.allSheet)
 
