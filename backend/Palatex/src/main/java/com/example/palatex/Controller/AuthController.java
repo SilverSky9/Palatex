@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.example.palatex.Service.userService;
 import com.example.palatex.Repository.userRepository;
@@ -31,23 +32,31 @@ private userController userController;
     @RequestMapping(value = "/authen", method = RequestMethod.POST)
     public String generateToken(@RequestBody AuthRequest authRequest) throws Exception{
 
+        User u = userService.getUserByUsernameService(authRequest.getUsername());
+        System.out.println(u);
 
-        try {
             //get role
+            System.out.println(u.getPassword());
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            boolean isPasswordMatched = passwordEncoder.matches(authRequest.getPassword(), u.getPassword());
+            System.out.println(isPasswordMatched);
 
+            if (isPasswordMatched) {
 
-            authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
-        );
-    }catch (Exception e) {
-        throw new Exception("invalid");
-    }
+                    System.out.println(authRequest.getPassword());
+                    authenticationManager.authenticate(
+                            new UsernamePasswordAuthenticationToken(authRequest.getUsername(), u.getPassword())
+                    );
+                return jwtUtil.generateToken(authRequest.getUsername(), u.getRole());
+
+            }
+
 
 //            User test = userService.getUserByUsernameService("Maysa");
 //            System.out.println(test.getFirstname());
 
 //    return "";
-    return jwtUtil.generateToken(authRequest.getUsername());
+    return "";
 
     }
 

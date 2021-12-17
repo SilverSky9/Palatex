@@ -17,19 +17,19 @@ public class userService {
     @Autowired
     private static userRepository userRepository;
     @Autowired
-    private PasswordEncoder passwordEncoder;
 
-    @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     public userService(userRepository userRepository){
         this.userRepository = userRepository;
     }
     //Add user
     public User addUserService(User u) {
-        u.setPassword(passwordEncoder.encode(u.getPassword()));
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(u.getPassword());
+
+        System.out.println(encodedPassword);
+
+        u.setPassword(encodedPassword);
         return userRepository.save(u);
     }
     //Get all user
