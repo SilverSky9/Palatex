@@ -24,7 +24,7 @@
             required
           ></b-form-input>
         </b-input-group>
-        <a class="ml-3">
+        <NuxtLink class="ml-3" to="/">
           <b-button
             pill
             variant="outline-success"
@@ -32,7 +32,7 @@
             size="lg"
             @click="signin()"
             >Login</b-button
-          ></a
+          ></NuxtLink
         >
         <NuxtLink class="ml-3" to="/SignUp"
           ><b-button pill variant="outline-info" class="px-5" size="lg"

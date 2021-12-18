@@ -13,10 +13,7 @@
       </NuxtLink>
       <div class="col-sm my-2 header">
         <span class="headerText py-0 pr-0 text-white">Palatex</span>
-        <span class="text-secondary"
-          >Buying and Selling Latex Product
-          {{ this.$store.state.isAdmin }}</span
-        >
+        <span class="text-secondary">Buying and Selling Latex Product </span>
       </div>
     </div>
     <div class="row positon-sticky">

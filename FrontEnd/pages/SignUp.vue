@@ -25,7 +25,7 @@
         <b-input-group prepend="Phone Number" class="my-3">
           <b-form-input v-model="phone" placeholder="phone"></b-form-input>
         </b-input-group>
-        <a class="ml-3"
+        <NuxtLink class="ml-3" to="/Login"
           ><b-button
             pill
             variant="outline-success"
@@ -33,7 +33,7 @@
             size="lg"
             @click="postSignUp()"
             >Sign Up</b-button
-          ></a
+          ></NuxtLink
         >
       </b-col>
     </b-row>
@@ -65,12 +65,12 @@ export default {
     },
   },
   data: () => ({
-    Fname: 'pawaris',
-    Lname: 'wongsaied',
-    user: 'farrock@outlook.co.th',
-    pass: 'heart555',
-    Cpass: 'heart555',
-    phone: '0957862118',
+    Fname: '',
+    Lname: '',
+    user: '',
+    pass: '',
+    Cpass: '',
+    phone: '',
   }),
 }
 </script>

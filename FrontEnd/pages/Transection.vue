@@ -140,7 +140,7 @@ export default {
       date.setDate(date.getDate() + 1)
       var data = {
         user_id: this.selected,
-        date: date,
+        date: new Date(),
         dateTime: new Date(),
         unit: this.unit,
         price_buy: this.price,

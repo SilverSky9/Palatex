@@ -236,6 +236,7 @@ export default {
       })
       console.log(this.sheet)
 
+
       this.toDay = this.sheet.filter(
         (x) => x.Date == moment().format('YYYY-MM-DD')
       )
